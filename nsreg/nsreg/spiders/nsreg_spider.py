@@ -1,5 +1,5 @@
 import scrapy
-
+from nsreg.items import NsregItem
 
 class NSRegSpider(scrapy.Spider):
     name = "nsreg"
@@ -9,12 +9,10 @@ class NSRegSpider(scrapy.Spider):
 
     def parse(self, response):
         for reg in response.xpath('//*[@id="registrator-list"]/div/div'):
-            yield {
-                # div/span[1]/span[1]/span
-                'name': reg.xpath('div/span[1]/span[1]/span/text()').get(),
-                'note1': reg.xpath('div/span[1]/span[2]/span[1]/text()').get(),
-                'note2': reg.xpath('div/span[1]/span[2]/span[2]/text()').get(),
-                'city': reg.xpath('div/span[2]/text()').get(),
-                'website': reg.xpath('div/a/@href').get(),
-                
-            }
+            item = NsregItem()
+            item['name'] = reg.xpath('div/span[1]/span[1]/span/text()').get()
+            item['note1'] = reg.xpath('div/span[1]/span[2]/span[1]/text()').get()
+            item['note2'] = reg.xpath('div/span[1]/span[2]/span[2]/text()').get()
+            item['city'] = reg.xpath('div/span[2]/text()').get()
+            item['website'] = reg.xpath('div/a/@href').get()
+            yield item

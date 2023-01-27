@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 50432,
+            "driver": "PostgreSQL",
+            "name": "nsreg",
+            "database": "nsreg",
+            "username": "nsreg",
+            "password": "Nsreg123"
+        }
+    ]
+}
