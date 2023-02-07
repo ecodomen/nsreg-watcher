@@ -13,3 +13,4 @@ class NsregItem(scrapy.Item):
     note2 = scrapy.Field()
     city = scrapy.Field()
     website = scrapy.Field()
+    price = scrapy.Field()

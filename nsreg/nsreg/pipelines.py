@@ -35,9 +35,43 @@ class NsregPipeline:
             note1 text,
             note2 text,
             city VARCHAR(255),
-            website text
+            website text, 
+            pricereg text, 
+            pricecont text, 
+            pricetrans text
         )
         """)
 
     def process_item(self, item, spider):
+        self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
+        result = self.cur.fetchone()
+
+        if result:
+            spider.logger.warn("Item already in database: %s" % item['name'])
+        else:
+            pricereg, pricecont, pricetrans = '', '', ''
+            if item['price']:
+                pricereg, pricecont, pricetrans = item['price']['pricereg'], item['price']['pricecont'], item['price']['pricetrans'] 
+
+            self.cur.execute(""" INSERT INTO regcomp (name, note1, note2, city, website, pricereg, pricecont, pricetrans) values (%s,%s,%s,%s,%s,%s,%s,%s)""", (
+                item["name"], 
+                item["note1"], 
+                item["note2"],
+                item["city"],
+                item["website"],     
+                pricereg, 
+                pricecont, 
+                pricetrans 
+            ))
+
+            ## Execute insert of data into database
+            self.connection.commit()
         return item
+    
+    
+    def close_spider(self, spider):
+
+        ## Close cursor & connection to database 
+        self.cur.close()
+        self.connection.close()
+
