@@ -1,17 +1,6 @@
 import scrapy
 from nsreg.items import NsregItem
 
-def parser_2domains():
-    return {
-        "pricereg": 150,
-        "pricecont": 450,
-        "pricetrans": 750,
-    }
-
-registry_parsers = {
-    "ООО «2ДОМЕЙНС.РУ»": parser_2domains
-}
-
 class NSRegSpider(scrapy.Spider):
     name = "nsreg"
     start_urls = [
@@ -26,13 +15,5 @@ class NSRegSpider(scrapy.Spider):
             item['note2'] = reg.xpath('div/span[1]/span[2]/span[2]/text()').get()
             item['city'] = reg.xpath('div/span[2]/text()').get()
             item['website'] = reg.xpath('div/a/@href').get()
-
-            parser = registry_parsers.get(item['name'], None)
-            if parser is not None: 
-                prices = parser()
-            else:
-                prices = {}
-            item['price'] = prices
-
 
             yield item
