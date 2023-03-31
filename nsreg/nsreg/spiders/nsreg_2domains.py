@@ -33,4 +33,4 @@ class Nsreg2domainsSpider(scrapy.Spider):
         }
 
         yield item
-        
+       
