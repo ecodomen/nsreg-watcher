@@ -19,5 +19,7 @@ from catalog import views
 
 urlpatterns = [
     path('', views.regcomp_list, name='regcomp-list'),
+    path('partner/<int:id>/', views.regcomp_details, name='regcomp-details'),
     path('admin/', admin.site.urls),
+    
 ]
