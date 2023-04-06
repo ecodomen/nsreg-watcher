@@ -13,3 +13,7 @@ def regcomp_details(request, id):
     except Regcomp.DoesNotExist:
         return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")         
     return render(request, 'regcomp-details.html', {'company': company})
+
+def about(request):
+    return render(request, 'about-us.html', )
+

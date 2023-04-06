@@ -18,6 +18,6 @@ class Regcomp(models.Model):
     def __str__(self):
         return f'{self.id}: {self.name}'
 
-    def company_list():
-        return Regcomp.objects.all()
+    def get_company(id):
+        Regcomp.objects.get(id=id)
         
