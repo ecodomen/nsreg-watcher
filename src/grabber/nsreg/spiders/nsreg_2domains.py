@@ -16,7 +16,7 @@ class Nsreg2domainsSpider(scrapy.Spider):
         pricereg = response.xpath('//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[2]/text()').get()
         pricereg = f"{float(pricereg)}"
 
-        priceprolong = response.xpath('//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[4]/text()')
+        priceprolong = response.xpath('//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[4]/text()').get()
         if m := re.match(REGEX_PROLONG_PATTERN, str(priceprolong)):
             priceprolong = m.group(1)
             priceprolong = f'{float(priceprolong)}'
