@@ -1,3 +1,4 @@
+{% load static %}
 <div class="about-section">
     <h1>О нас</h1>
     <p>На нашем сайте вы найдете самое выгодное предложение!</p>
@@ -8,12 +9,12 @@
   <div class="row">
     <div class="column">
       <div class="card">
-        <img src="../../static/pictures/photo_2019-07-03_20-05-26.jpg" alt="Aleksey" style="width:15%">
+        <img src="{% static pictures/photo_2019-07-03_20-05-26.jpg %}" alt="Aleksey" style="width:15%">
         <div class="container">
           <h2>Алексей</h2>
           <p class="title">Разработчик & Помощник о:</p>
           <p>Организую разработку веб и мобильных приложений повышенной сложности.</p>
-          <p>https://t.me/arezvov</p>
+          <a href="https://t.me/arezvov">https://t.me/arezvov</a>
           <p><button class="button">Contact</button></p>
         </div>
       </div>
@@ -21,7 +22,7 @@
   
     <div class="column">
       <div class="card">
-        <img src="../../static/pictures/photo_2022-02-02_21-56-33.jpg" alt="Maria" style="width:15%">
+        <img src="{% static pictures/photo_2022-02-02_21-56-33.jpg %}" alt="Maria" style="width:15%">
         <div class="container">
           <h2>Мария</h2>
           <p class="title">Главный разработчик</p>
