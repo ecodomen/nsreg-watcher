@@ -7,19 +7,21 @@ from nsreg.items import NsregItem
 
 REGEX_PATTERN = r"([0-9]*[.,\s])?[0-9]+\s*₽"
 
-class Nsreg2domainsSpider(scrapy.Spider):
+class Nsreg_ad100Spider(scrapy.Spider):
     name = 'nsreg_a100'
     allowed_domains = ['a100.ru']
     start_urls = ['https://a100.ru/']
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="overlappable"]/div/div/div/div[1]/div/div/div[2]/div/p[1]/text()').get()
-        if m := re.match(REGEX_PATTERN, str(pricereg)):
+        pricereg = str(pricereg).strip()
+        if m := re.match(REGEX_PATTERN, pricereg):
             pricereg = f'{float(pricereg)}'
             logging.info('pricereg = %s', pricereg)
         
         priceprolong = response.xpath('//*[@id="overlappable"]/div/div/div/div[2]/div/div/div[2]/div/p[1]/text()').get()
-        if m := re.match(REGEX_PATTERN, str(priceprolong)):
+        priceprolong = str(priceprolong).strip()
+        if m := re.match(REGEX_PATTERN, priceprolong):
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
         item = NsregItem()

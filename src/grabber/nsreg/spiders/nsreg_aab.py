@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 import re
 
@@ -7,19 +8,21 @@ from nsreg.items import NsregItem
 REGEX_PATTERN = r".*([0-9]+\.).*"
 
 
-class Nsreg2domainsSpider(scrapy.Spider):
+class Nsreg_aabSpider(scrapy.Spider):
     name = 'nsreg_aab'
     allowed_domains = ['aab.ru']
     start_urls = ['https://aab.ru/tarifi_na_uslugi.html']
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
-        if m := re.match(REGEX_PATTERN, str(pricereg)):
+        pricereg = str(pricereg).strip()
+        if m := re.match(REGEX_PATTERN, pricereg):
             pricereg = f'{float(pricereg)}'
             logging.info('pricereg = %s', pricereg)
         
         priceprolong = response.xpath('//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
-        if m := re.match(REGEX_PATTERN, str(priceprolong)):
+        priceprolong = str(priceprolong).strip()
+        if m := re.match(REGEX_PATTERN, priceprolong):
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
         item = NsregItem()

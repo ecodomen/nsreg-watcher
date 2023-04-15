@@ -11,10 +11,10 @@
             "module": "scrapy",
             "args": [
                 "crawl",
-                "nsreg_2domains"
+                "nsreg_a100"
             ],
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}/nsreg"
+            "cwd": "${workspaceFolder}/src/grabber/nsreg"
         }
     ]
 }
