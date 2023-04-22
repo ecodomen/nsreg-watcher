@@ -11,6 +11,7 @@ class Nsreg101domainSpider(scrapy.Spider):
     name = 'nsreg_101domain'
     allowed_domains = ['sidename.ru']
     start_urls = ['https://sidename.ru/site/tariffs']
+    
 
     def parse(self, response):
         pricereg = response.xpath('/html/body/section/div/div/div/div[2]/div[1]/div[2]/span/text()').get()
@@ -26,6 +27,14 @@ class Nsreg101domainSpider(scrapy.Spider):
             priceprolong = m.group(1)
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
+
+        pricechange = response.xpath('/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()').get()
+        pricechange = str(pricechange).strip()
+        if m := re.match(REGEX_PATTERN, pricechange):
+            pricechange = m.group(1)
+            pricechange = f'{float(pricechange)}'
+            logging.info('pricechange = %s', pricechange)
+
         item = NsregItem()
         item['name'] = "ООО «101домен Регистрация Доменов»"
         item['note1'] = ''
@@ -35,6 +44,9 @@ class Nsreg101domainSpider(scrapy.Spider):
         item['price'] = {
             'pricereg': pricereg,
             'priceprolong': priceprolong,
+            'pricechange': pricechange
         }
 
         yield item
+
+    

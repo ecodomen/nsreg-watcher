@@ -25,6 +25,12 @@ class Nsreg_aabSpider(scrapy.Spider):
         if m := re.match(REGEX_PATTERN, priceprolong):
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
+
+        pricechange = response.xpath('//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
+        pricechange = str(pricechange).strip()
+        pricechange = f'{float(pricechange)}'
+        logging.info('pricechange = %s', pricechange)
+
         item = NsregItem()
         item['name'] = "ООО «ААБ Медиа»"
         item['note1'] = ''
@@ -34,6 +40,7 @@ class Nsreg_aabSpider(scrapy.Spider):
         item['price'] = {
             'pricereg': pricereg,
             'priceprolong': priceprolong,
+            'pricechange': pricechange,
         }
 
         yield item

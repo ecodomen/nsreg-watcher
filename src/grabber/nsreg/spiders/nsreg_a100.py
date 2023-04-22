@@ -24,6 +24,14 @@ class Nsreg_ad100Spider(scrapy.Spider):
         if m := re.match(REGEX_PATTERN, priceprolong):
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
+
+        pricechange = response.xpath('/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()').get()
+        pricechange = str(pricechange).strip()
+        if m := re.match(REGEX_PATTERN, pricechange):
+            pricechange = m.group(1)
+            pricechange = f'{float(pricechange)}'
+            logging.info('pricechange = %s', pricechange)
+
         item = NsregItem()
         item['name'] = "ООО «А100»"
         item['note1'] = ''
@@ -33,6 +41,7 @@ class Nsreg_ad100Spider(scrapy.Spider):
         item['price'] = {
             'pricereg': pricereg,
             'priceprolong': priceprolong,
+            'pricechange': pricechange,
         }
 
         yield item
