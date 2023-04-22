@@ -21,6 +21,7 @@ class Nsreg2domainsSpider(scrapy.Spider):
             pricechange = m.group(1)
             pricechange = f'{float(pricechange)}'
             logging.info('pricechange = %s', pricechange)
+            
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[2]/text()').get()

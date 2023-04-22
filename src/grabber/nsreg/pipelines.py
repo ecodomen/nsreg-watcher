@@ -8,6 +8,35 @@
 import psycopg2
 from itemadapter import ItemAdapter
 
+SQL_CREATE_REGCOMP_TABLE = '''
+CREATE TABLE IF NOT EXISTS regcomp(
+            id serial PRIMARY KEY, 
+            name VARCHAR(255) UNIQUE,
+            note1 text,
+            note2 text,
+            city VARCHAR(255),
+            website text, 
+            pricereg text, 
+            priceprolong text, 
+            pricechange text
+        )
+'''
+
+SQL_UPDATE_REGCOMP = '''
+INSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange) 
+VALUES (%s,%s,%s,%s,%s,%s,%s,%s) 
+ON CONFLICT (name) DO UPDATE
+SET ( note1, note2, city, website, pricereg, priceprolong, pricechange) =    (
+    COALESCE(%s, regcomp.note1),
+    COALESCE(%s, regcomp.note2),
+    COALESCE(%s, regcomp.city),
+    COALESCE(%s, regcomp.website),
+    COALESCE(%s, regcomp.pricereg),
+    COALESCE(%s, regcomp.priceprolong),
+    COALESCE(%s, regcomp.pricechange)
+    )
+RETURNING id 
+'''
 
 class NsregPipeline:
     def __init__(self):
@@ -23,43 +52,39 @@ class NsregPipeline:
         self.cur = self.connection.cursor()
         
         ## Create quotes table if none exists
-        """    name = scrapy.Field()
-    note1 = scrapy.Field()
-    note2 = scrapy.Field()
-    city = scrapy.Field()
-    website = scrapy.Field() """
-        self.cur.execute("""
-        CREATE TABLE IF NOT EXISTS regcomp(
-            id serial PRIMARY KEY, 
-            name VARCHAR(255),
-            note1 text,
-            note2 text,
-            city VARCHAR(255),
-            website text, 
-            pricereg text, 
-            pricecont text, 
-            pricetrans text
-        )
-        """)
+        self.cur.execute(SQL_CREATE_REGCOMP_TABLE)
+        self.connection.commit()
 
     def process_item(self, item, spider):
-        self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
+        price = item.get('price', {
+            'pricereg': None,
+            'priceprolong': None,
+            'pricechange': None,
+        })
+        self.cur.execute(SQL_UPDATE_REGCOMP, (
+            item['name'],
+            item.get('note1', None),
+            item.get('note2', None),
+            item.get('city', None),
+            item.get('website', None),
+            price.get('pricereg', None),
+            price.get('priceprolong', None),
+            price.get('pricechange', None),
+            item.get('note1', None),
+            item.get('note2', None),
+            item.get('city', None),
+            item.get('website', None),
+            price.get('pricereg', None),
+            price.get('priceprolong', None),
+            price.get('pricechange', None),
+        ))
+        spider.logger.info('Saving item SQL: %s', self.cur.query)
+
+                # self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
         result = self.cur.fetchone()
 
-        if result:
-            spider.logger.warn("Item already in database: %s" % item['name'])
-        else:
-
-            self.cur.execute(""" INSERT INTO regcomp (name, note1, note2, city, website) values (%s,%s,%s,%s,%s)""", (
-                item["name"], 
-                item["note1"], 
-                item["note2"],
-                item["city"],
-                item["website"],     
-            ))
-
             ## Execute insert of data into database
-            self.connection.commit()
+        self.connection.commit()
         return item
     
     
