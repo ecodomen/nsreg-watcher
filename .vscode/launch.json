@@ -11,7 +11,7 @@
             "module": "scrapy",
             "args": [
                 "crawl",
-                "nsreg"
+                "nsreg_2domains"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/grabber/nsreg"

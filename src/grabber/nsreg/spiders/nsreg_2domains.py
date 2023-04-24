@@ -6,8 +6,12 @@ import scrapy
 from nsreg.items import NsregItem
 
 REGEX_PROLONG_PATTERN = r".*Продление\s+—\s+(([0-9]*[.,])?[0-9]+)\s+₽.*"
-REGEX_CHANGE_PATTERN = r".*(([0-9]*[.,])?[0-9]+)\s+₽.*"
-
+REGEX_CHANGE_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})\s+₽.*"
+EMPTY_PRICE = {
+    'pricereg': None,
+    'priceprolong': None,
+    'pricechange': None,
+}
 
 class Nsreg2domainsSpider(scrapy.Spider):
     name = 'nsreg_2domains'
@@ -21,7 +25,13 @@ class Nsreg2domainsSpider(scrapy.Spider):
             pricechange = m.group(1)
             pricechange = f'{float(pricechange)}'
             logging.info('pricechange = %s', pricechange)
-            
+        item = NsregItem()
+        item['name'] = "ООО «2ДОМЕЙНС.РУ»"  
+        price = item.get('price', EMPTY_PRICE)
+        price['pricechange'] = pricechange 
+        item['price'] = price  
+
+        yield item  
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[2]/text()').get()
@@ -39,15 +49,10 @@ class Nsreg2domainsSpider(scrapy.Spider):
 
         item = NsregItem()
         item['name'] = "ООО «2ДОМЕЙНС.РУ»"
-        item['note1'] = ''
-        item['note2'] = ''
-        item['city'] = ''
-        item['website'] = ''
-        item['price'] = {
-            'pricereg': pricereg,
-            'priceprolong': priceprolong,
-            'pricechange': pricechange,
-        }
+        price = item.get('price', EMPTY_PRICE)
+        price['pricereg'] = pricereg
+        price['priceprolong'] = priceprolong
+        item['price'] = price
 
         yield item
 
