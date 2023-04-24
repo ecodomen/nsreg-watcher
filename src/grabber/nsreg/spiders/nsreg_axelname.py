@@ -5,6 +5,13 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+#перенос по диагностике
+EMPTY_PRICE = {
+    'pricereg': None,
+    'priceprolong': None,
+    'pricechange': None,
+}
+
 
 class NsregAxelnameSpider(scrapy.Spider):
     name = 'nsreg_axelname'
@@ -23,13 +30,9 @@ class NsregAxelnameSpider(scrapy.Spider):
         logging.info('priceprolong = %s', priceprolong)
         item = NsregItem()
         item['name'] = "ООО «АксельНейм»"
-        item['note1'] = ''
-        item['note2'] = ''
-        item['city'] = ''
-        item['website'] = ''
-        item['price'] = {
-            'pricereg': pricereg,
-            'priceprolong': priceprolong,
-        }
+        price = item.get('price', EMPTY_PRICE)
+        price['pricereg'] = pricereg
+        price['priceprolong'] = priceprolong
+        item['price'] = price
 
         yield item

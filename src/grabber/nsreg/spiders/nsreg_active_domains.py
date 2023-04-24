@@ -7,39 +7,42 @@ from nsreg.items import NsregItem
 
 #работает
 
-REGEX_PATTERN = r".*([0-9]+\.).*"
+REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3}).*"
 EMPTY_PRICE = {
     'pricereg': None,
     'priceprolong': None,
     'pricechange': None,
 }
 
-
-class Nsreg_aabSpider(scrapy.Spider):
-    name = 'nsreg_aab'
-    allowed_domains = ['aab.ru']
-    start_urls = ['https://aab.ru/tarifi_na_uslugi.html']
+class NsregActiveDomainsSpider(scrapy.Spider):
+    name = 'nsreg_active_domains'
+    allowed_domains = ['active.domains']
+    start_urls = ['http://active.domains/domains/']
 
     def parse(self, response):
-        pricereg = response.xpath('//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
+        pricereg = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[3]/a/text()').get()
         pricereg = str(pricereg).strip()
         if m := re.match(REGEX_PATTERN, pricereg):
+            pricereg = m.group(1)
             pricereg = f'{float(pricereg)}'
             logging.info('pricereg = %s', pricereg)
         
-        priceprolong = response.xpath('//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
+        priceprolong = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[4]/a/text()').get()
         priceprolong = str(priceprolong).strip()
         if m := re.match(REGEX_PATTERN, priceprolong):
+            priceprolong = m.group(1)
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
 
-        pricechange = response.xpath('//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
+        pricechange = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[5]/a/text()').get()
         pricechange = str(pricechange).strip()
-        pricechange = f'{float(pricechange)}'
-        logging.info('pricechange = %s', pricechange)
+        if m := re.match(REGEX_PATTERN, pricechange):
+            pricechange = m.group(1)
+            pricechange = f'{float(pricechange)}'
+            logging.info('pricechange = %s', pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «ААБ Медиа»"
+        item['name'] = "ООО «Актив.Домэинс»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong

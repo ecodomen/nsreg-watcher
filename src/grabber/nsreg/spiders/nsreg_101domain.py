@@ -5,7 +5,14 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+#работает
 REGEX_PATTERN = r"([0-9]+[.,\s])?руб"
+EMPTY_PRICE = {
+    'pricereg': None,
+    'priceprolong': None,
+    'pricechange': None,
+}
+
 
 class Nsreg101domainSpider(scrapy.Spider):
     name = 'nsreg_101domain'
@@ -37,15 +44,11 @@ class Nsreg101domainSpider(scrapy.Spider):
 
         item = NsregItem()
         item['name'] = "ООО «101домен Регистрация Доменов»"
-        item['note1'] = ''
-        item['note2'] = ''
-        item['city'] = ''
-        item['website'] = ''
-        item['price'] = {
-            'pricereg': pricereg,
-            'priceprolong': priceprolong,
-            'pricechange': pricechange
-        }
+        price = item.get('price', EMPTY_PRICE)
+        price['pricereg'] = pricereg
+        price['priceprolong'] = priceprolong
+        price['pricechange'] = pricechange 
+        item['price'] = price
 
         yield item
 

@@ -5,6 +5,8 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+#работает
+
 REGEX_PROLONG_PATTERN = r".*Продление\s+—\s+(([0-9]*[.,])?[0-9]+)\s+₽.*"
 REGEX_CHANGE_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})\s+₽.*"
 EMPTY_PRICE = {
