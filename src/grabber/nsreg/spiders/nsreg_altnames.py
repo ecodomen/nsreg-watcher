@@ -7,7 +7,7 @@ from nsreg.items import NsregItem
 
 #не работает xpath
 
-REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3}).*"
+REGEX_PATTERN = r".*([0-9]+[\s][0-9]{3}).*"
 EMPTY_PRICE = {
     'pricereg': None,
     'priceprolong': None,
@@ -20,24 +20,27 @@ class NsregAltnamesSpider(scrapy.Spider):
     start_urls = ['http://altnames.ru/']
 
     def parse(self, response):
-        pricereg = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody[2]/tr[1]/td[2]/text()').get()
+        pricereg = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[1]/td[2]/text()').get()
         pricereg = str(pricereg).strip()
         if m := re.match(REGEX_PATTERN, pricereg):
             pricereg = m.group(1)
+            pricereg = re.sub(r'\s', '', pricereg)
             pricereg = f'{float(pricereg)}'
             logging.info('pricereg = %s', pricereg)
         
-        priceprolong = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody[2]/tr[2]/td[2]/text()').get()
+        priceprolong = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[2]/td[2]/text()').get()
         priceprolong = str(priceprolong).strip()
         if m := re.match(REGEX_PATTERN, priceprolong):
             priceprolong = m.group(1)
+            priceprolong = re.sub(r'\s', '', priceprolong)
             priceprolong = f'{float(priceprolong)}'
             logging.info('priceprolong = %s', priceprolong)
 
-        pricechange = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody[2]/tr[3]/td[2]/text()').get()
+        pricechange = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[3]/td[2]/text()').get()
         pricechange = str(pricechange).strip()
         if m := re.match(REGEX_PATTERN, pricechange):
             pricechange = m.group(1)
+            pricechange = re.sub(r'\s', '', pricechange)
             pricechange = f'{float(pricechange)}'
             logging.info('pricechange = %s', pricechange)
 
