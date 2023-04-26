@@ -5,6 +5,9 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+from spiders.utils import *
+
+
 REGEX_PATTERN = r".*(\d+\s+\d+).*"
 EMPTY_PRICE = {
     'pricereg': None,
@@ -22,28 +25,13 @@ class Nsreg_ad100Spider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="overlappable"]/div/div/div/div[1]/div/div/div[2]/div/p[1]/text()').get()
-        pricereg = str(pricereg)
-        if m := re.match(REGEX_PATTERN, pricereg):
-            pricereg = m.group(1)
-            pricereg = re.sub(r'\s', '', pricereg)
-            pricereg = f'{float(pricereg)}'
-            logging.info('pricereg = %s', pricereg)
+        pricereg = find_price_sub(REGEX_PATTERN, pricereg)
         
         priceprolong = response.xpath('//*[@id="overlappable"]/div/div/div/div[2]/div/div/div[2]/div/p[1]/text()').get()
-        priceprolong = str(priceprolong)
-        if m := re.match(REGEX_PATTERN, priceprolong):
-            priceprolong = m.group(1)
-            priceprolong = re.sub(r'\s', '', priceprolong)
-            priceprolong = f'{float(priceprolong)}'
-            logging.info('priceprolong = %s', priceprolong)
+        priceprolong = find_price_sub(REGEX_PATTERN, priceprolong)
 
         pricechange = response.xpath('//*[@id="overlappable"]/div/div/div/div[3]/div/div/div[2]/div/p[1]/text()').get()
-        pricechange = str(pricechange)
-        if m := re.match(REGEX_PATTERN, pricechange):
-            pricechange = m.group(1)
-            pricechange = re.sub(r'\s', '', pricechange)
-            pricechange = f'{float(pricechange)}'
-            logging.info('pricechange = %s', pricechange)
+        pricechange = find_price_sub(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
         item['name'] = "ООО «А100»"

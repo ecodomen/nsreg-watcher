@@ -5,6 +5,8 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+from spiders.utils import *
+
 #перенос по диагностике
 EMPTY_PRICE = {
     'pricereg': None,
@@ -20,14 +22,11 @@ class NsregAxelnameSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
-        pricereg = str(pricereg).strip()
-        pricereg = f'{float(pricereg)}'
-        logging.info('pricereg = %s', pricereg)
+        pricereg = find_price_withoutre(pricereg)
         
         priceprolong = response.xpath('//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
-        priceprolong = str(priceprolong).strip()
-        priceprolong = f'{float(priceprolong)}'
-        logging.info('priceprolong = %s', priceprolong)
+        priceprolong = find_price_withoutre(priceprolong)
+
         item = NsregItem()
         item['name'] = "ООО «АксельНейм»"
         price = item.get('price', EMPTY_PRICE)

@@ -5,7 +5,8 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
-#не работает xpath
+from spiders.utils import *
+#работает
 
 REGEX_PATTERN = r".*([0-9]+[\s][0-9]{3}).*"
 EMPTY_PRICE = {
@@ -21,28 +22,13 @@ class NsregAltnamesSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[1]/td[2]/text()').get()
-        pricereg = str(pricereg).strip()
-        if m := re.match(REGEX_PATTERN, pricereg):
-            pricereg = m.group(1)
-            pricereg = re.sub(r'\s', '', pricereg)
-            pricereg = f'{float(pricereg)}'
-            logging.info('pricereg = %s', pricereg)
+        pricereg = find_price_sub(REGEX_PATTERN, pricereg)
         
         priceprolong = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[2]/td[2]/text()').get()
-        priceprolong = str(priceprolong).strip()
-        if m := re.match(REGEX_PATTERN, priceprolong):
-            priceprolong = m.group(1)
-            priceprolong = re.sub(r'\s', '', priceprolong)
-            priceprolong = f'{float(priceprolong)}'
-            logging.info('priceprolong = %s', priceprolong)
+        priceprolong = find_price_sub(REGEX_PATTERN, priceprolong)
 
         pricechange = response.xpath('//*[@id="post-10"]/div/div/div/div/section[4]/div/div/div/div[2]/div/table/tbody/tr[3]/td[2]/text()').get()
-        pricechange = str(pricechange).strip()
-        if m := re.match(REGEX_PATTERN, pricechange):
-            pricechange = m.group(1)
-            pricechange = re.sub(r'\s', '', pricechange)
-            pricechange = f'{float(pricechange)}'
-            logging.info('pricechange = %s', pricechange)
+        pricechange = find_price_sub(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
         item['name'] = "ООО «АЛЬТЕРНАТИВА»"

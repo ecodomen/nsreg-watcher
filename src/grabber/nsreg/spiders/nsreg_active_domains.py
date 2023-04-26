@@ -5,6 +5,7 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+from spiders.utils import *
 #работает
 
 REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3}).*"
@@ -21,25 +22,13 @@ class NsregActiveDomainsSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[3]/a/text()').get()
-        pricereg = str(pricereg).strip()
-        if m := re.match(REGEX_PATTERN, pricereg):
-            pricereg = m.group(1)
-            pricereg = f'{float(pricereg)}'
-            logging.info('pricereg = %s', pricereg)
+        pricereg = find_price(REGEX_PATTERN, pricereg)
         
         priceprolong = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[4]/a/text()').get()
-        priceprolong = str(priceprolong).strip()
-        if m := re.match(REGEX_PATTERN, priceprolong):
-            priceprolong = m.group(1)
-            priceprolong = f'{float(priceprolong)}'
-            logging.info('priceprolong = %s', priceprolong)
+        priceprolong = find_price(REGEX_PATTERN, priceprolong)
 
         pricechange = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[5]/a/text()').get()
-        pricechange = str(pricechange).strip()
-        if m := re.match(REGEX_PATTERN, pricechange):
-            pricechange = m.group(1)
-            pricechange = f'{float(pricechange)}'
-            logging.info('pricechange = %s', pricechange)
+        pricechange = find_price(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
         item['name'] = "ООО «Актив.Домэинс»"

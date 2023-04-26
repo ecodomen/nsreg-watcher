@@ -5,6 +5,7 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
+from spiders.utils import *
 #работает
 
 REGEX_PATTERN = r".*([0-9]+\.).*"
@@ -22,21 +23,13 @@ class Nsreg_aabSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
-        pricereg = str(pricereg).strip()
-        if m := re.match(REGEX_PATTERN, pricereg):
-            pricereg = f'{float(pricereg)}'
-            logging.info('pricereg = %s', pricereg)
+        pricereg = find_price(REGEX_PATTERN, pricereg)
         
         priceprolong = response.xpath('//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
-        priceprolong = str(priceprolong).strip()
-        if m := re.match(REGEX_PATTERN, priceprolong):
-            priceprolong = f'{float(priceprolong)}'
-            logging.info('priceprolong = %s', priceprolong)
+        priceprolong = find_price(REGEX_PATTERN, priceprolong)
 
         pricechange = response.xpath('//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
-        pricechange = str(pricechange).strip()
-        pricechange = f'{float(pricechange)}'
-        logging.info('pricechange = %s', pricechange)
+        pricechange = find_price_withoutre(pricechange)
 
         item = NsregItem()
         item['name'] = "ООО «ААБ Медиа»"

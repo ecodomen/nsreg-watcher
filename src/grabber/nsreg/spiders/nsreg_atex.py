@@ -15,23 +15,25 @@ EMPTY_PRICE = {
     'pricechange': None,
 }
 
-class NsregArdisSpider(scrapy.Spider):
-    name = 'nsreg_ardis'
-    allowed_domains = ['ardis.ru']
-    start_urls = ['https://ardis.ru/domains/']
+
+class NsregAtexSpider(scrapy.Spider):
+    name = 'nsreg_atex'
+    allowed_domains = ['atex.ru']
+    start_urls = ['https://atex.ru/domains/']
 
     def parse(self, response):
-        pricereg = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[3]/a/text()').get()
+        pricereg = response.xpath('/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()').get()
         pricereg = find_price(REGEX_PATTERN, pricereg)
         
-        priceprolong = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[4]/a/text()').get()
+        priceprolong = response.xpath('/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[3]/td[2]/div/text()').get()
         priceprolong = find_price(REGEX_PATTERN, priceprolong)
 
-        pricechange = response.xpath('//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[5]/a/text()').get()
+        pricechange = response.xpath('/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[5]/td[2]/div/text()').get()
         pricechange = find_price(REGEX_PATTERN, pricechange)
 
+
         item = NsregItem()
-        item['name'] = "ООО «Ардис»"
+        item['name'] = "ООО «Атекс»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong
