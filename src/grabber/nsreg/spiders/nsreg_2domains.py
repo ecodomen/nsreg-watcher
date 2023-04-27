@@ -5,7 +5,7 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
-from spiders.utils import *
+from ..utils import find_price, find_price_withoutre
 #работает
 
 REGEX_PROLONG_PATTERN = r".*Продление\s+—\s+(([0-9]*[.,])?[0-9]+)\s+₽.*"

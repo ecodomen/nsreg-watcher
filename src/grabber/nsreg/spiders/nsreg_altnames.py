@@ -5,7 +5,7 @@ import re
 import scrapy
 from nsreg.items import NsregItem
 
-from spiders.utils import *
+from ..utils import find_price_sub
 #работает
 
 REGEX_PATTERN = r".*([0-9]+[\s][0-9]{3}).*"
