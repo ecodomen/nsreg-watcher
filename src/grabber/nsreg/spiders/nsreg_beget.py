@@ -18,7 +18,7 @@ EMPTY_PRICE = {
 class NsregBegetSpider(scrapy.Spider):
     name = 'nsreg_beget'
     allowed_domains = ['beget.com']
-    start_urls = ['https://beget.com/ru/domains#search-form-section/']
+    start_urls = ['https://beget.com/ru/domains/zone/ru']
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="__layout"]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/div[1]/p[2]/text()').get()
