@@ -1,0 +1,5 @@
+<form class="mb-3" action="{% url 'regcomp_list' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-primary ml-2" type="submit" value="Применить">
+</form>

@@ -1,11 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Regcomp
+from django.db.models import Q
 
+from .models import Regcomp
+from .forms import CompaniesSortForm
+
+
+SORT_FIELD_NAMES = {
+    'CN': 'name',
+    'CI': 'city',
+}
 
 def regcomp_list(request):
-    companies = Regcomp.objects.all()
-    return render(request, 'regcomp-list.html', {'companies': companies})
+    if request.method == "POST":
+        form = CompaniesSortForm(request.POST)
+        if form.is_valid():
+            sort_by = SORT_FIELD_NAMES.get(form.cleaned_data['sort_by'], 'name')
+            search = form.cleaned_data['search']
+            companies = Regcomp.objects.order_by(sort_by)
+
+    else:
+        form = CompaniesSortForm()
+        sort_by = 'name'
+        search = ''
+    
+    if search:
+        companies = Regcomp.objects.filter(Q(name__contains=search) | Q(city__contains=search)).order_by(sort_by)
+    else:
+        companies = Regcomp.objects.order_by(sort_by)
+    return render(request, 'regcomp-list.html', {'companies': companies, 'form': form})
 
 def regcomp_details(request, id):
     try:

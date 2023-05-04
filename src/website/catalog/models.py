@@ -8,8 +8,8 @@ class Regcomp(models.Model):
     city = models.CharField(max_length=255, blank=True, null=True)
     website = models.TextField(blank=True, null=True)
     pricereg = models.TextField(blank=True, null=True)
-    pricecont = models.TextField(blank=True, null=True)
-    pricetrans = models.TextField(blank=True, null=True)
+    priceprolong = models.TextField(blank=True, null=True)
+    pricechange = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

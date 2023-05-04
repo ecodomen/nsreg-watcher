@@ -1,11 +1,12 @@
 {% extends 'base.html' %} 
 {% block content %}
-
+{% include 'companies-sort.html' with form=form %}
+ 
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
+        <th scope="col">First <i class="bi bi-sort-down"></i></th>
         <th scope="col">Last</th>
         <th scope="col">Handle</th>
         <th scope="col">Handle</th>
@@ -17,7 +18,7 @@
         {% for company in companies %}
         <tr>
             <th scope="row">{{ company.id }}</th>
-            <td><a href="{% url 'regcomp-details' company.id %}">{{ company.name }}</a></td>
+            <td><a href="{% url 'regcomp_details' company.id %}">{{ company.name }}</a></td>
             <td>{{ company.note1 }}</td>
             <td>{{ company.note2 }}</td>
             <td>{{ company.city }}</td>
@@ -26,24 +27,6 @@
 {% empty %}
     <tr><td>There are no companies available.</td></tr>
 {% endfor %}
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
     </tbody>
   </table>
   {% endblock %}
