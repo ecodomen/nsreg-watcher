@@ -5,16 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "nsreg crawl",
+            "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "module": "scrapy",
+            "program": "${workspaceFolder}/src/website/manage.py",
             "args": [
-                "crawl",
-                "nsreg"
+                "runserver",
             ],
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}/src/grabber/nsreg"
-        }
+            "django": true
+        },
+        // {
+        //     "name": "nsreg crawl",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "module": "scrapy",
+        //     "args": [
+        //         "crawl",
+        //         "nsreg"
+        //     ],
+        //     "console": "integratedTerminal",
+        //     "cwd": "${workspaceFolder}/src/grabber/nsreg"
+        // }
     ]
 }

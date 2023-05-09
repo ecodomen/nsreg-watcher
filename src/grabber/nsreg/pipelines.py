@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS regcomp(
             note2 text,
             city VARCHAR(255),
             website text, 
-            pricereg text, 
-            priceprolong text, 
-            pricechange text
+            pricereg decimal, 
+            priceprolong decimal, 
+            pricechange decimal
         )
 '''
 

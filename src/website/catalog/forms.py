@@ -3,6 +3,9 @@ from django import forms
 SORT_BY_CHOICES = [
     ("CN", "Имя компании"),
     ("CI", "Город"),
+    ("RE", "Регистрация домена"),
+    ("PR", "Продление домена"),
+    
 ]
 
 class CompaniesSortForm(forms.Form):

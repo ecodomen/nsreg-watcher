@@ -7,10 +7,14 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">First <i class="bi bi-sort-down"></i></th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-        <th scope="col">Handle</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Note1</th>
+        <th scope="col">Note2</th>
+        <th scope="col">City</th>
+        <th scope="col">link</th>
+        <th scope="col">Pricereg</th>
+        <th scope="col">Priceprolong</th>
+
+        
 
       </tr>
     </thead>
@@ -23,6 +27,8 @@
             <td>{{ company.note2 }}</td>
             <td>{{ company.city }}</td>
             <td><a href="{{company.website}}" >{{ company.website }}</a></td>
+            <td>{{ company.pricereg }}</td>
+            <td>{{ company.priceprolong }}</td>
           </tr>
 {% empty %}
     <tr><td>There are no companies available.</td></tr>

@@ -9,6 +9,8 @@ from .forms import CompaniesSortForm
 SORT_FIELD_NAMES = {
     'CN': 'name',
     'CI': 'city',
+    'RE': 'pricereg',
+    'PR': 'priceprolong',
 }
 
 def regcomp_list(request):
