@@ -1,29 +1,34 @@
-# import logging
+import logging
 
 # LOG_FORMAT     = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
 # LOG_NAME       = ''
-# LOG_FILE_INFO  = 'file.log'
-# LOG_FILE_ERROR = 'file.err'
+# LOG_FILE_INFO  = 'write_log.log'
+# LOG_FILE_ERROR = 'write_log.err'
 
-# def init_logger():    
-#     log           = logging.getLogger(LOG_NAME)
-#     log_formatter = logging.Formatter(LOG_FORMAT)
+def init_logger(): 
+    LOG_FORMAT     = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+    LOG_NAME       = ''
+    LOG_FILE_INFO  = 'write_log.log'
+    LOG_FILE_ERROR = 'write_log.err'
 
-#     # comment this to suppress console output
-#     stream_handler = logging.StreamHandler()
-#     stream_handler.setFormatter(log_formatter)
-#     log.addHandler(stream_handler)
+    log           = logging.getLogger(LOG_NAME)
+    log_formatter = logging.Formatter(LOG_FORMAT)
 
-#     file_handler_info = logging.FileHandler(LOG_FILE_INFO, mode='w')
-#     file_handler_info.setFormatter(log_formatter)
-#     file_handler_info.setLevel(logging.INFO)
-#     log.addHandler(file_handler_info)
+    # comment this to suppress console output
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(log_formatter)
+    log.addHandler(stream_handler)
 
-#     file_handler_error = logging.FileHandler(LOG_FILE_ERROR, mode='w')
-#     file_handler_error.setFormatter(log_formatter)
-#     file_handler_error.setLevel(logging.ERROR)
-#     log.addHandler(file_handler_error)
+    file_handler_info = logging.FileHandler(LOG_FILE_INFO, mode='w')
+    file_handler_info.setFormatter(log_formatter)
+    file_handler_info.setLevel(logging.INFO)
+    log.addHandler(file_handler_info)
 
-#     log.setLevel(logging.INFO)
+    file_handler_error = logging.FileHandler(LOG_FILE_ERROR, mode='w')
+    file_handler_error.setFormatter(log_formatter)
+    file_handler_error.setLevel(logging.ERROR)
+    log.addHandler(file_handler_error)
 
-#     return log
+    log.setLevel(logging.INFO)
+
+    return log

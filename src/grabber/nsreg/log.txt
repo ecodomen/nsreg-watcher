@@ -1,0 +1,87 @@
+INFO: Scrapy 2.7.1 started (bot: nsreg)
+INFO: Versions: lxml 4.9.2.0, libxml2 2.9.14, cssselect 1.2.0, parsel 1.7.0, w3lib 2.1.1, Twisted 22.10.0, Python 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0], pyOpenSSL 23.0.0 (OpenSSL 3.0.8 7 Feb 2023), cryptography 39.0.1, Platform Linux-5.15.0-71-generic-x86_64-with-glibc2.35
+INFO: Overridden settings:
+{'BOT_NAME': 'nsreg',
+ 'DOWNLOAD_DELAY': 0.25,
+ 'LOG_LEVEL': 'ERROR',
+ 'NEWSPIDER_MODULE': 'nsreg.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'SPIDER_MODULES': ['nsreg.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, '
+               'like Gecko) Chrome/108.0.0.0 Safari/537.36'}
+DEBUG: Using selector: EpollSelector
+DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+DEBUG: Using asyncio event loop: asyncio.unix_events._UnixSelectorEventLoop
+INFO: Telnet Password: fc345618f2b429d5
+INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+INFO: Enabled item pipelines:
+['nsreg.pipelines.NsregPipeline']
+INFO: Spider opened
+INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+INFO: Telnet console listening on 127.0.0.1:6023
+DEBUG: Attempting to acquire lock 140006620171712 on /home/rezvov_vadim/.cache/python-tldextract/3.10.6.final__env__8736ab__tldextract-3.4.0/publicsuffix.org-tlds/de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+DEBUG: Lock 140006620171712 acquired on /home/rezvov_vadim/.cache/python-tldextract/3.10.6.final__env__8736ab__tldextract-3.4.0/publicsuffix.org-tlds/de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+DEBUG: Attempting to release lock 140006620171712 on /home/rezvov_vadim/.cache/python-tldextract/3.10.6.final__env__8736ab__tldextract-3.4.0/publicsuffix.org-tlds/de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+DEBUG: Lock 140006620171712 released on /home/rezvov_vadim/.cache/python-tldextract/3.10.6.final__env__8736ab__tldextract-3.4.0/publicsuffix.org-tlds/de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+DEBUG: Crawled (200) <GET https://2domains.ru/domains> (referer: None)
+INFO: price = 149.0
+INFO: price = 799.0
+INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0',NULL) \nON CONFLICT (name) DO UPDATE\nSET ( note1, note2, city, website, pricereg, priceprolong, pricechange) =    (\n    COALESCE(NULL, regcomp.note1),\n    COALESCE(NULL, regcomp.note2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.pricereg),\n    COALESCE('799.0', regcomp.priceprolong),\n    COALESCE(NULL, regcomp.pricechange)\n    )\nRETURNING id \n"
+DEBUG: Scraped from <200 https://2domains.ru/domains>
+{'name': 'ООО «2ДОМЕЙНС.РУ»',
+ 'price': {'pricechange': None, 'priceprolong': '799.0', 'pricereg': '149.0'}}
+DEBUG: Crawled (200) <GET https://2domains.ru/domains/transfer> (referer: https://2domains.ru/domains)
+INFO: price = 799.0
+INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0','799.0') \nON CONFLICT (name) DO UPDATE\nSET ( note1, note2, city, website, pricereg, priceprolong, pricechange) =    (\n    COALESCE(NULL, regcomp.note1),\n    COALESCE(NULL, regcomp.note2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.pricereg),\n    COALESCE('799.0', regcomp.priceprolong),\n    COALESCE('799.0', regcomp.pricechange)\n    )\nRETURNING id \n"
+DEBUG: Scraped from <200 https://2domains.ru/domains/transfer>
+{'name': 'ООО «2ДОМЕЙНС.РУ»',
+ 'price': {'pricechange': '799.0',
+           'priceprolong': '799.0',
+           'pricereg': '149.0'}}
+INFO: Closing spider (finished)
+INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1016,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 23544,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 2,
+ 'elapsed_time_seconds': 0.89338,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2023, 5, 11, 15, 43, 52, 101118),
+ 'httpcompression/response_bytes': 148334,
+ 'httpcompression/response_count': 2,
+ 'item_scraped_count': 2,
+ 'memusage/max': 83238912,
+ 'memusage/startup': 83238912,
+ 'request_depth_max': 1,
+ 'response_received_count': 2,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2023, 5, 11, 15, 43, 51, 207738)}
+INFO: Spider closed (finished)

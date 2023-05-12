@@ -1,3 +1,7 @@
+import logging
+# from logging.handlers import RotatingFileHandler
+
+# from scrapy.utils.log import configure_logging
 # Scrapy settings for nsreg project
 #
 # For simplicity, this file contains only settings considered important or
@@ -6,6 +10,13 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+GRABBER_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = GRABBER_DIR.parent.parent
+
 
 BOT_NAME = 'nsreg'
 
