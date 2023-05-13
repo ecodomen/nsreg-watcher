@@ -12,17 +12,28 @@ cd src/grabber/nsreg
 
 scrapy crawl nsreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_2domains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-
-# scrapy crawl nsreg_aab
-# python log.py
-# scrapy crawl nsreg_101domain
-# scrapy crawl nsreg_a100
-# scrapy crawl nsreg_2domains
-
-# scrapy crawl nsreg_2domains --logfile /home/rezvov_vadim/projects/nsreg-watcher/src/grabber/nsreg/write_log.log --loglevel ERROR
+scrapy crawl nsreg_aab --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_101domain --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_active_domains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_a100 --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_altnames --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_ardis --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_atex --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_axelname --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_beget --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domainauction --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_safe --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 if [ ! -s "$ERROR_LOG" ]; then
     echo "Grabber finished without errors."
+    sendEmail -f rezvmaria@gmail.com        \
+            -t rezvmaria@gmail.com    \
+            -s smtp.gmail.com:587  \
+            -xu rezvmaria@gmail.com       \
+            -xp rxxmtlhpectgckej       \
+            -o tls=yes \
+            -m "Spiders finished without errors."\
+            -u "$DATE: Nsreg grabber finished without errors"
 else
     echo "Grabbers finished with errors. Details in $ERROR_LOG"
     sendEmail -f rezvmaria@gmail.com        \
