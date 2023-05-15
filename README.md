@@ -54,7 +54,15 @@ class Nsreg2domainsSpider(scrapy.Spider):
     allowed_domains = ['2domains.ru']
     start_urls = ['https://2domains.ru/domains']
 ``` 
-
+4.1 Меняете "ООО «2ДОМЕЙНС.РУ»" на имя соего сайта, который представлен на сайте https://cctld.ru/domains/reg/
+```python
+item = NsregItem()
+item['name'] = "ООО «2ДОМЕЙНС.РУ»"
+price = item.get('price', EMPTY_PRICE)
+price['pricereg'] = pricereg
+price['priceprolong'] = priceprolong
+item['price'] = price
+```
 5. Заходите в: 
 ```bash
 scrapy shell 'ссылка на сайт'
