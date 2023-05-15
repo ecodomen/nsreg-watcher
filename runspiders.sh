@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -f .env ]; then
+  export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
+fi
+
 source env/bin/activate
 
 ERROR_LOG="$(cd "$(dirname "logs/grabber_errors.log")"; pwd)/$(basename "logs/grabber_errors.log")"
@@ -30,7 +34,7 @@ if [ ! -s "$ERROR_LOG" ]; then
             -t rezvmaria@gmail.com    \
             -s smtp.gmail.com:587  \
             -xu rezvmaria@gmail.com       \
-            -xp rxxmtlhpectgckej       \
+            -xp $pass       \
             -o tls=yes \
             -m "Spiders finished without errors."\
             -u "$DATE: Nsreg grabber finished without errors"
@@ -40,7 +44,7 @@ else
             -t rezvmaria@gmail.com    \
             -s smtp.gmail.com:587  \
             -xu rezvmaria@gmail.com       \
-            -xp rxxmtlhpectgckej       \
+            -xp $pass       \
             -o tls=yes \
             -o message-file=$ERROR_LOG \
             -a $ERROR_LOG \
