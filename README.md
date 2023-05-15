@@ -16,7 +16,7 @@ python: https://docs.python.org/3/
 git clone (ссылка ssh)
 ``` 
 
-1. Заходите в виртуальное окружение (или создаёте). Здесь для каждой операционной системы свои команды.
+1. Заходите в виртуальное окружение (или создаёте). Здесь для каждой операционной системы свои команды. Посмотрите лучше в интернете.
 You can install virtualenv using pip.
 
 Install virtualenv: 
@@ -39,9 +39,12 @@ Activate virtualenv:
 cd nsreg-watcher/
 ``` 
 
+2.1 Посмотрите примеры парсеров в папке:
+[src/grabber/nsreg/spiders](/home/rezvov_vadim/projects/nsreg-watcher/src/grabber/nsreg/spiders)
+
 3. Создаёте Спайдер :
 ```bash
-scrapy genspider 
+scrapy genspider <имя парсера> <ссылка на сайт>
 ``` 
 
 4. По аналогии пишете имена, ссылки в классе вашего Спайдера
