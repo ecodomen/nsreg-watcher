@@ -11,9 +11,12 @@ scrapy: https://docs.scrapy.org/en/latest/intro/tutorial.html
 python: https://docs.python.org/3/
 
 ## Инструкция создания спайдера
+0.0 Нужно зарегистрироваться на github, в профиле прописать SSH-ключ: 
+https://github.com/settings/keys
+
 0. Клонирует проект на своем компе через github:
 ```bash
-git clone (ссылка ssh)
+git clone git@github.com:mrezvova/nsreg-watcher.git
 ``` 
 
 1. Заходите в виртуальное окружение (или создаёте). Здесь для каждой операционной системы свои команды. Посмотрите лучше в интернете.

@@ -23,10 +23,10 @@ class Nsreg_aabSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
-        pricereg = find_price(REGEX_PATTERN, pricereg)
+        pricereg = find_price_withoutre(pricereg)
         
         priceprolong = response.xpath('//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
-        priceprolong = find_price(REGEX_PATTERN, priceprolong)
+        priceprolong = find_price_withoutre(priceprolong)
 
         pricechange = response.xpath('//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
         pricechange = find_price_withoutre(pricechange)

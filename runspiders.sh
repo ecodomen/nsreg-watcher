@@ -30,20 +30,20 @@ scrapy crawl nsreg_safe --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 if [ ! -s "$ERROR_LOG" ]; then
     echo "Grabber finished without errors."
-    sendEmail -f rezvmaria@gmail.com        \
-            -t rezvmaria@gmail.com    \
+    sendEmail -f nsregproject@gmail.com         \
+            -t nsregproject@gmail.com     \
             -s smtp.gmail.com:587  \
-            -xu rezvmaria@gmail.com       \
+            -xu nsregproject@gmail.com       \
             -xp $pass       \
             -o tls=yes \
             -m "Spiders finished without errors."\
             -u "$DATE: Nsreg grabber finished without errors"
 else
     echo "Grabbers finished with errors. Details in $ERROR_LOG"
-    sendEmail -f rezvmaria@gmail.com        \
-            -t rezvmaria@gmail.com    \
+    sendEmail -f nsregproject@gmail.com         \
+            -t nsregproject@gmail.com     \
             -s smtp.gmail.com:587  \
-            -xu rezvmaria@gmail.com       \
+            -xu nsregproject@gmail.com       \
             -xp $pass       \
             -o tls=yes \
             -o message-file=$ERROR_LOG \
