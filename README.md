@@ -146,3 +146,8 @@ scrapy crawl nsreg_2domains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 cd src/grabber/nsreg/
 scrapy crawl nsreg
 ```
+
+install Sendmail:
+```bash
+sudo apt install sendemail
+```
