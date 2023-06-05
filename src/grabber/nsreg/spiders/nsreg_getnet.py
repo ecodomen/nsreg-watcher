@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 import logging
 import re
@@ -14,24 +15,23 @@ EMPTY_PRICE = {
     'pricechange': None,
 }
 
-
-class Nsreg_aabSpider(scrapy.Spider):
-    name = 'nsreg_aab'
-    allowed_domains = ['aab.ru']
-    start_urls = ['https://aab.ru/tarifi_na_uslugi.html']
+class NsregGetnetSpider(scrapy.Spider):
+    name = "nsreg_getnet"
+    allowed_domains = ["format.gtn.ee"]
+    start_urls = ["https://format.gtn.ee/price"]
 
     def parse(self, response):
-        pricereg = response.xpath('//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
+        pricereg = response.xpath('//tbody/tr[2]/td[2]/text()').get()
         pricereg = find_price_withoutre(pricereg)
         
-        priceprolong = response.xpath('//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
+        priceprolong = response.xpath('//tbody/tr[3]/td[2]/text()').get()
         priceprolong = find_price_withoutre(priceprolong)
 
-        pricechange = response.xpath('//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
+        pricechange = response.xpath('//tbody/tr[4]/td[2]/text()').get()
         pricechange = find_price_withoutre(pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «ААБ Медиа»"
+        item['name'] = "ООО «ГЕТ-НЭТ»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong

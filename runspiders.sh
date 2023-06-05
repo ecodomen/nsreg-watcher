@@ -30,6 +30,7 @@ scrapy crawl nsreg_safe --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_speedhosting --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_webreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domainplus --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_bigreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then
