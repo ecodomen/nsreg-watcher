@@ -7,7 +7,7 @@ import scrapy
 from nsreg.items import NsregItem
 
 from ..utils import find_price_withoutre
-#работает
+#не работает
 
 EMPTY_PRICE = {
     'pricereg': None,
@@ -21,7 +21,7 @@ class NsregGetnetSpider(scrapy.Spider):
     start_urls = ["https://format.gtn.ee/price"]
 
     def parse(self, response):
-        pricereg = response.xpath('//tbody/tr[2]/td[2]/text()').get()
+        pricereg = response.xpath('//table[class="tbl-bordered"]').get()
         pricereg = find_price_withoutre(pricereg)
         
         priceprolong = response.xpath('//tbody/tr[3]/td[2]/text()').get()

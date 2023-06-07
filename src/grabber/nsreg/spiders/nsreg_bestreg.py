@@ -15,10 +15,10 @@ EMPTY_PRICE = {
 }
 
 
-class NsregBigregSpider(scrapy.Spider):
-    name = "nsreg_bigreg"
-    allowed_domains = ["www.bigreg.ru"]
-    start_urls = ["https://www.bigreg24.ru/price/"]
+class NsregBestregSpider(scrapy.Spider):
+    name = "nsreg_bestreg"
+    allowed_domains = ["www.bestreg24.ru"]
+    start_urls = ["https://www.bestreg24.ru/price/"]
 
     def parse(self, response):
         pricereg = response.xpath('/html/body/div[1]/div[3]/article/section/table[1]/tr/td[1]/article[1]/div/table/tr[5]/td[2]/text()').get()
@@ -31,7 +31,7 @@ class NsregBigregSpider(scrapy.Spider):
         pricechange = find_price(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «БИГРЕГ»"
+        item['name'] = "ООО «БЕСТРЕГ»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong
@@ -39,4 +39,3 @@ class NsregBigregSpider(scrapy.Spider):
         item['price'] = price
 
         yield item
-        

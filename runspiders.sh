@@ -31,6 +31,11 @@ scrapy crawl nsreg_speedhosting --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_webreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domainplus --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_bigreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_mstci --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_nic --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_bestreg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_bitnames --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_betnames --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then

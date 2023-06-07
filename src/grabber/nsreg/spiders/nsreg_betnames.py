@@ -16,10 +16,11 @@ EMPTY_PRICE = {
 }
 
 
-class NsregBitnamesSpider(scrapy.Spider):
-    name = "nsreg_bitnames"
-    allowed_domains = ["bitnames.ru"]
-    start_urls = ["https://bitnames.ru/#features-2"]
+
+class NsregBetnamesSpider(scrapy.Spider):
+    name = "nsreg_betnames"
+    allowed_domains = ["betnames.ru"]
+    start_urls = ["https://betnames.ru/#features-2"]
 
     def parse(self, response):
         pricereg = response.xpath('//*[@id="features-2"]/div/div/div[1]/div/p/text()').get()
@@ -32,7 +33,7 @@ class NsregBitnamesSpider(scrapy.Spider):
         pricechange = find_price_sub(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «БИТНЭЙМС»"
+        item['name'] = "ООО «Бэтнеймс»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong
@@ -40,4 +41,3 @@ class NsregBitnamesSpider(scrapy.Spider):
         item['price'] = price
 
         yield item
-
