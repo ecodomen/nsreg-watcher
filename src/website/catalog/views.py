@@ -11,6 +11,8 @@ SORT_FIELD_NAMES = {
     'CI': 'city',
     'RE': 'pricereg',
     'PR': 'priceprolong',
+    'PE': 'pricechange',
+
 }
 
 def regcomp_list(request):
@@ -27,7 +29,7 @@ def regcomp_list(request):
         search = ''
     
     if search:
-        companies = Regcomp.objects.filter(Q(name__contains=search) | Q(city__contains=search)).order_by(sort_by)
+        companies = Regcomp.objects.filter(Q(name__contains=search) | Q(city__contains=search) | Q(pricereg__contains=search)).order_by(sort_by)
     else:
         companies = Regcomp.objects.order_by(sort_by)
     return render(request, 'regcomp-list.html', {'companies': companies, 'form': form})

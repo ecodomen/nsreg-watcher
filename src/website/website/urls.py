@@ -18,6 +18,7 @@ from django.urls import path, include
 from catalog import views
 
 urlpatterns = [
+    path('', views.regcomp_list, name='regcomp_list'),
     path('list/', views.regcomp_list, name='regcomp_list'),
     path('partner/<int:id>/', views.regcomp_details, name='regcomp_details'),
     path('admin/', admin.site.urls),

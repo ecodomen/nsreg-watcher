@@ -6,16 +6,13 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First <i class="bi bi-sort-down"></i></th>
+        <th scope="col">Company <i class="bi bi-sort-down"></i></th>
         <th scope="col">Note1</th>
         <th scope="col">Note2</th>
         <th scope="col">City</th>
         <th scope="col">link</th>
         <th scope="col">Pricereg</th>
-        <th scope="col">Priceprolong</th>
-
-        
-
+        <th scope="col">Priceprolong</th>        
       </tr>
     </thead>
     <tbody>
@@ -29,6 +26,7 @@
             <td><a href="{{company.website}}" >{{ company.website }}</a></td>
             <td>{{ company.pricereg }}</td>
             <td>{{ company.priceprolong }}</td>
+            <td>{{ company.pricechange }}</td>
           </tr>
 {% empty %}
     <tr><td>There are no companies available.</td></tr>
