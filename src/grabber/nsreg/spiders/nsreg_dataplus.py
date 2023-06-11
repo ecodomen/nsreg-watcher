@@ -15,10 +15,10 @@ EMPTY_PRICE = {
 }
 
 
-class NsregDomhosyingaSpider(scrapy.Spider):
-    name = "nsreg_domhostinga"
-    allowed_domains = ["www.domhostinga.ru"]
-    start_urls = ["https://www.domhostinga.ru/site/tariffs"]
+class NsregDataplusSpider(scrapy.Spider):
+    name = "nsreg_dataplus"
+    allowed_domains = ["www.data-plus.ru"]
+    start_urls = ["https://www.data-plus.ru/site/tariffs"]
 
     def parse(self, response):
         pricereg = response.xpath('/html/body/section/div/div/div/div[2]/div[1]/div[2]/span/text()').get()
@@ -31,7 +31,7 @@ class NsregDomhosyingaSpider(scrapy.Spider):
         pricechange = find_price(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «Дом Хостинга»"
+        item['name'] = "ООО «Дата Плюс»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong
