@@ -44,6 +44,9 @@ scrapy crawl nsreg_dns --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domainhouse --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_mirdomenov --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domainservice --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domainmaster --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domainhosting --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domeny --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then
