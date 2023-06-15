@@ -49,6 +49,11 @@ scrapy crawl nsreg_domainhosting --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domeny --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_domains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_rf --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domainagent --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_zonadomenov --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_easyhosting --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_domaingroup --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_4it --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then
