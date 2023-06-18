@@ -15,24 +15,23 @@ EMPTY_PRICE = {
 }
 
 
-
-class NsregEasyhostingSpider(scrapy.Spider):
-    name = "nsreg_easyhosting"
-    allowed_domains = ["www.easyhosting.ru"]
-    start_urls = ["https://www.easyhosting.ru/site/tariffs"]
+class NsregClickregSpider(scrapy.Spider):
+    name = "nsreg_clickreg"
+    allowed_domains = ["www.clickreg.ru"]
+    start_urls = ["https://www.clickreg.ru/price/"]
 
     def parse(self, response):
-        pricereg = response.xpath('/html/body/section/div/div/div/div[2]/div[1]/div[2]/span/text()').get()
+        pricereg = response.xpath('/html/body/div[1]/div[3]/article/section/table[1]/tr/td[1]/article[1]/div/table/tr[5]/td[2]/text()').get()
         pricereg = find_price(REGEX_PATTERN, pricereg)
         
-        priceprolong = response.xpath('/html/body/section/div/div/div/div[2]/div[2]/div[2]/span/text()').get()
+        priceprolong = response.xpath('/html/body/div[1]/div[3]/article/section/table[1]/tr/td[1]/article[1]/div/table/tr[5]/td[3]/text()').get()
         priceprolong = find_price(REGEX_PATTERN, priceprolong)
 
-        pricechange = response.xpath('/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()').get()
+        pricechange = response.xpath('/html/body/div[1]/div[3]/article/section/table[2]/tr/td[1]/article[2]/div/table/tr[10]/td[2]/text()').get()
         pricechange = find_price(REGEX_PATTERN, pricechange)
 
         item = NsregItem()
-        item['name'] = "ООО «Изи Хостинг»"
+        item['name'] = "ООО «КЛИКРЕГ»"
         price = item.get('price', EMPTY_PRICE)
         price['pricereg'] = pricereg
         price['priceprolong'] = priceprolong
