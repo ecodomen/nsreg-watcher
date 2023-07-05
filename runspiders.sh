@@ -62,6 +62,21 @@ scrapy crawl nsreg_domain --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_klondike --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_masterhost --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_thecode --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_megahost --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_beeline --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_r01 --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_startmail --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_privatedomains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_opendomains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_cloudy --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_mirhostinga --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_multiereg --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_netdata --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_salenames --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_smartdomains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_stepmedia --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_technodata --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl nsreg_uninic --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then
