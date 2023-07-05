@@ -62,9 +62,6 @@ scrapy crawl nsreg_domain --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_klondike --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_masterhost --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 scrapy crawl nsreg_thecode --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-scrapy crawl nsreg_privatedomains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-scrapy crawl nsreg_startmail --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-scrapy crawl nsreg_opendomains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 
 
 if [ ! -s "$ERROR_LOG" ]; then
