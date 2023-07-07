@@ -28,7 +28,8 @@ def find_price_sub(re_pattern, price):
 
 
 def find_price_withoutre(price):
-    price = str(price).strip()
+    price = str(price)
+    price = re.sub(r'\s', '', price)
     price = f'{float(price)}'
     logging.info('price = %s', price)
 
