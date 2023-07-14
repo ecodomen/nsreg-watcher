@@ -6,8 +6,6 @@ fi
 
 source env/bin/activate
 
-export PORT_DB=${DOCKER_POSTGRES_PORTS_DB%:*}
-
 ERROR_LOG="$(cd "$(dirname "logs/grabber_errors.log")"; pwd)/$(basename "logs/grabber_errors.log")"
 LOG_LEVEL=ERROR
 DATE=$(date +”%d-%b-%Y_%H:%M”)
