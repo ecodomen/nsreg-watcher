@@ -10,6 +10,7 @@ sudo apt install sendemail
 ```bash 
 runspider.sh
 ```
+
 ## Создание спайдера
 
 1.1 Посмотрите примеры парсеров в папке:
