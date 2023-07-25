@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-import logging
-import re
-
 import scrapy
 from nsreg.items import NsregItem
 
 from ..utils import find_price_withoutre
 
-#перенос по диагностике
+# перенос по диагностике
 EMPTY_PRICE = {
     'pricereg': None,
     'priceprolong': None,
@@ -21,10 +18,12 @@ class NsregAxelnameSpider(scrapy.Spider):
     start_urls = ['https://axelname.ru/domains/']
 
     def parse(self, response):
-        pricereg = response.xpath('//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
+        pricereg = response.xpath(
+            '//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
         pricereg = find_price_withoutre(pricereg)
-        
-        priceprolong = response.xpath('//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
+
+        priceprolong = response.xpath(
+            '//*[@id="pricing-tables1-h"]/div/div/div[1]/div[1]/div/span[2]/text()').get()
         priceprolong = find_price_withoutre(priceprolong)
 
         item = NsregItem()

@@ -15,4 +15,3 @@ class NsregMultieregSpider(scrapy.Spider):
     def parse(self, response):
         item = moscow_tariffs(self, response, REGEX_PATTERN, name)
         yield item
-

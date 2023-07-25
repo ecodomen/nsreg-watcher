@@ -7,7 +7,6 @@
 # useful for handling different item types with a single interface
 import os
 import psycopg2
-from itemadapter import ItemAdapter
 
 SQL_CREATE_REGCOMP_TABLE = '''
 CREATE TABLE IF NOT EXISTS regcomp(
@@ -84,7 +83,7 @@ class NsregPipeline:
         spider.logger.info('Saving item SQL: %s', self.cur.query)
 
         # self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
-        result = self.cur.fetchone()
+        # result = self.cur.fetchone()
 
         # Execute insert of data into database
         self.connection.commit()

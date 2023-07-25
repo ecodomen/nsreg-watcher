@@ -20,4 +20,3 @@ class Regcomp(models.Model):
 
     def get_company(id):
         Regcomp.objects.get(id=id)
-        

@@ -7,7 +7,6 @@ REGEX_PATTERN = r"([0-9]+)\s+₽.*"
 name = "ООО «Облако»"
 
 
-
 class NsregCloudySpider(scrapy.Spider):
     name = 'nsreg_cloudy'
     allowed_domains = ['cloudy.ru']

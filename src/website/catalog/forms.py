@@ -7,12 +7,13 @@ SORT_BY_CHOICES = [
     ("PR", "Продление домена"),
     ("PE", "Перенос домена"),
 
-    
+
 ]
+
 
 class CompaniesSortForm(forms.Form):
     sort_by = forms.ChoiceField(
-        label="Сортировать по", 
+        label="Сортировать по",
         choices=SORT_BY_CHOICES,
     )
     search = forms.CharField(

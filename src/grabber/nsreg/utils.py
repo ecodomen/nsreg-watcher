@@ -2,7 +2,6 @@ import logging
 import re
 
 
-
 def find_price(re_pattern, price):
     price = str(price).strip()
     if price == "бесплатно":

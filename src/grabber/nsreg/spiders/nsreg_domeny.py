@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-import logging
-import re
-
 import scrapy
 from nsreg.items import NsregItem
 
 from ..utils import find_price
-#работает
+# работает
 REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})\s+₽.*"
 EMPTY_PRICE = {
     'pricereg': None,
@@ -21,7 +18,8 @@ class NsregDomainySpider(scrapy.Spider):
     start_urls = ["https://domeny.ru/"]
 
     def parse(self, response):
-        pricereg = response.xpath('/html/body/div[2]/div[1]/div[5]/div/div/div/div[3]/a[1]/h5/text()').get()
+        pricereg = response.xpath(
+            '/html/body/div[2]/div[1]/div[5]/div/div/div/div[3]/a[1]/h5/text()').get()
         pricereg = find_price(REGEX_PATTERN, pricereg)
 
         item = NsregItem()
@@ -31,4 +29,3 @@ class NsregDomainySpider(scrapy.Spider):
         item['price'] = price
 
         yield item
-        
