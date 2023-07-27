@@ -81,3 +81,26 @@ def moscow_rich_price(self, response, re_pattern, name):
     item['price'] = price
 
     return item
+
+def parser_re(parser):
+    response = parser.response
+    re_pattern = parser.re_pattern
+    find_func = parser.find_func
+    pricereg = response.xpath(parser.pricereg + '/text()').get()
+    pricereg = find_func(re_pattern, pricereg)
+    
+    priceprolong = response.xpath(parser.priceprolong + '/text()').get()
+    priceprolong = find_func(re_pattern, priceprolong)
+
+    pricechange = response.xpath(parser.pricechange + '/text()').get()
+    pricechange = find_func(re_pattern, pricechange)
+
+    item = NsregItem()
+    item['name'] = parser.name
+    price = item.get('price', EMPTY_PRICE)
+    price['pricereg'] = pricereg
+    price['priceprolong'] = priceprolong
+    price['pricechange'] = pricechange 
+    item['price'] = price
+
+    return item

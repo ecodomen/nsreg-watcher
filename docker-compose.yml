@@ -7,14 +7,15 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: $PASSWORD_DB
-      POSTGRES_USER: $USERNAME_DB
-      POSTGRES_DB: $DATABASE_NAME
+      POSTGRES_PASSWORD: Nsreg123
+      POSTGRES_USER: nsreg
+      POSTGRES_DB: nsreg
     ports:
-      - $DOCKER_POSTGRES_PORTS_DB
-         
+      - 50432:5432
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8085:8080
+      
