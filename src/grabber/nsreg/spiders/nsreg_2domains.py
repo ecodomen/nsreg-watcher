@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from nsreg.superspider import SuperSpider
 
+import scrapy
+from nsreg.items import NsregItem
 
-REGEX_PROLONG_PATTERN = r".*Продление\s+—\s+(([0-9]*[.,])?[0-9]+)\s+₽.*"
-REGEX_CHANGE_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})\s+₽.*"
 EMPTY_PRICE = {
     'pricereg': None,
     'priceprolong': None,
@@ -24,3 +24,34 @@ class Nsreg2domainsSpider(SuperSpider):
     regex_reg = r"\s"
     regex_prolong = r".*Продление\s+—\s+(([0-9]*[.,])?[0-9]+)\s+₽.*"
     regex_change = r".*(([0-9]*[.,])?[0-9]{3})\s+₽.*"
+
+    def parse_pricechange(self, response):
+        pricechange = response.xpath(self.pathchange).get()
+        pricechange = self.find_price(self.regex_change, pricechange)
+
+        item = NsregItem()
+        item['name'] = "ООО «2ДОМЕЙНС.РУ»"  
+        price = item.get('price', EMPTY_PRICE)
+        price['pricechange'] = pricechange 
+        item['price'] = price  
+
+        yield item  
+
+    def parse(self, response):
+        pricereg = response.xpath(self.pathreg).get()
+        pricereg = self.find_price(self.regex_reg, pricereg)
+
+        priceprolong = response.xpath(self.pathprolong).get()
+        priceprolong = self.find_price(self.regex_prolong, priceprolong)
+
+
+        yield scrapy.Request('https://2domains.ru/domains/transfer', callback=self.parse_pricechange)
+
+        item = NsregItem()
+        item['name'] = self.rusname
+        price = item.get('price', EMPTY_PRICE)
+        price['pricereg'] = pricereg
+        price['priceprolong'] = priceprolong
+        item['price'] = price
+
+        yield item

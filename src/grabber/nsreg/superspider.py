@@ -43,15 +43,11 @@ class SuperSpider(scrapy.Spider):
 
     def find_price(self, re_pattern, price):
         price = str(price).strip()
-        print('!!!!!!!!!!!', price)
         if price == "бесплатно":
             price = 0
-        elif re_pattern == '':
-            price = re.sub(r'\s', '', price)
         else:
             if m := re.match(re_pattern, price):
                 price = m.group(1)
-        print('&!&!&!&!&!&!&!&!&', price)
         price = f'{float(price)}'
         logging.info('price = %s', price)
 
