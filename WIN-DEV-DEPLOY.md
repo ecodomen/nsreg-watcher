@@ -4,6 +4,12 @@
 
 Для запуска под виндовс в первую очередь необходимо установить и настроить Windows Subsystem for Linux (WSL). Она доступна в системе по умолчанию начиная с версии 2004 (сборка 19041). Подробнее здесь: https://learn.microsoft.com/ru-ru/windows/wsl/install
 
+Также необходимо установить Docker Desktop (гайд: https://docs.docker.com/desktop/install/windows-install/ )
+
+При скачивании кода проекта обратите внимание на Unix- и Windows-окончания файлов. Рекомендую скачивать через `git clone` либо `git init` + `git remote` + `git pull`, чтобы избежать проблем. Либо воспользуйтесь утилитой dos2unix:
+`sudo apt-get install dos2unix`, затем в папке с приложением
+`dos2unix *`
+
 ## Настройка окружения
 
 1. Установите Sendmail, docker, docker-compose
