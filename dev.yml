@@ -1,0 +1,35 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: $PASSWORD_DB
+      POSTGRES_USER: $USERNAME_DB
+      POSTGRES_DB: $DATABASE_NAME
+    ports:
+      - 5432:5432
+
+  scrapy:
+    build:
+      context: .
+      dockerfile: ./compose/scrapy/Dockerfile
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+    depends_on:
+      - postgres
+      - scrapy
+    ports:
+      - 8000:8000
+    links:
+      - postgres
