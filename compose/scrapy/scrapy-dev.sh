@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-
-if [ -f .env ]; then
-  export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
-fi
-
-source env/bin/activate
-
 ERROR_LOG="$(cd "$(dirname "logs/grabber_errors.log")"; pwd)/$(basename "logs/grabber_errors.log")"
 LOG_LEVEL=ERROR
 DATE=$(date +”%d-%b-%Y_%H:%M”)

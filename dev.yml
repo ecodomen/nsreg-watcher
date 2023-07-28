@@ -21,6 +21,7 @@ services:
       - postgres
     links:
       - postgres
+    env_file: .env
 
   django:
     build:
@@ -33,3 +34,4 @@ services:
       - 8000:8000
     links:
       - postgres
+    env_file: .env
