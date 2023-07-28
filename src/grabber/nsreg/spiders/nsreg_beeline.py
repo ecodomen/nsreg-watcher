@@ -20,13 +20,11 @@ class NsregBeelineSpider(scrapy.Spider):
 
     def parse(self, response):
         pricereg = response.xpath(
-            '//*[@id="react_aDGOLumF5U2Eyvb2G5m2g"]/div/div[3]/div[3]/section[1]'
-            '/div/section/div[2]/div[2]/div[1]/div/div[2]/div[1]/span/text()').get()
+            '//*[@id="react_aDGOLumF5U2Eyvb2G5m2g"]/div/div[3]/div[3]/section[1]/div/section/div[2]/div[2]/div[1]/div/div[2]/div[1]/span/text()').get()
         pricereg = find_price(REGEX_PATTERN, pricereg)
 
         priceprolong = response.xpath(
-            '//*[@id="react_aDGOLumF5U2Eyvb2G5m2g"]/div/div[3]/div[3]/section[1]'
-            '/div/section/div[2]/div[2]/div[1]/div/div[2]/div[1]/span/text()').get()
+            '//*[@id="react_aDGOLumF5U2Eyvb2G5m2g"]/div/div[3]/div[3]/section[1]/div/section/div[2]/div[2]/div[1]/div/div[2]/div[1]/span/text()').get()
         priceprolong = find_price(REGEX_PATTERN, priceprolong)
 
         pricechange = None
