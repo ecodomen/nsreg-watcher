@@ -2,3 +2,4 @@ scrapy==2.7.1
 psycopg2==2.9.6
 django==4.1.7
 django-debug-toolbar==4.0.0
+aiogram==3.0.0b8

@@ -13,7 +13,7 @@ services:
     ports:
       - 5432:5432
 
-  scrapy:
+  scrapy_telbot:
     build:
       context: .
       dockerfile: ./compose/scrapy/Dockerfile
@@ -28,7 +28,7 @@ services:
       dockerfile: ./compose/django/Dockerfile
     depends_on:
       - postgres
-      - scrapy
+      - scrapy_telbot
     ports:
       - 8000:8000
     links:

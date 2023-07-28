@@ -6,4 +6,4 @@ WORKDIR /app
 RUN apt-get update
 RUN apt-get install -y gettext-base
 RUN sh install.sh
-CMD ["sh", "compose/scrapy/scrapy-dev.sh"]
+CMD ["python", "src/telegram_bot"]

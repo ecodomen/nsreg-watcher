@@ -11,7 +11,7 @@ LOG_LEVEL=ERROR
 DATE=$(date +”%d-%b-%Y_%H:%M”)
 
 echo "truncating error file:  $ERROR_LOG"
-echo -n '' > $ERROR_LOG
+echo '---SPLIT---' >> $ERROR_LOG
 
 cd src/grabber/nsreg
 
