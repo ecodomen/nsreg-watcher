@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: $USERNAME_DB
       POSTGRES_DB: $DATABASE_NAME
     ports:
-      - $DOCKER_POSTGRES_PORTS_DB
+      - $PORT_DB:5432
          
   adminer:
     image: adminer
