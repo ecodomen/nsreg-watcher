@@ -30,7 +30,7 @@ async def command_start_handler(*args, **kwargs) -> None:
 
     await bot.send_message(
         chat_id=CHAT_ID,
-        text=f"🕷️🕷️🕷️ Запуск спайдеров 🕷️🕷️🕷️"
+        text="🕷️🕷️🕷️ Запуск спайдеров 🕷️🕷️🕷️"
     )
     try:
         subprocess.run(["sh", f"{SPIDERS_SCRIPT_PATH}"], check=True)
@@ -42,12 +42,12 @@ async def command_start_handler(*args, **kwargs) -> None:
 
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=f"Спайдеры завершили свою работу /╲/\(╭•̀ﮧ •́╮)/\╱\ \nError logs:\n```{error_log}```"
+            text=fr"Спайдеры завершили свою работу /╲/\(╭•̀ﮧ •́╮)/\╱\ \nError logs:\n```{error_log}```"
         )
     except subprocess.CalledProcessError as error:
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=f"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ \n{error}"
+            text=fr"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ \n{error}"
         )
 
 
