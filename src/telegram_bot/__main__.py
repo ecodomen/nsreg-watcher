@@ -39,15 +39,17 @@ async def command_start_handler(*args, **kwargs) -> None:
             error_log = file.read()
 
         error_log = cut_log(error_log)
+        spider_1 = r'/╲/\(╭•̀ﮧ •́╮)/\╱\ '
 
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=fr"Спайдеры завершили свою работу /╲/\(╭•̀ﮧ •́╮)/\╱\ \nError logs:\n```{error_log}```"
+            text=f"Спайдеры завершили свою работу {spider_1}\nError logs:\n```{error_log}```"
         )
     except subprocess.CalledProcessError as error:
+        spider_2 = r"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ "
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=fr"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ \n{error}"
+            text=f"{spider_2}\n{error}"
         )
 
 
