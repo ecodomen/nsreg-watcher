@@ -18,7 +18,7 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
       - name: Connect to server
         run: |
-          ssh {{ secrets.SSH_SERVER_ADRESS }}
+          ssh ${{ secrets.SSH_SERVER_ADRESS }}
           cd nsreg-watcher
           docker-compose -f dev.yml down
           docker-compose -f dev.yml up --build -d 
