@@ -21,5 +21,5 @@ jobs:
           ssh -T ${{ secrets.SSH_SERVER_ADRESS }} -i ../private.key 'cd nsreg-watcher && git pull origin dev && git checkout dev'
       - name: Containers build
         run: |
-          ssh -T ${{ secrets.SSH_SERVER_ADRESS }} -i ../private.key 'cd nsreg-watcher && docker-compose -f dev.yml down && docker-compose -f dev.yml up --build -d'
+          ssh -T ${{ secrets.SSH_SERVER_ADRESS }} -i ../private.key 'cd nsreg watcher && docker compose -f dev.yml down && docker-compose -f dev.yml up --build -d'
  
