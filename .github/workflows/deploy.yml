@@ -1,0 +1,25 @@
+name: deploy and build
+
+on:
+  push:
+    branches: ["deployment-dev" ]
+  pull_request:
+    branches: ["deployment-dev" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+      - name: Connect to server
+        run: |
+          ssh {{ secrets.SSH_SERVER_ADRESS }}
+          cd nsreg-watcher
+          docker-compose -f dev.yml down
+          docker-compose -f dev.yml up --build -d 
+ 
