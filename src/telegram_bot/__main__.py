@@ -28,22 +28,28 @@ def cut_log(log: str) -> str:
 @router.message(Command(commands=["start"]))
 async def command_start_handler(*args, **kwargs) -> None:
 
+    await bot.send_message(
+        chat_id=CHAT_ID,
+        text="🕷️🕷️🕷️ Запуск спайдеров 🕷️🕷️🕷️"
+    )
     try:
         subprocess.run(["sh", f"{SPIDERS_SCRIPT_PATH}"], check=True)
 
         with open(ERROR_LOGS_PATH) as file:
-            errors_log = file.read()
+            error_log = file.read()
 
-        errors_log = cut_log(errors_log)
+        error_log = cut_log(error_log)
+        spider_1 = r'/╲/\(╭•̀ﮧ •́╮)/\╱\ '
 
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=f"Spiders have done work.\n Error logs: \n ```{errors_log}```"
+            text=f"Спайдеры завершили свою работу {spider_1}\nError logs:\n```{error_log}```"
         )
     except subprocess.CalledProcessError as error:
+        spider_2 = r"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ "
         await bot.send_message(
             chat_id=CHAT_ID,
-            text=f"{error}"
+            text=f"{spider_2}\n{error}"
         )
 
 

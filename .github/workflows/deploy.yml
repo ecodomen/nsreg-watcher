@@ -1,0 +1,25 @@
+name: deploy and build
+
+on:
+  push:
+    branches: 
+      - dev
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+      - name: Update local repo
+        run: |
+          ssh -T ${{ secrets.SSH_SERVER_ADRESS }} -i ../private.key 'cd nsreg-watcher && git pull origin dev && git checkout dev'
+      - name: Containers build
+        run: |
+          ssh -T ${{ secrets.SSH_SERVER_ADRESS }} -i ../private.key 'cd nsreg-watcher && docker compose -f dev.yml down && docker compose -f dev.yml up --build -d'
+ 
