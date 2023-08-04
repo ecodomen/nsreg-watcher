@@ -28,3 +28,4 @@ runspider.sh
 ```bash 
 scrapy crawl nsreg_2domains --logfile $ERROR_LOG --loglevel $LOG_LEVEL
 ```
+
