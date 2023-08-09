@@ -65,4 +65,3 @@ class Parse_Error(models.Model):
 
     class Meta:
         db_table = 'parse_error'
-        
