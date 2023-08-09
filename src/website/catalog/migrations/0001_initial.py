@@ -4,6 +4,7 @@ import datetime
 from django.db import migrations, models
 import django.db.models.deletion
 
+
 def populate_domain(apps, schema_editor):
     Domain = apps.get_model("catalog", "Domain")
     db_alias = schema_editor.connection.alias
@@ -12,11 +13,13 @@ def populate_domain(apps, schema_editor):
         Domain(name="рф"),
     ])
 
+
 def reverse_domain(apps, schema_editor):
     Domain = apps.get_model("catalog", "Domain")
     db_alias = schema_editor.connection.alias
     Domain.objects.using(db_alias).filter(name="ru").delete()
     Domain.objects.using(db_alias).filter(name="рф").delete()
+
 
 class Migration(migrations.Migration):
 

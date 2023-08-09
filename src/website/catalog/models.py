@@ -18,6 +18,7 @@ class Registrator(models.Model):
     def get_registrator(id):
         Registrator.objects.get(id=id)
 
+
 class Domain(models.Model):
     name = models.CharField(unique=True, max_length=255, blank=False, null=False)
 
@@ -27,11 +28,13 @@ class Domain(models.Model):
     def __str__(self):
         return f'{self.id}: {self.name}'
 
+
 class Parse_History(models.Model):
     date = models.DateField(default=datetime.date.today)
 
     class Meta:
         db_table = 'parse_history'
+
 
 class Parser(models.Model):
     id_registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
@@ -41,6 +44,7 @@ class Parser(models.Model):
 
     class Meta:
         db_table = 'parser'
+
 
 class Price(models.Model):
     id_registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
@@ -53,6 +57,7 @@ class Price(models.Model):
     class Meta:
         db_table = 'price'
 
+
 class Parse_Error(models.Model):
     id_parse_history = models.ForeignKey(Parse_History, on_delete=models.CASCADE)
     id_parser = models.ForeignKey(Parser, on_delete=models.CASCADE)
@@ -60,3 +65,4 @@ class Parse_Error(models.Model):
 
     class Meta:
         db_table = 'parse_error'
+        

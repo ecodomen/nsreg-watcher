@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from .models import Registrator, Domain, Parse_History, Parser, Price, Parse_Error
+from .models import Registrator
 from .forms import CompaniesSortForm
 
 
@@ -16,7 +16,7 @@ SORT_FIELD_NAMES = {
 }
 
 
-def regcomp_list(request):
+def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
         if form.is_valid():
@@ -35,15 +35,15 @@ def regcomp_list(request):
             city__contains=search) | Q(pricereg__contains=search)).order_by(sort_by)
     else:
         companies = Registrator.objects.order_by(sort_by)
-    return render(request, 'regcomp-list.html', {'companies': companies, 'form': form})
+    return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 
-def regcomp_details(request, id):
+def registrator_details(request, id):
     try:
         company = Registrator.objects.get(id=id)
-    except Regcomp.DoesNotExist:
+    except Registrator.DoesNotExist:
         return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")
-    return render(request, 'regcomp-details.html', {'company': company})
+    return render(request, 'registrator-details.html', {'company': company})
 
 
 def about(request):
