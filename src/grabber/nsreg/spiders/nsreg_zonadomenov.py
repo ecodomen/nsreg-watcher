@@ -14,17 +14,16 @@ class NsregZonadomenovSpider(scrapy.Spider):
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
         self.component = BaseSpiderComponent(
-            start_urls = self.start_urls,
-            allowed_domains = self.allowed_domains,
-            site_names = self.site_names,
-            regex = r"([0-9]+[.,\s])?руб",
-            path = {
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r"([0-9]+[.,\s])?руб",
+            path={
                 'price_reg': '/html/body/section/div/div/div/div[2]/div[1]/div[2]/span/text()',
                 'price_prolong': '/html/body/section/div/div/div/div[2]/div[2]/div[2]/span/text()',
                 'price_change': '/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()'
             }
         )
-
 
     # Метод для обработки ответов на запросы
     def parse(self, response):
