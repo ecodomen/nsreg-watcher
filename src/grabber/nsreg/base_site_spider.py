@@ -27,6 +27,8 @@ class BaseSpiderComponent:
         self.allowed_domains = allowed_domains
         self.site_names = site_names
         # Сохранение регулярных выражений и пути xpath для дальнейшего использования
+        # В качестве регулярных выражений принимается либо str, либо dict с полями price_reg, price_prolong и price_change
+        # regex-строка преобразуется в dict с одинаковыми значениями в полях
         if not isinstance(regex, dict):
             regex={
                 'price_reg': regex,
