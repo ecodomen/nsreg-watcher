@@ -2,7 +2,12 @@ import logging
 import re
 
 from .items import NsregItem
-from .utils_spider import EMPTY_PRICE
+
+EMPTY_PRICE = {
+    'pricereg': None,
+    'priceprolong': None,
+    'pricechange': None,
+}
 
 # Функция поиска цен в тексте, используя регулярное выражение
 def find_price(re_pattern, price):
