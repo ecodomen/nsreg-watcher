@@ -14,7 +14,7 @@ from ..base_site_spider import BaseSpiderComponent
 
 class MultiSiteSpider5(scrapy.Spider):
     name = 'multi_site_spider5'
-    start_urls=(
+    start_urls = (
                 'https://active.domains/domains/',
                 'https://ardis.ru/domains/',
                 'https://domainreseller.ru/domains/',
@@ -22,7 +22,7 @@ class MultiSiteSpider5(scrapy.Spider):
                 'https://private-names.ru/domains/',
                 'https://ru-domains.ru/domains/',
     )
-    allowed_domains=(
+    allowed_domains = (
                 'https://active.domains',
                 'https://ardis.ru',
                 'https://domainreseller.ru',
@@ -30,7 +30,7 @@ class MultiSiteSpider5(scrapy.Spider):
                 'http://private-names.ru',
                 'https://ru-domains.ru',
             )
-    site_names=(
+    site_names = (
                 'ООО «Актив.Домэинс»',
                 'ООО «Ардис»',
                 'ООО «Домэинреселлер»',
@@ -43,11 +43,11 @@ class MultiSiteSpider5(scrapy.Spider):
         super().__init__(*args, **kwargs)
         # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
         self.component = BaseSpiderComponent(
-            start_urls=self.start_urls,
-            allowed_domains=self.allowed_domains,
-            site_names=self.site_names,
-            regex=r".*(([0-9]*[.,])?[0-9]{3}).*",
-            path={
+            start_urls = self.start_urls,
+            allowed_domains = self.allowed_domains,
+            site_names = self.site_names,
+            regex = r".*(([0-9]*[.,])?[0-9]{3}).*",
+            path = {
                 'price_reg': '//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[3]/a/text()',
                 'price_prolong': '//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[4]/a/text()',
                 'price_change': '//*[@id="show_domain"]/div/div/table/tbody/tr[1]/td[5]/a/text()'
@@ -58,3 +58,4 @@ class MultiSiteSpider5(scrapy.Spider):
     def parse(self, response):
         # Применение метода parse компонента BaseSpiderComponent
         return self.component.parse(response)
+    

@@ -9,6 +9,7 @@ EMPTY_PRICE = {
     'pricechange': None,
 }
 
+
 # Функция поиска цен в тексте, используя регулярное выражение
 def find_price(re_pattern, price):
     price = str(price).strip()
@@ -23,6 +24,7 @@ def find_price(re_pattern, price):
 
     return price
 
+
 # Класс, реализующий основные компоненты паука для веб-скрапинга
 class BaseSpiderComponent:
 
@@ -35,7 +37,7 @@ class BaseSpiderComponent:
         # В качестве регулярных выражений принимается либо str, либо dict с полями price_reg, price_prolong и price_change
         # regex-строка преобразуется в dict с одинаковыми значениями в полях
         if not isinstance(regex, dict):
-            regex={
+            regex = {
                 'price_reg': regex,
                 'price_prolong': regex,
                 'price_change': regex
