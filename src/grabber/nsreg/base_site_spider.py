@@ -23,10 +23,16 @@ class BaseSpiderComponent:
 
     def __init__(self, start_urls=None, allowed_domains=None, site_names=None, regex=None, path=None):
         # Разделение строк по запятым и преобразуем их в списки
-        self.start_urls = start_urls.split(',') if start_urls else []
-        self.allowed_domains = allowed_domains.split(',') if allowed_domains else []
-        self.site_names = site_names.split(',') if site_names else []
+        self.start_urls = start_urls
+        self.allowed_domains = allowed_domains
+        self.site_names = site_names
         # Сохранение регулярных выражений и пути xpath для дальнейшего использования
+        if not isinstance(regex, dict):
+            regex={
+                'price_reg': regex,
+                'price_prolong': regex,
+                'price_change': regex
+            }
         self.regex = regex
         self.path = path
 

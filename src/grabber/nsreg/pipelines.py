@@ -16,24 +16,24 @@ CREATE TABLE IF NOT EXISTS regcomp(
             note2 text,
             city VARCHAR(255),
             website text,
-            pricereg decimal,
-            priceprolong decimal,
-            pricechange decimal
+            price_reg decimal,
+            price_prolong decimal,
+            price_change decimal
         )
 '''
 
 SQL_UPDATE_REGCOMP = '''
-INSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange)
+INSERT INTO regcomp (name, note1, note2, city, website, price_reg, price_prolong, price_change)
 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
 ON CONFLICT (name) DO UPDATE
-SET ( note1, note2, city, website, pricereg, priceprolong, pricechange) = (
+SET ( note1, note2, city, website, price_reg, price_prolong, price_change) = (
     COALESCE(%s, regcomp.note1),
     COALESCE(%s, regcomp.note2),
     COALESCE(%s, regcomp.city),
     COALESCE(%s, regcomp.website),
-    COALESCE(%s, regcomp.pricereg),
-    COALESCE(%s, regcomp.priceprolong),
-    COALESCE(%s, regcomp.pricechange)
+    COALESCE(%s, regcomp.price_reg),
+    COALESCE(%s, regcomp.price_prolong),
+    COALESCE(%s, regcomp.price_change)
     )
 RETURNING id
 '''
@@ -59,9 +59,9 @@ class NsregPipeline:
 
     def process_item(self, item, spider):
         price = item.get('price', {
-            'pricereg': None,
-            'priceprolong': None,
-            'pricechange': None,
+            'price_reg': None,
+            'price_prolong': None,
+            'price_change': None,
         })
         self.cur.execute(SQL_UPDATE_REGCOMP, (
             item['name'],
@@ -69,16 +69,16 @@ class NsregPipeline:
             item.get('note2', None),
             item.get('city', None),
             item.get('website', None),
-            price.get('pricereg', None),
-            price.get('priceprolong', None),
-            price.get('pricechange', None),
+            price.get('price_reg', None),
+            price.get('price_prolong', None),
+            price.get('price_change', None),
             item.get('note1', None),
             item.get('note2', None),
             item.get('city', None),
             item.get('website', None),
-            price.get('pricereg', None),
-            price.get('priceprolong', None),
-            price.get('pricechange', None),
+            price.get('price_reg', None),
+            price.get('price_prolong', None),
+            price.get('price_change', None),
         ))
         spider.logger.info('Saving item SQL: %s', self.cur.query)
 

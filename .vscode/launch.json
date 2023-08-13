@@ -21,7 +21,7 @@
             "module": "scrapy",
             "args": [
                 "crawl",
-                "nsreg_betnames"
+                "multi_site_spider5"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/src/grabber/nsreg"
