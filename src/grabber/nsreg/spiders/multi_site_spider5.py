@@ -38,7 +38,7 @@ class MultiSiteSpider5(scrapy.Spider):
                 'ООО «Приватнэймс»',
                 'ООО «РУ-ДОМЭИНС»',
     )
-    
+
     # Конструктор класса
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
