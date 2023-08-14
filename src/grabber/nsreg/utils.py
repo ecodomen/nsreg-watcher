@@ -1,3 +1,4 @@
+# УДАЛИТЬ ПОСЛЕ РЕФАКТОРА СПАЙДЕРОВ
 import logging
 import re
 

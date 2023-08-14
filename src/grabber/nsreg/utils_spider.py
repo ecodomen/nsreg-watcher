@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# УДАЛИТЬ ПОСЛЕ РЕФАКТОРА СПАЙДЕРОВ
 from nsreg.items import NsregItem
 
 from nsreg.utils import find_price
