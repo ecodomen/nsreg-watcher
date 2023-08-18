@@ -1,39 +1,32 @@
-# -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price_withoutre
-# работает
-REGEX_PATTERN = r"([0-9]+[.,\s])?руб"
-EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregUninicSpider(scrapy.Spider):
-    name = 'nsreg_uninic'
-    allowed_domains = ['uninic.ru']
-    start_urls = ['https://uninic.ru/domainreg.php']
+    name = 'nsreg_uninic_spider'
 
+    start_urls = 'https://uninic.ru/domainreg.php'
+    allowed_domains = 'https://uninic.ru/'
+    site_names = 'ООО «Объединенные доменные имена»'
+
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r"([0-9]+[.,\s])?руб",
+            path={
+                'price_reg': '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[3]/b[1]/text()',
+                'price_prolong': '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[5]/b[1]/text()',
+                'price_change': None
+            }
+        )
+
+    # Метод для обработки ответов на запросы
     def parse(self, response):
-        pricereg = response.xpath(
-            '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[3]/b[1]/text()').get()
-        pricereg = find_price_withoutre(pricereg)
-
-        priceprolong = response.xpath(
-            '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[5]/b[1]/text()').get()
-        priceprolong = find_price_withoutre(priceprolong)
-
-        pricechange = None
-
-        item = NsregItem()
-        item['name'] = "ООО «Объединенные доменные имена»"
-        price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
-        item['price'] = price
-
-        yield item
+        # Применение метода parse компонента BaseSpiderComponent
+        return self.component.parse(response)
