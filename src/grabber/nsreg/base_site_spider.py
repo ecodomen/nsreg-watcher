@@ -3,17 +3,21 @@ import re
 
 from .items import NsregItem
 
-EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+PRICE_DEFAULT_DICT = {
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
+PRICE_FREE_PATTERNS = (
+    "бесплатно", "перенос в подарок",
+)
 
-# Функция поиска цен в тексте, используя регулярное выражение
+
 def find_price(re_pattern, price):
+    """Функция поиска цен в тексте, используя регулярное выражение"""
     price = str(price).strip()
-    if price == "бесплатно":
+    if price in PRICE_FREE_PATTERNS:
         price = 0
     else:
         # Применяем регулярное выражение к строке
@@ -25,8 +29,8 @@ def find_price(re_pattern, price):
     return price
 
 
-# Класс, реализующий основные компоненты паука для веб-скрапинга
 class BaseSpiderComponent:
+    """Класс, реализующий основные компоненты паука для веб-скрапинга"""
 
     def __init__(self, start_urls=None, allowed_domains=None, site_names=None, regex=None, path=None):
         # Разделение строк по запятым и преобразуем их в списки
@@ -45,8 +49,9 @@ class BaseSpiderComponent:
         self.regex = regex
         self.path = path
 
-    # Функция для обработки полученных данных
     def parse(self, response):
+        """Функция для обработки полученных данных"""
+
         # Поиск цены на регистрацию домена на веб-странице
         price_reg = response.xpath(self.path['price_reg']).get()
         price_reg = find_price(self.regex['price_reg'], price_reg)
@@ -65,7 +70,7 @@ class BaseSpiderComponent:
         # Создание элемента данных и заполнение его информацией
         item = NsregItem()
         item['name'] = site_name
-        price = item.get('price', EMPTY_PRICE)
+        price = item.get('price', PRICE_DEFAULT_DICT)
         price['price_reg'] = price_reg
         price['price_prolong'] = price_prolong
         price['price_change'] = price_change
