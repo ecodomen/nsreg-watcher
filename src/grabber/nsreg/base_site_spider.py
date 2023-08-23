@@ -13,7 +13,7 @@ EMPTY_PRICE = {
 # Функция поиска цен в тексте, используя регулярное выражение
 def find_price(re_pattern, price):
     price = str(price).strip()
-    if price == "бесплатно":
+    if price.casefold() == "бесплатно":
         price = 0
     else:
         # Применяем регулярное выражение к строке
