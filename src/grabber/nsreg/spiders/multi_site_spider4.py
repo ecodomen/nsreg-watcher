@@ -18,51 +18,54 @@ from ..base_site_spider import BaseSpiderComponent
 class MultiSiteSpider4(scrapy.Spider):
     name = 'multi_site_spider4'
 
+    start_urls = (
+        'https://fastdns.ru/#price',
+        'https://4it.ru/#price',
+        'https://clustered.ru/#price',
+        'https://thecode.ru/#price',
+        'http://megahost.ru/#price',
+        # 'http://openreg.ru/#price',
+        'https://cloudy.ru/#price',
+        # 'https://opencom.ru/#price',
+        'https://startmail.ru/#price',
+        'https://proprovider.ru/#price',
+        'https://dproxy.ru/#price'
+    ),
+    allowed_domains = (
+        'https://fastdns.ru',
+        'https://4it.ru',
+        'https://clustered.ru',
+        'https://thecode.ru',
+        'http://megahost.ru',
+        # 'http://openreg.ru',
+        'https://cloudy.ru',
+        # 'https://opencom.ru',
+        'https://startmail.ru',
+        'https://proprovider.ru',
+        'https://dproxy.ru'
+    ),
+    site_names = (
+        'ООО «ДНС»',
+        'ООО «ИТ»',
+        'ООО «КЛАСТЕР»',
+        'ООО «КОД»',
+        'ООО «Мега»',
+        # 'ООО «НФ МЕДИА»',
+        'ООО «Облако»',
+        # 'ООО «Открытые коммуникации»',
+        'ООО «ПОЧТА»',
+        'ООО «ПРО»',
+        'ООО «ПРОКСИ»'
+    )
+
     # Конструктор класса
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
         self.component = BaseSpiderComponent(
-            start_urls=(
-                'https://fastdns.ru/#price',
-                'https://4it.ru/#price',
-                'https://clustered.ru/#price',
-                'https://thecode.ru/#price',
-                'http://megahost.ru/#price',
-                # 'http://openreg.ru/#price',
-                'https://cloudy.ru/#price',
-                # 'https://opencom.ru/#price',
-                'https://startmail.ru/#price',
-                'https://proprovider.ru/#price',
-                'https://dproxy.ru/#price'
-            ),
-            allowed_domains=(
-                'https://fastdns.ru',
-                'https://4it.ru',
-                'https://clustered.ru',
-                'https://thecode.ru',
-                'http://megahost.ru',
-                # 'http://openreg.ru',
-                'https://cloudy.ru',
-                # 'https://opencom.ru',
-                'https://startmail.ru',
-                'https://proprovider.ru',
-                'https://dproxy.ru'
-            ),
-            site_names=(
-                'ООО «ДНС»',
-                'ООО «ИТ»',
-                'ООО «КЛАСТЕР»',
-                'ООО «КОД»',
-                'ООО «Мега»',
-                # 'ООО «НФ МЕДИА»',
-                'ООО «Облако»',
-                # 'ООО «Открытые коммуникации»',
-                'ООО «ПОЧТА»',
-                'ООО «ПРО»',
-                'ООО «ПРОКСИ»'
-            ),
-
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
             regex=r"([0-9]+)\s+₽.*",
             path={
                 'price_reg': (

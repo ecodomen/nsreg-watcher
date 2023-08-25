@@ -3,12 +3,12 @@ import scrapy
 from ..base_site_spider import BaseSpiderComponent
 
 
-class NsregUninicSpider(scrapy.Spider):
-    name = 'nsreg_uninic_spider'
+class NsregRoyaldomainsSpider(scrapy.Spider):
+    name = 'nsreg_royaldomains_spider'
 
-    start_urls = 'https://uninic.ru/domainreg.php'
-    allowed_domains = 'https://uninic.ru/'
-    site_names = 'ООО «Объединенные доменные имена»'
+    start_urls = 'https://royaldomains.ru//'
+    allowed_domains = 'https://royaldomains.ru/'
+    site_names = 'ООО «РОЯЛЬ»'
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):
@@ -18,11 +18,11 @@ class NsregUninicSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"([0-9]+[.,\s])?руб",
+            regex=r"([0-9]{1,3}(?:\s[0-9]{3})*\s?)?₽",
             path={
-                'price_reg': '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[3]/b[1]/text()',
-                'price_prolong': '/html/body/div[1]/div/div[2]/div[1]/div/div/div[3]/table/tr[2]/td[5]/b[1]/text()',
-                'price_change': None
+                'price_reg': '//*[@id="about"]/div/div/figure/table/tbody/tr[1]/td[3]',
+                'price_prolong': '//*[@id="about"]/div/div/figure/table/tbody/tr[2]/td[3]',
+                'price_change': '//*[@id="about"]/div/div/figure/table/tbody/tr[3]/td[3]'
             }
         )
 

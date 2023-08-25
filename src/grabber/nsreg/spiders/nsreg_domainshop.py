@@ -1,41 +1,32 @@
-# -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price
-# работает
-REGEX_PATTERN = r"([0-9]+)[.,\s]?руб.*"
-EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
-class NsregDomainshopSpider(scrapy.Spider):
-    name = "nsreg_domainshop"
-    allowed_domains = ["domainshop.ru"]
-    start_urls = ["https://domainshop.ru/services/"]
+class MultiSiteSpider5(scrapy.Spider):
+    name = 'nsreg_domainshop'
 
+    start_urls = 'https://domainshop.ru/services/'
+    allowed_domains = 'domainshop.ru'
+    site_names = 'ООО «Лавка доменов»'
+
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r"([0-9]+)[.,\s]?руб.*",
+            path={
+                'price_reg': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()',
+                'price_prolong': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[4]/td[2]/div/p/text()',
+                'price_change': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[7]/td[2]/div/text()'
+            }
+        )
+
+    # Метод для обработки ответов на запросы
     def parse(self, response):
-        pricereg = response.xpath(
-            '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()').get()
-        pricereg = find_price(REGEX_PATTERN, pricereg)
-
-        priceprolong = response.xpath(
-            '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[4]/td[2]/div/p/text()').get()
-        priceprolong = find_price(REGEX_PATTERN, priceprolong)
-
-        pricechange = response.xpath(
-            '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[7]/td[2]/div/text()').get()
-        pricechange = find_price(REGEX_PATTERN, pricechange)
-
-        item = NsregItem()
-        item['name'] = "ООО «Лавка доменов»"
-        price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
-        item['price'] = price
-
-        yield item
+        # Применение метода parse компонента BaseSpiderComponent
+        return self.component.parse(response)

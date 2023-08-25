@@ -17,7 +17,7 @@ PRICE_FREE_PATTERNS = (
 def find_price(re_pattern, price):
     """Функция поиска цен в тексте, используя регулярное выражение"""
     price = str(price).strip()
-    if price in PRICE_FREE_PATTERNS:
+    if price.casefold() in PRICE_FREE_PATTERNS:
         price = 0
     else:
         # Применяем регулярное выражение к строке
