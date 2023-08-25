@@ -7,7 +7,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregFeSpider(scrapy.Spider):
     name = "nsreg_fe"
     start_urls = ["https://fe.ru/domains.php"]
-    allowed_domains = ("fe.ru")
+    allowed_domains = ("fe.ru", )
     site_names = ("ООО «Регистрация доменов»")
 
     def __init__(self, name=None, **kwargs):

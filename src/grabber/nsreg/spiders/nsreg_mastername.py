@@ -7,7 +7,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregMasternameSpider(scrapy.Spider):
     name = "nsreg_mastername"
     start_urls = ["https://mastername.ru/service/"]
-    allowed_domains = ("mastername.ru")
+    allowed_domains = ("mastername.ru", )
     site_names = ('ООО «Регистратор Доменов»')
 
     def __init__(self, name=None, **kwargs):

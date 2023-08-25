@@ -7,7 +7,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregRegistrarusSpider(scrapy.Spider):
     name = "nsreg_registrarus"
     start_urls = ["https://registrarus.ru/services/index.html"]
-    allowed_domains = ("registrarus.ru")
+    allowed_domains = ("registrarus.ru", )
     site_names = ('ООО "Регистрарус"')
 
     def __init__(self, name=None, **kwargs):
