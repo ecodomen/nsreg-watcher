@@ -14,6 +14,7 @@ from ..base_site_spider import BaseSpiderComponent
 
 class MultiSiteSpider5(scrapy.Spider):
     name = 'multi_site_spider5'
+
     start_urls = (
                 'https://active.domains/domains/',
                 'https://ardis.ru/domains/',

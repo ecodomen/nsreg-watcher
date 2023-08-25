@@ -1,42 +1,32 @@
-# -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price_withoutre
-# работает
-
-EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregSpacewebdomainsSpider(scrapy.Spider):
-    name = 'nsreg_spacewebdomains'
-    allowed_domains = ['spacewebdomains.ru']
-    start_urls = [
-        'https://spacewebdomains.ru/%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B/']
+    name = 'nsreg_spacewebdomains_spider'
 
+    start_urls = 'https://spacewebdomains.ru/%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B/'
+    allowed_domains = 'spacewebdomains.ru'
+    site_names = 'ООО «СпейсВэб»'
+
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            # regex=r"([0-9]+)[.,\s]?руб.*",
+            path={
+                'price_reg': '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[2]/td[2]/text()',
+                'price_prolong': '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[3]/td[2]/text()',
+                'price_change': '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[4]/td[2]/text()'
+            }
+        )
+
+    # Метод для обработки ответов на запросы
     def parse(self, response):
-        pricereg = response.xpath(
-            '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[2]/td[2]/text()').get()
-        pricereg = find_price_withoutre(pricereg)
-
-        priceprolong = response.xpath(
-            '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[3]/td[2]/text()').get()
-        priceprolong = find_price_withoutre(priceprolong)
-
-        pricechange = response.xpath(
-            '/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[4]/td[2]/text()').get()
-        pricechange = find_price_withoutre(pricechange)
-
-        item = NsregItem()
-        item['name'] = "ООО «СпейсВэб»"
-        price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
-        item['price'] = price
-
-        yield item
+        # Применение метода parse компонента BaseSpiderComponent
+        return self.component.parse(response)

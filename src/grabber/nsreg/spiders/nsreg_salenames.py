@@ -1,40 +1,32 @@
-# -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price_withoutre
-# работает
-EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregSalenamesSpider(scrapy.Spider):
-    name = 'nsreg_salenames'
-    allowed_domains = ['www.salenames.ru']
-    start_urls = ['https://www.salenames.ru/ru/page/tarify']
+    name = 'nsreg_salenames_spider'
 
+    start_urls = 'https://www.salenames.ru/ru/page/tarify'
+    allowed_domains = 'https://www.salenames.ru'
+    site_names = 'ООО «СэйлНэймс»'
+
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            # regex=r".*(([0-9]*[.,])?[0-9]{3}).*",
+            path={
+                'price_reg': '//*[@id="content"]/div/div/table[1]/tbody/tr[1]/td[2]/text()',
+                'price_prolong': '//*[@id="content"]/div/div/table[1]/tbody/tr[2]/td[2]/text()',
+                'price_change': '//*[@id="content"]/div/div/table[1]/tbody/tr[3]/td[2]/text()'
+            }
+        )
+
+    # Метод для обработки ответов на запросы
     def parse(self, response):
-        pricereg = response.xpath(
-            '//*[@id="content"]/div/div/table[1]/tbody/tr[1]/td[2]/text()').get()
-        pricereg = find_price_withoutre(pricereg)
-
-        priceprolong = response.xpath(
-            '//*[@id="content"]/div/div/table[1]/tbody/tr[2]/td[2]/text()').get()
-        priceprolong = find_price_withoutre(priceprolong)
-
-        pricechange = response.xpath(
-            '//*[@id="content"]/div/div/table[1]/tbody/tr[3]/td[2]/text()').get()
-        pricechange = find_price_withoutre(pricechange)
-
-        item = NsregItem()
-        item['name'] = "ООО «СэйлНэймс»"
-        price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
-        item['price'] = price
-
-        yield item
+        # Применение метода parse компонента BaseSpiderComponent
+        return self.component.parse(response)
