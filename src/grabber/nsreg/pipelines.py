@@ -51,7 +51,8 @@ BEGIN
     WHERE id_registrator = %(registrator)s
     ORDER BY id_registrator, id_parse DESC;
 
-    IF NOT FOUND
+    IF NOT FOUND OR
+    price_reg != %(price_reg)s OR price_prolong != %(price_prolong)s OR price_change != %(price_change)s
     THEN
         INSERT INTO price (id_registrator, id_domain, id_parse,
         registration_price, prolongation_price, change_price)
