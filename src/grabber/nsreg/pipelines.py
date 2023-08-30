@@ -1,42 +1,67 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
-# useful for handling different item types with a single interface
 import os
 import psycopg2
 
-SQL_CREATE_REGCOMP_TABLE = '''
-CREATE TABLE IF NOT EXISTS regcomp(
-            id serial PRIMARY KEY,
-            name VARCHAR(255) UNIQUE,
-            note1 text,
-            note2 text,
-            city VARCHAR(255),
-            website text,
-            price_reg decimal,
-            price_prolong decimal,
-            price_change decimal
-        )
-'''
+SQL_CREATE_TABLES = """
+CREATE TABLE domain (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    PRIMARY KEY (id),
+);
 
-SQL_UPDATE_REGCOMP = '''
-INSERT INTO regcomp (name, note1, note2, city, website, price_reg, price_prolong, price_change)
-VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
-ON CONFLICT (name) DO UPDATE
-SET ( note1, note2, city, website, price_reg, price_prolong, price_change) = (
-    COALESCE(%s, regcomp.note1),
-    COALESCE(%s, regcomp.note2),
-    COALESCE(%s, regcomp.city),
-    COALESCE(%s, regcomp.website),
-    COALESCE(%s, regcomp.price_reg),
-    COALESCE(%s, regcomp.price_prolong),
-    COALESCE(%s, regcomp.price_change)
-    )
-RETURNING id
-'''
+CREATE TABLE parse_history (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    PRIMARY KEY (id),
+);
+
+CREATE TABLE price (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    id_parse INT,
+    registration_price DECIMAL,
+    prolongation_price DECIMAL,
+    change_price DECIMAL,
+    PRIMARY KEY (id),
+    CONSTRAINT id_registrator
+        FOREIGN KEY (id)
+        REFERENCES registrator (id)
+        ON DELETE CASCADE,
+    CONSTRAINT id_domain
+        FOREIGN KEY (id)
+        REFERENCES domain (id)
+        ON DELETE SET NULL,
+    CONSTRAINT id_parse
+        FOREIGN KEY (id)
+        REFERENCES parse_history (id)
+        ON DELETE CASCADE,
+);
+"""
+
+
+SQL_UPDATE_PRICE = """
+DO
+$do$
+
+    DECLARE price_reg DECIMAL;
+    DECLARE price_prolong DECIMAL;
+    DECLARE price_change DECIMAL;
+
+BEGIN
+
+    SELECT DISTINCT ON (id_registrator) registration_price, prolongation_price, change_price
+    INTO price_reg, price_prolong, price_change
+    FROM price
+    WHERE id_registrator = %(registrator)s
+    ORDER BY id_registrator, id_parse DESC;
+
+    IF NOT FOUND
+    THEN
+        INSERT INTO price (id_registrator, id_domain, id_parse,
+        registration_price, prolongation_price, change_price)
+        VALUES (%(registrator)s, %(domain)s, %(parse)s,
+        %(price_reg)s, %(price_prolong)s, %(price_change)s);
+    END IF;
+
+END
+$do$
+"""
 
 
 class NsregPipeline:
@@ -54,32 +79,37 @@ class NsregPipeline:
         self.cur = self.connection.cursor()
 
         # Create quotes table if none exists
-        self.cur.execute(SQL_CREATE_REGCOMP_TABLE)
+        self.cur.execute(SQL_CREATE_TABLES)
         self.connection.commit()
 
     def process_item(self, item, spider):
+
+        def get_parse_num() -> int:
+            ...
+
+        def get_registrator_id(name: str) -> int:
+            ...
+
         price = item.get('price', {
             'price_reg': None,
             'price_prolong': None,
             'price_change': None,
         })
-        self.cur.execute(SQL_UPDATE_REGCOMP, (
-            item['name'],
-            item.get('note1', None),
-            item.get('note2', None),
-            item.get('city', None),
-            item.get('website', None),
-            price.get('price_reg', None),
-            price.get('price_prolong', None),
-            price.get('price_change', None),
-            item.get('note1', None),
-            item.get('note2', None),
-            item.get('city', None),
-            item.get('website', None),
-            price.get('price_reg', None),
-            price.get('price_prolong', None),
-            price.get('price_change', None),
-        ))
+
+        name = item.get('name')
+        registrator_id = get_registrator_id(name)
+
+        parse = get_parse_num()
+
+        self.cur.execute(SQL_UPDATE_PRICE, {
+            'registrator': registrator_id,
+            'domain': 1,  # 'RU'
+            'parse': parse,
+            'price_reg': price['price_reg'],
+            'price_prolong': price['price_prolong'],
+            'price_change': price['price_change'],
+        })
+
         spider.logger.info('Saving item SQL: %s', self.cur.query)
 
         # self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
