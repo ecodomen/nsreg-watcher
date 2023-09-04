@@ -5,11 +5,11 @@ from ..base_site_spider import BaseSpiderComponent
 
 
 # Пример спайдера для одного сайта
-class NsregR01Spider(scrapy.Spider):
-    name = "nsreg_r01"
-    start_urls = ["https://r01.ru/domain/pay/"]
-    allowed_domains = ("r01.ru")
-    site_names = ("ООО «Регистратор Р01»")
+class NsregCapnamesSpider(scrapy.Spider):
+    name = "nsreg_capnames"
+    start_urls = ["https://capnames.ru/"]
+    allowed_domains = ("capnames.ru")
+    site_names = ("ООО «КАПИТАЛЪ»")
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
@@ -17,11 +17,11 @@ class NsregR01Spider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"([0-9]+)",
+            regex=r"([0-9]?\s[0-9]+)₽",
             path={
-                'price_reg': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[2]/text()',
-                'price_prolong': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[3]/text()',
-                'price_change': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[4]/text()'
+                'price_reg': '//*[@id="overlappable-2"]/div/div/div/div[1]/div/div/div[2]/div/p[1]/text()',
+                'price_prolong': '//*[@id="overlappable-2"]/div/div/div/div[2]/div/div/div[2]/div/p[1]/text()',
+                'price_change': '//*[@id="overlappable-2"]/div/div/div/div[3]/div/div/div[2]/div/p[1]/text()'
             }
         )
 

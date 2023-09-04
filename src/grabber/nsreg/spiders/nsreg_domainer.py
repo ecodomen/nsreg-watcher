@@ -5,11 +5,11 @@ from ..base_site_spider import BaseSpiderComponent
 
 
 # Пример спайдера для одного сайта
-class NsregR01Spider(scrapy.Spider):
-    name = "nsreg_r01"
-    start_urls = ["https://r01.ru/domain/pay/"]
-    allowed_domains = ("r01.ru")
-    site_names = ("ООО «Регистратор Р01»")
+class NsregDomainerSpider(scrapy.Spider):
+    name = "nsreg_domainer"
+    start_urls = ["https://domainer.ru/info/services"]
+    allowed_domains = ("domainer.ru")
+    site_names = ("ООО «Домейнер»")
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
@@ -17,11 +17,11 @@ class NsregR01Spider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"([0-9]+)",
+            regex=r"([0-9]?[0-9]+[.,\s])?руб",
             path={
-                'price_reg': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[2]/text()',
-                'price_prolong': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[3]/text()',
-                'price_change': '/html/body/table/tr[2]/td[2]/table/tr[4]/td[4]/text()'
+                'price_reg': '/html/body/div[2]/table/tbody/tr[1]/td[2]/text()',
+                'price_prolong': '/html/body/div[2]/table/tbody/tr[1]/td[2]/text()',
+                'price_change': '/html/body/div[2]/table/tbody/tr[3]/td[2]/text()'
             }
         )
 

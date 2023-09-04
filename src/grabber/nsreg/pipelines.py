@@ -7,6 +7,9 @@
 # useful for handling different item types with a single interface
 import os
 import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 SQL_CREATE_REGCOMP_TABLE = '''
 CREATE TABLE IF NOT EXISTS regcomp(
