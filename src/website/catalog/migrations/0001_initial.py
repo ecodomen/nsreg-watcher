@@ -67,9 +67,9 @@ class Migration(migrations.Migration):
             name='Price',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('registration_price', models.FloatField(blank=True, null=True)),
-                ('prolongation_price', models.FloatField(blank=True, null=True)),
-                ('changing_price', models.FloatField(blank=True, null=True)),
+                ('registration_price', models.DecimalField(blank=True, null=True)),
+                ('prolongation_price', models.DecimalField(blank=True, null=True)),
+                ('changing_price', models.DecimalField(blank=True, null=True)),
                 ('id_domain', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.domain')),
                 ('id_parse_history', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.parse_history')),
                 ('id_registrator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.registrator')),
