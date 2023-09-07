@@ -50,9 +50,9 @@ class Price(models.Model):
     id_registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
     id_domain = models.ForeignKey(Domain, on_delete=models.CASCADE)
     id_parse_history = models.ForeignKey(Parse_History, on_delete=models.CASCADE)
-    registration_price = models.DecimalField(blank=True, null=True)
-    prolongation_price = models.DecimalField(blank=True, null=True)
-    changing_price = models.DecimalField(blank=True, null=True)
+    registration_price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    prolongation_price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    changing_price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
 
     class Meta:
         db_table = 'price'
