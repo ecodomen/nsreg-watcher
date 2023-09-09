@@ -9,9 +9,9 @@ from .forms import CompaniesSortForm
 SORT_FIELD_NAMES = {
     'CN': 'name',
     'CI': 'city',
-    'RE': 'pricereg',
-    'PR': 'priceprolong',
-    'PE': 'pricechange',
+    'RE': 'price_reg',
+    'PR': 'price_prolong',
+    'PE': 'price_change',
 
 }
 
