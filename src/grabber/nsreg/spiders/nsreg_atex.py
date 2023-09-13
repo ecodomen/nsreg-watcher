@@ -29,4 +29,3 @@ class NsregAtexSpider(scrapy.Spider):
     def parse(self, response):
         # Применение метода parse компонента BaseSpiderComponent
         return self.component.parse(response)
-
