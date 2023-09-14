@@ -7,9 +7,9 @@ class Regcomp(models.Model):
     note2 = models.TextField(blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     website = models.TextField(blank=True, null=True)
-    pricereg = models.FloatField(blank=True, null=True)
-    priceprolong = models.FloatField(blank=True, null=True)
-    pricechange = models.FloatField(blank=True, null=True)
+    price_reg = models.FloatField(blank=True, null=True)
+    price_prolong = models.FloatField(blank=True, null=True)
+    price_change = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

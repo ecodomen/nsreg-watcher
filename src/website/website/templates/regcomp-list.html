@@ -12,7 +12,8 @@
         <th scope="col">City</th>
         <th scope="col">link</th>
         <th scope="col">Pricereg</th>
-        <th scope="col">Priceprolong</th>        
+        <th scope="col">Priceprolong</th>
+        <th scope="col">Pricechange</th>        
       </tr>
     </thead>
     <tbody>
@@ -24,9 +25,9 @@
             <td>{{ company.note2 }}</td>
             <td>{{ company.city }}</td>
             <td><a href="{{company.website}}" >{{ company.website }}</a></td>
-            <td>{{ company.pricereg }}</td>
-            <td>{{ company.priceprolong }}</td>
-            <td>{{ company.pricechange }}</td>
+            <td>{{ company.price_reg }}</td>
+            <td>{{ company.price_prolong }}</td>
+            <td>{{ company.price_change }}</td>
           </tr>
 {% empty %}
     <tr><td>There are no companies available.</td></tr>
