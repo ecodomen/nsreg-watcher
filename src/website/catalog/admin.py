@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Regcomp
+from .models import Registrator
 
-admin.site.register(Regcomp)
+admin.site.register(Registrator)
