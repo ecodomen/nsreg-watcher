@@ -15,9 +15,9 @@ CREATE TABLE parse_history (
 CREATE TABLE price (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
     id_parse INT,
-    registration_price DECIMAL,
-    prolongation_price DECIMAL,
-    change_price DECIMAL,
+    price_reg DECIMAL,
+    price_prolong DECIMAL,
+    price_change DECIMAL,
     PRIMARY KEY (id),
     CONSTRAINT id_registrator
         FOREIGN KEY (id)
@@ -45,7 +45,7 @@ $do$
 
 BEGIN
 
-    SELECT DISTINCT ON (id_registrator) registration_price, prolongation_price, change_price
+    SELECT DISTINCT ON (id_registrator) price_reg, price_prolong, price_change
     INTO price_reg, price_prolong, price_change
     FROM price
     WHERE id_registrator = %(registrator)s
@@ -55,7 +55,7 @@ BEGIN
     price_reg != %(price_reg)s OR price_prolong != %(price_prolong)s OR price_change != %(price_change)s
     THEN
         INSERT INTO price (id_registrator, id_domain, id_parse,
-        registration_price, prolongation_price, change_price)
+        price_reg, price_prolong, price_change)
         VALUES (%(registrator)s, %(domain)s, %(parse)s,
         %(price_reg)s, %(price_prolong)s, %(price_change)s);
     END IF;
@@ -113,7 +113,7 @@ class NsregPipeline:
 
         spider.logger.info('Saving item SQL: %s', self.cur.query)
 
-        # self.cur.execute("SELECT * FROM regcomp WHERE name = %s", (item['name'],))
+        # self.cur.execute("SELECT * FROM registrator WHERE name = %s", (item['name'],))
         # result = self.cur.fetchone()
 
         # Execute insert of data into database

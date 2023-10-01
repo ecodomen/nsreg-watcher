@@ -7,9 +7,9 @@ from ..utils import find_price
 
 REGEX_PATTERN = r"([0-9]{3,}).*"
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -19,19 +19,19 @@ class NsregBegetSpider(scrapy.Spider):
     start_urls = ['https://beget.com/ru/domains/zone/ru']
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '//*[@id="__layout"]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/div[1]/p[2]/text()').get()
-        pricereg = find_price(REGEX_PATTERN, pricereg)
+        price_reg = find_price(REGEX_PATTERN, price_reg)
 
-        priceprolong = response.xpath(
+        price_prolong = response.xpath(
             '//*[@id="__layout"]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/div[2]/p[2]/text()').get()
-        priceprolong = find_price(REGEX_PATTERN, priceprolong)
+        price_prolong = find_price(REGEX_PATTERN, price_prolong)
 
         item = NsregItem()
         item['name'] = "ООО «Бегет»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
         item['price'] = price
 
         yield item

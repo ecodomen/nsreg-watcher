@@ -5,9 +5,9 @@ from nsreg.items import NsregItem
 from ..utils import find_price_withoutre
 # работает
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -17,24 +17,24 @@ class NsregR01Spider(scrapy.Spider):
     start_urls = ['https://r01.ru/domain/pay/']
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '/html/body/table/tr[2]/td[2]/table/tr[4]/td[2]/text()').get()
-        pricereg = find_price_withoutre(pricereg)
+        price_reg = find_price_withoutre(price_reg)
 
-        priceprolong = response.xpath(
+        price_prolong = response.xpath(
             '/html/body/table/tr[2]/td[2]/table/tr[4]/td[3]/text()').get()
-        priceprolong = find_price_withoutre(priceprolong)
+        price_prolong = find_price_withoutre(price_prolong)
 
-        pricechange = response.xpath(
+        price_change = response.xpath(
             '/html/body/table/tr[2]/td[2]/table/tr[4]/td[4]/text()').get()
-        pricechange = find_price_withoutre(pricechange)
+        price_change = find_price_withoutre(price_change)
 
         item = NsregItem()
         item['name'] = "ООО «Регистратор Р01»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
+        price['price_change'] = price_change
         item['price'] = price
 
         yield item

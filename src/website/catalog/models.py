@@ -11,7 +11,7 @@ class Registrator(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'regcomp'
+        db_table = 'registrator'
 
     def __str__(self):
         return f'{self.id}: {self.name}'

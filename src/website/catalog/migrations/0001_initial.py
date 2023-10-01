@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(max_length=255)),
             ],
             options={
-                'db_table': 'regcomp',
+                'db_table': 'registrator',
                 'managed': False,
             },
         ),

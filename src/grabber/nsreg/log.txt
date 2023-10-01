@@ -49,18 +49,18 @@ DEBUG: Lock 140006620171712 released on /home/rezvov_vadim/.cache/python-tldextr
 DEBUG: Crawled (200) <GET https://2domains.ru/domains> (referer: None)
 INFO: price = 149.0
 INFO: price = 799.0
-INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0',NULL) \nON CONFLICT (name) DO UPDATE\nSET ( note1, note2, city, website, pricereg, priceprolong, pricechange) =    (\n    COALESCE(NULL, regcomp.note1),\n    COALESCE(NULL, regcomp.note2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.pricereg),\n    COALESCE('799.0', regcomp.priceprolong),\n    COALESCE(NULL, regcomp.pricechange)\n    )\nRETURNING id \n"
+INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, nic_handle1, nic_handle2, city, website, price_reg, price_prolong, price_change) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0',NULL) \nON CONFLICT (name) DO UPDATE\nSET ( nic_handle1, nic_handle2, city, website, price_reg, price_prolong, price_change) =    (\n    COALESCE(NULL, regcomp.nic_handle1),\n    COALESCE(NULL, regcomp.nic_handle2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.price_reg),\n    COALESCE('799.0', regcomp.price_prolong),\n    COALESCE(NULL, regcomp.price_change)\n    )\nRETURNING id \n"
 DEBUG: Scraped from <200 https://2domains.ru/domains>
 {'name': 'ООО «2ДОМЕЙНС.РУ»',
- 'price': {'pricechange': None, 'priceprolong': '799.0', 'pricereg': '149.0'}}
+ 'price': {'price_change': None, 'price_prolong': '799.0', 'price_reg': '149.0'}}
 DEBUG: Crawled (200) <GET https://2domains.ru/domains/transfer> (referer: https://2domains.ru/domains)
 INFO: price = 799.0
-INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, note1, note2, city, website, pricereg, priceprolong, pricechange) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0','799.0') \nON CONFLICT (name) DO UPDATE\nSET ( note1, note2, city, website, pricereg, priceprolong, pricechange) =    (\n    COALESCE(NULL, regcomp.note1),\n    COALESCE(NULL, regcomp.note2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.pricereg),\n    COALESCE('799.0', regcomp.priceprolong),\n    COALESCE('799.0', regcomp.pricechange)\n    )\nRETURNING id \n"
+INFO: Saving item SQL: b"\nINSERT INTO regcomp (name, nic_handle1, nic_handle2, city, website, price_reg, price_prolong, price_change) \nVALUES ('\xd0\x9e\xd0\x9e\xd0\x9e \xc2\xab2\xd0\x94\xd0\x9e\xd0\x9c\xd0\x95\xd0\x99\xd0\x9d\xd0\xa1.\xd0\xa0\xd0\xa3\xc2\xbb',NULL,NULL,NULL,NULL,'149.0','799.0','799.0') \nON CONFLICT (name) DO UPDATE\nSET ( nic_handle1, nic_handle2, city, website, price_reg, price_prolong, price_change) =    (\n    COALESCE(NULL, regcomp.nic_handle1),\n    COALESCE(NULL, regcomp.nic_handle2),\n    COALESCE(NULL, regcomp.city),\n    COALESCE(NULL, regcomp.website),\n    COALESCE('149.0', regcomp.price_reg),\n    COALESCE('799.0', regcomp.price_prolong),\n    COALESCE('799.0', regcomp.price_change)\n    )\nRETURNING id \n"
 DEBUG: Scraped from <200 https://2domains.ru/domains/transfer>
 {'name': 'ООО «2ДОМЕЙНС.РУ»',
- 'price': {'pricechange': '799.0',
-           'priceprolong': '799.0',
-           'pricereg': '149.0'}}
+ 'price': {'price_change': '799.0',
+           'price_prolong': '799.0',
+           'price_reg': '149.0'}}
 INFO: Closing spider (finished)
 INFO: Dumping Scrapy stats:
 {'downloader/request_bytes': 1016,

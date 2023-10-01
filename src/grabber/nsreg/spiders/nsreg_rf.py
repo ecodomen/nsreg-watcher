@@ -6,9 +6,9 @@ from ..utils import find_price
 # работает
 REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})₽.*"
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -18,24 +18,24 @@ class NsregRfSpider(scrapy.Spider):
     start_urls = ["https://rf.ru/domain-prices"]
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[2]/text()').get()
-        pricereg = find_price(REGEX_PATTERN, pricereg)
+        price_reg = find_price(REGEX_PATTERN, price_reg)
 
-        priceprolong = response.xpath(
+        price_prolong = response.xpath(
             '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[3]/text()').get()
-        priceprolong = find_price(REGEX_PATTERN, priceprolong)
+        price_prolong = find_price(REGEX_PATTERN, price_prolong)
 
-        pricechange = response.xpath(
+        price_change = response.xpath(
             '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[4]/text()').get()
-        pricechange = find_price(REGEX_PATTERN, pricechange)
+        price_change = find_price(REGEX_PATTERN, price_change)
 
         item = NsregItem()
         item['name'] = "ООО «ДОМЕНЫ.РФ»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
+        price['price_change'] = price_change
         item['price'] = price
 
         yield item

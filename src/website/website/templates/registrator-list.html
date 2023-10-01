@@ -7,26 +7,26 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Company <i class="bi bi-sort-down"></i></th>
-        <th scope="col">Note1</th>
-        <th scope="col">Note2</th>
+        <th scope="col">nic_handle1</th>
+        <th scope="col">nic_handle2</th>
         <th scope="col">City</th>
         <th scope="col">link</th>
-        <th scope="col">Pricereg</th>
-        <th scope="col">Priceprolong</th>        
+        <th scope="col">price_reg</th>
+        <th scope="col">price_prolong</th>        
       </tr>
     </thead>
     <tbody>
         {% for company in companies %}
         <tr>
             <th scope="row">{{ company.id }}</th>
-            <td><a href="{% url 'regcomp_details' company.id %}">{{ company.name }}</a></td>
-            <td>{{ company.note1 }}</td>
-            <td>{{ company.note2 }}</td>
+            <td><a href="{% url 'registrator_details' company.id %}">{{ company.name }}</a></td>
+            <td>{{ company.nic_handle1 }}</td>
+            <td>{{ company.nic_handle2 }}</td>
             <td>{{ company.city }}</td>
             <td><a href="{{company.website}}" >{{ company.website }}</a></td>
-            <td>{{ company.pricereg }}</td>
-            <td>{{ company.priceprolong }}</td>
-            <td>{{ company.pricechange }}</td>
+            <td>{{ company.price_reg }}</td>
+            <td>{{ company.price_prolong }}</td>
+            <td>{{ company.price_change }}</td>
           </tr>
 {% empty %}
     <tr><td>There are no companies available.</td></tr>

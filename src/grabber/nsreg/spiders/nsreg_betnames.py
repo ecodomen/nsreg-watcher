@@ -7,9 +7,9 @@ from ..utils import find_price_sub
 
 REGEX_PATTERN = r".*(\d+\s+\d+).*"
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -19,24 +19,24 @@ class NsregBetnamesSpider(scrapy.Spider):
     start_urls = ["https://betnames.ru/#features-2"]
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '//*[@id="features-2"]/div/div/div[1]/div/p/text()').get()
-        pricereg = find_price_sub(REGEX_PATTERN, pricereg)
+        price_reg = find_price_sub(REGEX_PATTERN, price_reg)
 
-        priceprolong = response.xpath(
+        price_prolong = response.xpath(
             '//*[@id="features-2"]/div/div/div[2]/div/p/text()').get()
-        priceprolong = find_price_sub(REGEX_PATTERN, priceprolong)
+        price_prolong = find_price_sub(REGEX_PATTERN, price_prolong)
 
-        pricechange = response.xpath(
+        price_change = response.xpath(
             '//*[@id="features-2"]/div/div/div[3]/div/p/text()').get()
-        pricechange = find_price_sub(REGEX_PATTERN, pricechange)
+        price_change = find_price_sub(REGEX_PATTERN, price_change)
 
         item = NsregItem()
         item['name'] = "ООО «Бэтнеймс»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
+        price['price_change'] = price_change
         item['price'] = price
 
         yield item

@@ -1774,7 +1774,7 @@
           </div>
 
           <div role="rowheader" class="flex-auto min-width-0 col-md-2 mr-3">
-            <span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="regcomp10.sql" data-turbo-frame="repo-content-turbo-frame" href="/mrezvova/nsreg-watcher/blob/main/regcomp10.sql">regcomp10.sql</a></span>
+            <span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="registrator10.sql" data-turbo-frame="repo-content-turbo-frame" href="/mrezvova/nsreg-watcher/blob/main/registrator10.sql">registrator10.sql</a></span>
           </div>
 
           <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
@@ -1887,7 +1887,7 @@
 <h2 tabindex="-1" dir="auto"><a id="user-content-внимание" class="anchor" aria-hidden="true" href="#внимание"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a>Внимание</h2>
 <p dir="auto">Посмотрите на свою операционную систему. У меня команды и пути к файлам сделаны для Linux, если у вас Mac/Windows, посмотрите как должны выглядеть команды.
 Советую работать на Linux в visual studio code.
-Имена переменных 'pricereg', 'priceprolong', 'pricechange' оставляйте такими же.
+Имена переменных 'price_reg', 'price_prolong', 'price_change' оставляйте такими же.
 В неуказанных мною файлах лучше без меня ничего не меняйте.
 Все, что я написала есть в интернете, но ищите информацию на английском. Читайте документацию:</p>
 <p dir="auto">scrapy: <a href="https://docs.scrapy.org/en/latest/intro/tutorial.html" rel="nofollow">https://docs.scrapy.org/en/latest/intro/tutorial.html</a></p>
@@ -1931,13 +1931,13 @@ You can install virtualenv using pip.</li>
 <div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="item = NsregItem()
 item['name'] = &quot;ООО «2ДОМЕЙНС.РУ»&quot;
 price = item.get('price', EMPTY_PRICE)
-price['pricereg'] = pricereg
-price['priceprolong'] = priceprolong
+price['price_reg'] = price_reg
+price['price_prolong'] = price_prolong
 item['price'] = price"><pre><span class="pl-s1">item</span> <span class="pl-c1">=</span> <span class="pl-v">NsregItem</span>()
 <span class="pl-s1">item</span>[<span class="pl-s">'name'</span>] <span class="pl-c1">=</span> <span class="pl-s">"ООО «2ДОМЕЙНС.РУ»"</span>
 <span class="pl-s1">price</span> <span class="pl-c1">=</span> <span class="pl-s1">item</span>.<span class="pl-en">get</span>(<span class="pl-s">'price'</span>, <span class="pl-v">EMPTY_PRICE</span>)
-<span class="pl-s1">price</span>[<span class="pl-s">'pricereg'</span>] <span class="pl-c1">=</span> <span class="pl-s1">pricereg</span>
-<span class="pl-s1">price</span>[<span class="pl-s">'priceprolong'</span>] <span class="pl-c1">=</span> <span class="pl-s1">priceprolong</span>
+<span class="pl-s1">price</span>[<span class="pl-s">'price_reg'</span>] <span class="pl-c1">=</span> <span class="pl-s1">price_reg</span>
+<span class="pl-s1">price</span>[<span class="pl-s">'price_prolong'</span>] <span class="pl-c1">=</span> <span class="pl-s1">price_prolong</span>
 <span class="pl-s1">item</span>[<span class="pl-s">'price'</span>] <span class="pl-c1">=</span> <span class="pl-s1">price</span></pre></div>
 <ol start="5" dir="auto">
 <li>Заходите в:</li>
@@ -1946,13 +1946,13 @@ item['price'] = price"><pre><span class="pl-s1">item</span> <span class="pl-c1">
 <ol start="6" dir="auto">
 <li>Подбираете путь к ценам: покупка домена, продление, перенос. Например:</li>
 </ol>
-<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="def parse_pricechange(self, response):
-    pricechange = response.xpath('/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()').get()"><pre><span class="pl-k">def</span> <span class="pl-en">parse_pricechange</span>(<span class="pl-s1">self</span>, <span class="pl-s1">response</span>):
-    <span class="pl-s1">pricechange</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-en">xpath</span>(<span class="pl-s">'/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()'</span>).<span class="pl-en">get</span>()</pre></div>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="def parse_price_change(self, response):
+    price_change = response.xpath('/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()').get()"><pre><span class="pl-k">def</span> <span class="pl-en">parse_price_change</span>(<span class="pl-s1">self</span>, <span class="pl-s1">response</span>):
+    <span class="pl-s1">price_change</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-en">xpath</span>(<span class="pl-s">'/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()'</span>).<span class="pl-en">get</span>()</pre></div>
 <ol start="7" dir="auto">
 <li>Подбираете регулярное выражение (поможет сайт Regex)</li>
 </ol>
-<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pricechange = find_price(REGEX_CHANGE_PATTERN, pricechange)"><pre><span class="pl-s1">pricechange</span> <span class="pl-c1">=</span> <span class="pl-en">find_price</span>(<span class="pl-v">REGEX_CHANGE_PATTERN</span>, <span class="pl-s1">pricechange</span>)</pre></div>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="price_change = find_price(REGEX_CHANGE_PATTERN, price_change)"><pre><span class="pl-s1">price_change</span> <span class="pl-c1">=</span> <span class="pl-en">find_price</span>(<span class="pl-v">REGEX_CHANGE_PATTERN</span>, <span class="pl-s1">price_change</span>)</pre></div>
 <p dir="auto">7.1 Перед использованием reg.expr можно удалить лишние пробельные символы, используя функции, которые лежат в <a href="/mrezvova/nsreg-watcher/blob/main/src/grabber/utils.py">file</a></p>
 <div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="price = str(price).strip()
 if m := re.match(re_pattern, price):
@@ -1970,7 +1970,7 @@ if m := re.match(re_pattern, price):
 <li>Записываете п.6 в response.xpath.get()
 (/text в конце пути xpath)</li>
 </ol>
-<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="pricechange = response.xpath('/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()').get()"><pre><span class="pl-s1">pricechange</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-en">xpath</span>(<span class="pl-s">'/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()'</span>).<span class="pl-en">get</span>()</pre></div>
+<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="price_change = response.xpath('/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()').get()"><pre><span class="pl-s1">price_change</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-en">xpath</span>(<span class="pl-s">'/html/body/div/div[1]/section[1]/div/div/div/div/div[2]/div[2]/div/span/text()'</span>).<span class="pl-en">get</span>()</pre></div>
 <ol start="9" dir="auto">
 <li>По аналогии записываете рег.выражение в переменную п.7, если надо несколько переменных создаёте</li>
 </ol>
@@ -1995,12 +1995,12 @@ REGEX_CHANGE_PATTERN = r&quot;.*(([0-9]*[.,])?[0-9]{3})\s+₽.*&quot;"><pre><spa
 <li>Отлаживаете, смотрите, есть ли в терминале ошибки. Все ли цены записались, должны быть такие строки в терминале:</li>
 </ol>
 <div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="'name': 'ООО «2ДОМЕЙНС.РУ»',
-'price': {'pricechange': '799.0',
-           'priceprolong': '799.0',
-           'pricereg': '149.0'}}"><pre><span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>ООО «2ДОМЕЙНС.РУ»<span class="pl-pds">'</span></span>,
-<span class="pl-s"><span class="pl-pds">'</span>price<span class="pl-pds">'</span></span>: {<span class="pl-s"><span class="pl-pds">'</span>pricechange<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>799.0<span class="pl-pds">'</span></span>,
-           <span class="pl-s"><span class="pl-pds">'</span>priceprolong<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>799.0<span class="pl-pds">'</span></span>,
-           <span class="pl-s"><span class="pl-pds">'</span>pricereg<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>149.0<span class="pl-pds">'</span></span>}}</pre></div>
+'price': {'price_change': '799.0',
+           'price_prolong': '799.0',
+           'price_reg': '149.0'}}"><pre><span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>ООО «2ДОМЕЙНС.РУ»<span class="pl-pds">'</span></span>,
+<span class="pl-s"><span class="pl-pds">'</span>price<span class="pl-pds">'</span></span>: {<span class="pl-s"><span class="pl-pds">'</span>price_change<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>799.0<span class="pl-pds">'</span></span>,
+           <span class="pl-s"><span class="pl-pds">'</span>price_prolong<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>799.0<span class="pl-pds">'</span></span>,
+           <span class="pl-s"><span class="pl-pds">'</span>price_reg<span class="pl-pds">'</span></span>: <span class="pl-s"><span class="pl-pds">'</span>149.0<span class="pl-pds">'</span></span>}}</pre></div>
 <ol start="12" dir="auto">
 <li>Добавьте запуск своего спайдера в <a href="/mrezvova/nsreg-watcher/blob/main/runspiders.sh">runspiders.sh</a>. Меняете nsreg_2domains на name своего грабера.</li>
 </ol>

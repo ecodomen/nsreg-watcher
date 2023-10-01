@@ -69,16 +69,16 @@ EMPTY_PRICE = {
 
 ...
 
-def parse_pricechange(self, response):
-        pricechange = response.xpath(self.component.path['price_change']).get()
-        pricechange = find_price(, pricechange)
+def parse_price_change(self, response):
+        price_change = response.xpath(self.component.path['price_change']).get()
+        price_change = find_price(, price_change)
 
         item = NsregItem()
         item['name'] = "ООО «Ваш ООО»"  
         price = item.get('price', EMPTY_PRICE)
-        price['pricechange'] = pricechange
+        price['price_change'] = price_change
         item['price'] = price
-        price['pricechange'] = pricechange 
+        price['price_change'] = price_change 
         item['price'] = price  
 
         yield item
@@ -86,13 +86,13 @@ def parse_pricechange(self, response):
 А также вызвать ее из функции parse:
 ```
 def parse(self, response):
-    pricereg = response.xpath(self.pathreg).get()
-    pricereg = self.find_price(self.regex_reg, pricereg)
+    price_reg = response.xpath(self.pathreg).get()
+    price_reg = self.find_price(self.regex_reg, price_reg)
 
-    priceprolong = response.xpath(self.pathprolong).get()
-    priceprolong = self.find_price(self.regex_prolong, priceprolong)
+    price_prolong = response.xpath(self.pathprolong).get()
+    price_prolong = self.find_price(self.regex_prolong, price_prolong)
 
-    yield scrapy.Request('https://2domains.ru/domains/transfer', callback=self.parse_pricechange)
+    yield scrapy.Request('https://2domains.ru/domains/transfer', callback=self.parse_price_change)
 
     site_name = self.site_names[0]
 
