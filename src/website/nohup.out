@@ -1,0 +1,8 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 25, 2023 - 14:50:11
+Django version 4.1.7, using settings 'website.settings'
+Starting development server at http://127.0.0.1:8002/
+Quit the server with CONTROL-C.

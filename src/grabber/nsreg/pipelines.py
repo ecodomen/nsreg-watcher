@@ -1,11 +1,26 @@
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+
+# useful for handling different item types with a single interface
 import os
 import psycopg2
 
-SQL_CREATE_TABLES = """
-CREATE TABLE domain (
-    id BIGINT GENERATED ALWAYS AS IDENTITY,
-    PRIMARY KEY (id),
-);
+SQL_CREATE_REGCOMP_TABLE = '''
+CREATE TABLE IF NOT EXISTS regcomp(
+            id serial PRIMARY KEY,
+            name VARCHAR(255) UNIQUE,
+            note1 text,
+            note2 text,
+            city VARCHAR(255),
+            website text,
+            price_reg decimal,
+            price_prolong decimal,
+            price_change decimal
+        )
+
 
 CREATE TABLE parse_history (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
@@ -32,10 +47,10 @@ CREATE TABLE price (
         REFERENCES parse_history (id)
         ON DELETE CASCADE,
 );
-"""
+'''
 
 
-SQL_UPDATE_PRICE = """
+SQL_UPDATE_PRICE = '''
 DO
 $do$
 
@@ -62,7 +77,7 @@ BEGIN
 
 END
 $do$
-"""
+'''
 
 
 class NsregPipeline:
@@ -80,37 +95,32 @@ class NsregPipeline:
         self.cur = self.connection.cursor()
 
         # Create quotes table if none exists
-        self.cur.execute(SQL_CREATE_TABLES)
+        self.cur.execute(SQL_CREATE_REGCOMP_TABLE)
         self.connection.commit()
 
     def process_item(self, item, spider):
-
-        def get_parse_num() -> int:
-            ...
-
-        def get_registrator_id(name: str) -> int:
-            ...
-
         price = item.get('price', {
             'price_reg': None,
             'price_prolong': None,
             'price_change': None,
         })
-
-        name = item.get('name')
-        registrator_id = get_registrator_id(name)
-
-        parse = get_parse_num()
-
-        self.cur.execute(SQL_UPDATE_PRICE, {
-            'registrator': registrator_id,
-            'domain': 1,  # 'RU'
-            'parse': parse,
-            'price_reg': price['price_reg'],
-            'price_prolong': price['price_prolong'],
-            'price_change': price['price_change'],
-        })
-
+        self.cur.execute(SQL_UPDATE_REGCOMP, (
+            item['name'],
+            item.get('note1', None),
+            item.get('note2', None),
+            item.get('city', None),
+            item.get('website', None),
+            price.get('price_reg', None),
+            price.get('price_prolong', None),
+            price.get('price_change', None),
+            item.get('note1', None),
+            item.get('note2', None),
+            item.get('city', None),
+            item.get('website', None),
+            price.get('price_reg', None),
+            price.get('price_prolong', None),
+            price.get('price_change', None),
+        ))
         spider.logger.info('Saving item SQL: %s', self.cur.query)
 
         # self.cur.execute("SELECT * FROM registrator WHERE name = %s", (item['name'],))
