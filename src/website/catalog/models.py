@@ -35,7 +35,8 @@ class Domain(models.Model):
 
 class ParseHistory(models.Model):
     id = models.BigAutoField(primary_key=True)
-    date = models.DateField()
+    date = models.DateTimeField(auto_now=True)
+
 
     class Meta:
         managed = False

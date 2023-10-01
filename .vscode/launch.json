@@ -14,17 +14,17 @@
             ],
             "django": true
         },
-        {
-            "name": "nsreg crawl",
-            "type": "python",
-            "request": "launch",
-            "module": "scrapy",
-            "args": [
-                "crawl",
-                "multi_site_spider5"
-            ],
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}/src/grabber/nsreg"
-        }
+        // {
+        //     "name": "nsreg crawl",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "module": "scrapy",
+        //     "args": [
+        //         "crawl",
+        //         "multi_site_spider5"
+        //     ],
+        //     "console": "integratedTerminal",
+        //     "cwd": "${workspaceFolder}/src/grabber/nsreg"
+        // }
     ]
 }

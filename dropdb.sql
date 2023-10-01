@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS regcomp;
+DROP TABLE IF EXISTS parser;

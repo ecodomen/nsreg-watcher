@@ -7,8 +7,8 @@ from .forms import CompaniesSortForm
 
 
 SORT_FIELD_NAMES = {
-    'CN': 'registrator.name',
-    'CI': 'registrator.city',
+    'CN': 'registrator__name',
+    'CI': 'registrator__city',
     'RE': 'price_reg',
     'PR': 'price_prolong',
     'PE': 'price_change',
@@ -27,14 +27,14 @@ def registrator_list(request):
 
     else:
         form = CompaniesSortForm()
-        sort_by = 'registrator'
+        sort_by = 'id'
         search = ''
 
     if search:
         companies = Price.objects.filter(Q(registrator_name__contains=search) | Q(
             city__contains=search) | Q(price_reg__contains=search)).order_by(sort_by)
     else:
-        companies = Price.objects.order_by(sort_by)
+        companies = Price.objects.all().order_by(sort_by)
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 

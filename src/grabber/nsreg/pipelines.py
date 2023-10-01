@@ -8,45 +8,55 @@
 import os
 import psycopg2
 
-SQL_CREATE_REGCOMP_TABLE = '''
-CREATE TABLE IF NOT EXISTS regcomp(
-            id serial PRIMARY KEY,
-            name VARCHAR(255) UNIQUE,
-            note1 text,
-            note2 text,
-            city VARCHAR(255),
-            website text,
-            price_reg decimal,
-            price_prolong decimal,
-            price_change decimal
-        )
-
-
-CREATE TABLE parse_history (
-    id BIGINT GENERATED ALWAYS AS IDENTITY,
-    PRIMARY KEY (id),
+SQL_CREATE_REGISTRATOR_TABLE = '''
+CREATE TABLE IF NOT EXISTS registrator(
+    id serial PRIMARY KEY,
+    name VARCHAR(255) UNIQUE,
+    nic_handle1 text,
+    nic_handle2 text,
+    city VARCHAR(255),
+    website text
 );
 
-CREATE TABLE price (
-    id BIGINT GENERATED ALWAYS AS IDENTITY,
-    id_parse INT,
-    price_reg DECIMAL,
-    price_prolong DECIMAL,
-    price_change DECIMAL,
-    PRIMARY KEY (id),
-    CONSTRAINT id_registrator
+CREATE TABLE IF NOT EXISTS parse_history (
+    id serial PRIMARY KEY,
+    date DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE IF NOT EXISTS domain(
+    id serial PRIMARY KEY,
+    name VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS parser(
+    id serial PRIMARY KEY,
+    CONSTRAINT registrator
         FOREIGN KEY (id)
         REFERENCES registrator (id)
         ON DELETE CASCADE,
-    CONSTRAINT id_domain
+    contributor_name VARCHAR(255),
+    email VARCHAR(255),
+    comment text
+);
+
+CREATE TABLE IF NOT EXISTS price(
+    id serial PRIMARY KEY,
+    CONSTRAINT registrator
+        FOREIGN KEY (id)
+        REFERENCES registrator (id)
+        ON DELETE CASCADE,
+    CONSTRAINT domain
         FOREIGN KEY (id)
         REFERENCES domain (id)
         ON DELETE SET NULL,
-    CONSTRAINT id_parse
+    CONSTRAINT parse
         FOREIGN KEY (id)
         REFERENCES parse_history (id)
         ON DELETE CASCADE,
-);
+    price_reg DECIMAL,
+    price_prolong DECIMAL,
+    price_change DECIMAL
+)
 '''
 
 
@@ -95,7 +105,7 @@ class NsregPipeline:
         self.cur = self.connection.cursor()
 
         # Create quotes table if none exists
-        self.cur.execute(SQL_CREATE_REGCOMP_TABLE)
+        self.cur.execute(SQL_CREATE_REGISTRATOR_TABLE)
         self.connection.commit()
 
     def process_item(self, item, spider):
@@ -104,17 +114,17 @@ class NsregPipeline:
             'price_prolong': None,
             'price_change': None,
         })
-        self.cur.execute(SQL_UPDATE_REGCOMP, (
+        self.cur.execute(SQL_UPDATE_PRICE, (
             item['name'],
-            item.get('note1', None),
-            item.get('note2', None),
+            item.get('nic_handle1', None),
+            item.get('nic_handle2', None),
             item.get('city', None),
             item.get('website', None),
             price.get('price_reg', None),
             price.get('price_prolong', None),
             price.get('price_change', None),
-            item.get('note1', None),
-            item.get('note2', None),
+            item.get('nic_handle1', None),
+            item.get('nic_handle2', None),
             item.get('city', None),
             item.get('website', None),
             price.get('price_reg', None),
