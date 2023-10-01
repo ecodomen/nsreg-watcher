@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: $USERNAME_DB
       POSTGRES_DB: $DATABASE_NAME
     ports:
-      - 5432:5432
+      - 5433:5432
 
   scrapy_telbot:
     build:
