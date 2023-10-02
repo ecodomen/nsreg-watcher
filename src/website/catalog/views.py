@@ -34,7 +34,7 @@ def registrator_list(request):
         companies = Price.objects.filter(Q(registrator_name__contains=search) | Q(
             city__contains=search) | Q(price_reg__contains=search)).order_by(sort_by)
     else:
-        companies = Price.objects.all().order_by(sort_by)
+        companies = list(Price.objects.all().order_by(sort_by))
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 

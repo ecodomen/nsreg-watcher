@@ -9,10 +9,6 @@ class Registrator(models.Model):
     website = models.TextField()
     city = models.CharField(max_length=255)
 
-    class Meta:
-        managed = False
-        db_table = 'registrator'
-
     def __str__(self):
         return f'{self.id}: {self.name}'
 
@@ -25,10 +21,6 @@ class Domain(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
 
-    class Meta:
-        managed = False
-        db_table = 'domain'
-
     def __str__(self):
         return self.name
 
@@ -36,11 +28,6 @@ class Domain(models.Model):
 class ParseHistory(models.Model):
     id = models.BigAutoField(primary_key=True)
     date = models.DateTimeField(auto_now=True)
-
-
-    class Meta:
-        managed = False
-        db_table = 'parse_history'
 
     def __str__(self):
         return str(self.date)
@@ -55,10 +42,6 @@ class Price(models.Model):
     price_prolong = models.DecimalField(max_digits=10, decimal_places=2)
     price_change = models.DecimalField(max_digits=10, decimal_places=2)
 
-    class Meta:
-        managed = False
-        db_table = 'price'
-
     def __str__(self):
         return f'{self.id}: {self.price_reg}, {self.price_prolong}, {self.price_change}'
 
@@ -71,10 +54,6 @@ class Parser(models.Model):
     email = models.CharField(max_length=255)
     comment = models.TextField()
 
-    class Meta:
-        managed = False
-        db_table = 'parser'
-
     def __str__(self):
         return f'{self.id}: {self.contributor_name}'
 
@@ -84,10 +63,6 @@ class ParseError(models.Model):
     parse = models.ForeignKey(ParseHistory, on_delete=models.CASCADE)
     parser = models.ForeignKey(Parser, on_delete=models.CASCADE)
     message = models.TextField()
-
-    class Meta:
-        managed = False
-        db_table = 'parse_error'
 
     def __str__(self):
         return f'{self.id}: {self.message}'
