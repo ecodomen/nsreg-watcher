@@ -1,1 +1,0 @@
-SELECT * FROM regcomp ORDER BY id ASC LIMIT 10;

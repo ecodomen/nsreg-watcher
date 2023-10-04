@@ -7,7 +7,7 @@
 sudo apt install sendemail
 ```
 4. Запустить спайдеры:
-```bash 
+```bash
 runspider.sh
 ```
 ## Создание спайдера
@@ -39,7 +39,7 @@ class NsregZonadomenovSpider(scrapy.Spider):
             regex=r"([0-9]+[.,\s])?руб",
             path={
                 'price_reg': 'full/Xpath/1/text()', # например '/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()'
-                'price_prolong': 'full/Xpath/2/text()', 
+                'price_prolong': 'full/Xpath/2/text()',
                 'price_change': 'full/Xpath/3/text()'
             }
         )
@@ -74,12 +74,12 @@ def parse_price_change(self, response):
         price_change = find_price(, price_change)
 
         item = NsregItem()
-        item['name'] = "ООО «Ваш ООО»"  
+        item['name'] = "ООО «Ваш ООО»"
         price = item.get('price', EMPTY_PRICE)
         price['price_change'] = price_change
         item['price'] = price
-        price['price_change'] = price_change 
-        item['price'] = price  
+        price['price_change'] = price_change
+        item['price'] = price
 
         yield item
 ```
@@ -105,3 +105,67 @@ def parse(self, response):
 ```
 
 
+# Развертывание приложения на Linux
+
+1. Установите Sendmail, docker, docker-compose
+`sudo apt install docker docker-compose`
+2. Запустите скрипт по установке зависимостей
+`sh install.sh`
+	* При возникновении проблем с установкой пакета psycopg2, в файле модифицируйте файл при помощи команды:
+	 `sed -i 's/psycopg2/psycopg2-binary/' requirements.txt`
+3. Создайте файл окружения `.env` по шаблону `env.template`
+4. Запустите PostgreSQL при помощи команд:
+`export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)`
+`sudo docker-compose up`
+5. Запустите <b>scrapy</b> при помощи команды:
+`sh runspiders.sh`
+6. Запустите dev-сервер Django при помощи команды:
+`sh runsite.sh`
+
+# Развертывание под Windows
+
+## Подготовка системы
+
+Для запуска под виндовс в первую очередь необходимо установить и настроить Windows Subsystem for Linux (WSL). Она доступна в системе по умолчанию начиная с версии 2004 (сборка 19041). Подробнее здесь: https://learn.microsoft.com/ru-ru/windows/wsl/install
+
+Также необходимо установить Docker Desktop (гайд: https://docs.docker.com/desktop/install/windows-install/ )
+
+При скачивании кода проекта обратите внимание на Unix- и Windows-окончания файлов. Рекомендую скачивать через `git clone` либо `git init` + `git remote` + `git pull`, чтобы избежать проблем. Либо воспользуйтесь утилитой dos2unix:
+`sudo apt-get install dos2unix`, затем в папке с приложением
+`dos2unix *`
+
+## Настройка окружения
+
+1. Установите Sendmail, docker, docker-compose
+`sudo apt install sendemail docker docker-compose`
+2. Запустите скрипт по установке зависимостей
+`bash install.sh`
+	* При возникновении проблем с установкой пакета psycopg2, в файле модифицируйте файл при помощи команды:
+	 `sed -i 's/psycopg2/psycopg2-binary/' requirements.txt`
+3. Создайте файл окружения `.env` по шаблону:
+```
+# DOCKER-COMPOSE POSTGRES SETTINGS
+HOSTNAME_DB=localhost
+USERNAME_DB=nsreg
+PASSWORD_DB=Nsreg123
+DATABASE_NAME=nsreg
+PORT_DB=50432
+DOCKER_POSTGRES_PORTS_DB=50432:5432
+
+# SENDMAIL SETTINGS
+EMAIL_FROM=nsregproject@gmail.com
+EMAIL_TO=nsregproject@gmail.com
+EMAIL_SMTP=smtp.gmail.com:587
+EMAIL_LOGIN=nsregproject@gmail.com
+EMAIL_PASS=Nreg123
+
+# DJANGO SETTINGS
+DJANGO_SECRET_KEY='django-insecure-5irxqgp-i8c)jp&f3*%ubm(-u@1a3f^fb^_nete-@ixdb3ek4a'
+```
+4. Запустите PostgreSQL при помощи команд:
+`export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)`
+`sudo docker-compose up`
+5. Запустите <b>scrapy</b> при помощи команды:
+`bash runspiders.sh`
+6. Запустите dev-сервер Django при помощи команды:
+`bash runsite.sh`
