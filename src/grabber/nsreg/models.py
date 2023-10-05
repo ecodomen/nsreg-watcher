@@ -68,6 +68,7 @@ class Price(models.Model):
     class Meta:
         app_label = 'catalog'
 
+
 class Parser(models.Model):
     id = models.BigAutoField(primary_key=True)
     registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
@@ -81,6 +82,7 @@ class Parser(models.Model):
 
     class Meta:
         app_label = 'catalog'
+
 
 class ParseError(models.Model):
     id = models.BigAutoField(primary_key=True)

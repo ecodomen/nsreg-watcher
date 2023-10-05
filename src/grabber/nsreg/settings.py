@@ -114,7 +114,7 @@ DATABASES = {
             "USER": os.environ['USERNAME_DB'],
             "PASSWORD": os.environ['PASSWORD_DB'],
             "PORT": os.environ['PORT_DB'],
-    }
+        }
 }
 INSTALLED_APP = "catalog",
 

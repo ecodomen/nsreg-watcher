@@ -7,6 +7,7 @@
 # useful for handling different item types with a single interface
 from .models import ParseHistory, Price, Registrator
 
+
 class NsregPipeline:
 
     def process_item(self, item, spider):
@@ -20,9 +21,9 @@ class NsregPipeline:
             price_reg=price["price_reg"],
             price_change=price["price_change"],
             price_prolong=price["price_prolong"],
-            parse =  ParseHistory.objects.order_by("-id").all()[0],
-            domain = "ru" ,
-            registrator = Registrator.objects.get(name=item.get("name")),
+            parse=ParseHistory.objects.order_by("-id").all()[0],
+            domain="ru",
+            registrator=Registrator.objects.get(name=item.get("name")),
         )
 
         spider.logger.info(f'Saving item {item.get("name")}')
