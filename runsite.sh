@@ -6,6 +6,5 @@ fi
 
 source env/bin/activate
 
-python src/website/manage.py makemigrations
 python src/website/manage.py migrate
 python src/website/manage.py runserver

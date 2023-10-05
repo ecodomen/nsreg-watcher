@@ -12,7 +12,9 @@ services:
       POSTGRES_DB: $DATABASE_NAME
     ports:
       - $PORT_DB:5432
-         
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/:Z
+
   adminer:
     image: adminer
     restart: always

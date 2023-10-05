@@ -15,27 +15,5 @@ echo -n '' > $ERROR_LOG
 
 cd src/grabber/nsreg
 
-scrapy list|xargs -n 1 scrapy crawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-
-# if [ ! -s "$ERROR_LOG" ]; then
-#     echo "Grabber finished without errors."
-#     sendEmail -f $EMAIL_FROM                     \
-#             -t $EMAIL_TO                         \
-#             -s $EMAIL_SMTP                       \
-#             -xu $EMAIL_LOGIN                     \
-#             -xp $EMAIL_PASS                      \
-#             -o tls=yes                           \
-#             -m "Spiders finished without errors."\
-#             -u "$DATE: Nsreg grabber finished without errors"
-# else
-#     echo "Grabbers finished with errors. Details in $ERROR_LOG"
-#     sendEmail -f $EMAIL_FROM                     \
-#             -t $EMAIL_TO                         \
-#             -s $EMAIL_SMTP                       \
-#             -xu $EMAIL_LOGIN                     \
-#             -xp $EMAIL_PASS                      \
-#             -o tls=yes                           \
-#             -o message-file=$ERROR_LOG           \
-#             -a $ERROR_LOG                        \
-#             -u "$DATE: Nsreg grabber failed with errors"
-# fi
+scrapy crawl monitor --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy list | awk '$1 != "monitor" {print $1}' | xargs -n 1 scrapy crawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL

@@ -9,8 +9,8 @@ import scrapy
 class NsregItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field()
-    note1 = scrapy.Field()
-    note2 = scrapy.Field()
+    nic_handle1 = scrapy.Field()
+    nic_handle2 = scrapy.Field()
     city = scrapy.Field()
     website = scrapy.Field()
     price = scrapy.Field()

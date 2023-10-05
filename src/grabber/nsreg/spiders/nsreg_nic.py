@@ -6,9 +6,9 @@ from ..utils import find_price
 # работает
 REGEX_PATTERN = r"([0-9]+[.,\s])?руб[.]"
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -18,22 +18,22 @@ class NsregNicSpider(scrapy.Spider):
     start_urls = ["https://www.nic.ru/catalog/domains/ru/"]
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '/html/body/div[1]/div/div/section/div[2]/div/div/p[4]/strong/text()').get()
-        pricereg = find_price(REGEX_PATTERN, pricereg)
+        price_reg = find_price(REGEX_PATTERN, price_reg)
 
-        priceprolong = None
+        price_prolong = None
 
-        pricechange = response.xpath(
+        price_change = response.xpath(
             '/html/body/div[1]/div/div/section/div[2]/div/div/p[6]/strong/text()').get()
-        pricechange = find_price(REGEX_PATTERN, pricechange)
+        price_change = find_price(REGEX_PATTERN, price_change)
 
         item = NsregItem()
         item['name'] = "АО «РСИЦ»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
+        price['price_change'] = price_change
         item['price'] = price
 
         yield item

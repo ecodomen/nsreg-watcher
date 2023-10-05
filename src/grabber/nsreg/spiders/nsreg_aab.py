@@ -6,9 +6,9 @@ from ..utils import find_price_withoutre
 # работает
 
 EMPTY_PRICE = {
-    'pricereg': None,
-    'priceprolong': None,
-    'pricechange': None,
+    'price_reg': None,
+    'price_prolong': None,
+    'price_change': None,
 }
 
 
@@ -18,24 +18,24 @@ class Nsreg_aabSpider(scrapy.Spider):
     start_urls = ['https://aab.ru/tarifi_na_uslugi.html']
 
     def parse(self, response):
-        pricereg = response.xpath(
+        price_reg = response.xpath(
             '//*[@id="full_story"]/table/tbody/tr[3]/td[2]/text()').get()
-        pricereg = find_price_withoutre(pricereg)
+        price_reg = find_price_withoutre(price_reg)
 
-        priceprolong = response.xpath(
+        price_prolong = response.xpath(
             '//*[@id="full_story"]/table/tbody/tr[6]/td[2]/text()').get()
-        priceprolong = find_price_withoutre(priceprolong)
+        price_prolong = find_price_withoutre(price_prolong)
 
-        pricechange = response.xpath(
+        price_change = response.xpath(
             '//*[@id="full_story"]/table/tbody/tr[9]/td[2]/text()').get()
-        pricechange = find_price_withoutre(pricechange)
+        price_change = find_price_withoutre(price_change)
 
         item = NsregItem()
         item['name'] = "ООО «ААБ Медиа»"
         price = item.get('price', EMPTY_PRICE)
-        price['pricereg'] = pricereg
-        price['priceprolong'] = priceprolong
-        price['pricechange'] = pricechange
+        price['price_reg'] = price_reg
+        price['price_prolong'] = price_prolong
+        price['price_change'] = price_change
         item['price'] = price
 
         yield item

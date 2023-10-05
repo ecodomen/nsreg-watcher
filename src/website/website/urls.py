@@ -18,9 +18,9 @@ from django.urls import path, include
 from catalog import views
 
 urlpatterns = [
-    path('', views.regcomp_list, name='regcomp_list'),
-    path('list/', views.regcomp_list, name='regcomp_list'),
-    path('partner/<int:id>/', views.regcomp_details, name='regcomp_details'),
+    path('', views.registrator_list, name='registrator_list'),
+    path('list/', views.registrator_list, name='registrator_list'),
+    path('partner/<int:id>/', views.registrator_details, name='registrator_details'),
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),
     path('__debug__/', include('debug_toolbar.urls')),

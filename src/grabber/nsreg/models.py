@@ -1,4 +1,15 @@
+import django
+import os
 from django.db import models
+from django.conf import settings as django_settings
+
+from .settings import DEFAULT_SETTINGS
+
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+if not django_settings.configured:
+    django_settings.configure(**DEFAULT_SETTINGS)
+    django.setup()
 
 
 class Registrator(models.Model):

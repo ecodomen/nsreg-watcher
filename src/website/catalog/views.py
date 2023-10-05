@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from .models import Regcomp
+from .models import Price, ParseHistory
 from .forms import CompaniesSortForm
 
 
 SORT_FIELD_NAMES = {
-    'CN': 'name',
-    'CI': 'city',
+    'CN': 'registrator__name',
+    'CI': 'registrator__city',
     'RE': 'price_reg',
     'PR': 'price_prolong',
     'PE': 'price_change',
@@ -16,34 +16,35 @@ SORT_FIELD_NAMES = {
 }
 
 
-def regcomp_list(request):
+def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
         if form.is_valid():
             sort_by = SORT_FIELD_NAMES.get(
                 form.cleaned_data['sort_by'], 'name')
             search = form.cleaned_data['search']
-            companies = Regcomp.objects.order_by(sort_by)
+            companies = Price.objects.order_by(sort_by)
 
     else:
         form = CompaniesSortForm()
-        sort_by = 'name'
+        sort_by = 'id'
         search = ''
 
     if search:
-        companies = Regcomp.objects.filter(Q(name__contains=search) | Q(
-            city__contains=search) | Q(pricereg__contains=search)).order_by(sort_by)
+        companies = Price.objects.filter(Q(registrator_name__contains=search) | Q(
+            city__contains=search) | Q(price_reg__contains=search)).order_by(sort_by)
     else:
-        companies = Regcomp.objects.order_by(sort_by)
-    return render(request, 'regcomp-list.html', {'companies': companies, 'form': form})
+        last_parse = ParseHistory.objects.order_by("-id").all()[0]
+        companies = list(Price.objects.filter(parse=last_parse).all().order_by(sort_by))
+    return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 
-def regcomp_details(request, id):
+def registrator_details(request, id):
     try:
-        company = Regcomp.objects.get(id=id)
-    except Regcomp.DoesNotExist:
+        company = Price.objects.get(id=id)
+    except Price.DoesNotExist:
         return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")
-    return render(request, 'regcomp-details.html', {'company': company})
+    return render(request, 'registrator-details.html', {'company': company})
 
 
 def about(request):

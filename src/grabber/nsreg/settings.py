@@ -10,6 +10,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -102,3 +103,22 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
 TWISTED_REACTOR = 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'
 
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+
+
+# DJANGO ORM SETTINGS
+DATABASES = {
+        'default': {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": os.environ['HOSTNAME_DB'],
+            "NAME": os.environ['DATABASE_NAME'],
+            "USER": os.environ['USERNAME_DB'],
+            "PASSWORD": os.environ['PASSWORD_DB'],
+            "PORT": os.environ['PORT_DB'],
+        }
+}
+INSTALLED_APP = "catalog",
+
+DEFAULT_SETTINGS = {
+    "DATABASES": DATABASES,
+    "INSTALLED_APP": INSTALLED_APP,
+}
