@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3
+FROM python:3.11
 COPY . /app/
 COPY .env /app/
 WORKDIR /app
