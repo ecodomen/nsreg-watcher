@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from .models import Registrator, Price
+from .models import Registrator, Price, ParseHistory
 from .forms import CompaniesSortForm
 
 
@@ -34,7 +34,8 @@ def registrator_list(request):
         companies = Price.objects.filter(Q(registrator_name__contains=search) | Q(
             city__contains=search) | Q(price_reg__contains=search)).order_by(sort_by)
     else:
-        companies = list(Price.objects.all().order_by(sort_by))
+        last_parse = ParseHistory.objects.order_by("-id").all()[0]
+        companies = list(Price.objects.filter(parse=last_parse).all().order_by(sort_by))
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 

@@ -1,7 +1,7 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% include 'companies-sort.html' with form=form %}
- 
+
 <table class="table">
     <thead>
       <tr>
@@ -12,18 +12,18 @@
         <th scope="col">City</th>
         <th scope="col">link</th>
         <th scope="col">price_reg</th>
-        <th scope="col">price_prolong</th>        
+        <th scope="col">price_prolong</th>
       </tr>
     </thead>
     <tbody>
         {% for company in companies %}
         <tr>
             <th scope="row">{{ company.id }}</th>
-            <td><a href="{% url 'registrator_details' company.id %}">{{ company.name }}</a></td>
-            <td>{{ company.nic_handle1 }}</td>
-            <td>{{ company.nic_handle2 }}</td>
-            <td>{{ company.city }}</td>
-            <td><a href="{{company.website}}" >{{ company.website }}</a></td>
+            <td><a href="{% url 'registrator_details' company.id %}">{{ company.registrator.name }}</a></td>
+            <td>{{ company.registrator.nic_handle1 }}</td>
+            <td>{{ company.registrator.nic_handle2 }}</td>
+            <td>{{ company.registrator.city }}</td>
+            <td><a href="{{company.website}}" >{{ company.registrator.website }}</a></td>
             <td>{{ company.price_reg }}</td>
             <td>{{ company.price_prolong }}</td>
             <td>{{ company.price_change }}</td>

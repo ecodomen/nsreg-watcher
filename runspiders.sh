@@ -15,5 +15,5 @@ echo -n '' > $ERROR_LOG
 
 cd src/grabber/nsreg
 
-scrapy crawl monitor.py --logfile $ERROR_LOG --loglevel $LOG_LEVEL
-scrapy list|xargs -n 1 scrapy crawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy crawl monitor --logfile $ERROR_LOG --loglevel $LOG_LEVEL
+scrapy list | awk '$1 != "monitor" {print $1}' | xargs -n 1 scrapy crawl --logfile $ERROR_LOG --loglevel $LOG_LEVEL

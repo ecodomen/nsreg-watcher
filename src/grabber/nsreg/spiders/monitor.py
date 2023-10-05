@@ -1,6 +1,6 @@
 import scrapy
 
-from ..models import Registrator
+from .. import models
 
 
 def has_data_changed(company, data):
@@ -16,6 +16,9 @@ class NSRegSpider(scrapy.Spider):
     allowed_domains = ['cctld.ru']
     start_urls = ['https://cctld.ru/domains/reg/']
 
+    def __init__(self, name=None, **kwargs):
+        models.ParseHistory.objects.create()
+
     def parse(self, response):
         for reg in response.xpath('//*[@id="registrator-list"]/div/div'):
             data = {
@@ -26,7 +29,7 @@ class NSRegSpider(scrapy.Spider):
                 'website': reg.xpath('div/a/@href').get()
             }
 
-            company, created = Registrator.objects.get_or_create(name=data['name'])
+            company, created = models.Registrator.objects.get_or_create(name=data['name'])
 
             # Проверка, изменились ли данные
             if created or has_data_changed(company, data):
