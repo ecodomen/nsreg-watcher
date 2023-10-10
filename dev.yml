@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: $DATABASE_NAME
     ports:
       - 5433:5432
-    restart: always
+
 
   scrapy_telbot:
     build:
