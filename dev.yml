@@ -12,6 +12,7 @@ services:
       POSTGRES_DB: $DATABASE_NAME
     ports:
       - 5433:5432
+    restart: always
 
   scrapy_telbot:
     build:
@@ -22,6 +23,7 @@ services:
     links:
       - postgres
     env_file: .env
+    restart: always
 
   django:
     build:
@@ -35,4 +37,4 @@ services:
     links:
       - postgres
     env_file: .env
-    restart: on-failure
+    restart: always
