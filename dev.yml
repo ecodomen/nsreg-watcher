@@ -35,3 +35,4 @@ services:
     links:
       - postgres
     env_file: .env
+    restart: on-failure
