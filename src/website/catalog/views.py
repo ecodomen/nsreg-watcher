@@ -31,8 +31,8 @@ def registrator_list(request):
         search = ''
 
     if search:
-        companies = Price.objects.filter(Q(registrator_name__contains=search) | Q(
-            city__contains=search) | Q(price_reg__contains=search)).order_by(sort_by)
+        companies = Price.objects.filter(Q(registrator__name__icontains=search) | Q(
+            registrator__city__icontains=search) | Q(price_reg__icontains=search)).order_by(sort_by)
     else:
         last_parse = ParseHistory.objects.order_by("-id").all()[0]
         companies = list(Price.objects.filter(parse=last_parse).all().order_by(sort_by))
@@ -49,3 +49,7 @@ def registrator_details(request, id):
 
 def about(request):
     return render(request, 'about-us.html', )
+
+
+def project_view(request):
+    return render(request, 'project.html')

@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),
     path('__debug__/', include('debug_toolbar.urls')),
-
+    path('project/', views.project_view, name='project'),
 ]
