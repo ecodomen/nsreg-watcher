@@ -52,4 +52,4 @@ def about(request):
 
 
 def project_view(request):
-    return render(request, 'project.html')    
+    return render(request, 'project.html')
