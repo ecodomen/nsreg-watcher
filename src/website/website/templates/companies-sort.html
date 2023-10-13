@@ -1,5 +1,125 @@
-<form class="mb-3" action="{% url 'registrator_list' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input class="btn btn-primary ml-2" type="submit" value="Применить">
-</form>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+
+<div class="wrapper">
+    <form class="forma mb-3" action="{% url 'registrator_list' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-primary ml-2" type="submit" value="Показать">
+    </form>
+    </div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+
+
+
+
+.wrapper {
+    margin-top: 100px !important;
+    margin-bottom: 60px !important;
+    display: flex !important;
+    width: 1730px;
+    height: 150px;
+    margin: 10px auto; 
+    border: 1px solid #E5E5E9;
+    border-radius: 10px;
+    padding: 20px;
+    align-items: center;
+    border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
+    border-radius: 10px;
+    border-image-slice: 1;
+    border-style: solid;
+
+}
+
+.forma {
+    margin-top: 17px;
+    margin-left: 225px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+    flex: 1;
+}
+
+.forma input[type="text"] {
+    width: 629px;
+    height: 70px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #C1C1C1;
+    border-radius: 10px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    padding-left: 40px;
+    color: rgba(45, 45, 45, 0.7);
+    margin-right: 20px;
+}
+
+.forma input[type="text"]::placeholder {
+    color: rgba(45, 45, 45, 0.7);
+}
+
+.forma input[type="text"]:focus {
+    border: 1px solid #14D563;
+    outline: none;
+}
+
+
+.input {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #666;
+    flex: 3;
+}
+
+.btn {
+    width: 166px;
+    height: 55px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #14D563;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.submit:hover {
+    background: #0f9b4b;
+}
+
+.forma select {
+    height: 70px;
+    padding: 11px;
+    background: #FAFAFA;
+    border: 1px solid #C1C1C1;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #2D2D2D;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-right: 45px;
+}
+</style>
