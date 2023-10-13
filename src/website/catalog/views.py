@@ -49,3 +49,7 @@ def registrator_details(request, id):
 
 def about(request):
     return render(request, 'about-us.html', )
+
+
+def project_view(request):
+    return render(request, 'project.html')    

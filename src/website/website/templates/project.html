@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Проект</title>
+    <link rel="icon" href="../static/ecoIcons/favicon.svg">
+
+</head>
+<body>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" > 
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+
+
+    {% include 'navbar.html' %}
+
+
+
+    <div class="container">
+        <h1 class="headerone">Проект</h1>
+        <!-- <img src="../static/ecoIcons/Meeting.jpg" alt="Фото на фон" class="background-image"> -->
+        <div class="text-block-1">Мы - Ecodomen, агрегатор регистраторов доменных имён.
+            Представим среднестатистического пользователя интернета, для него нет разницы между хостингом и доменным именем. Когда этот пользователь захочет сделать свой сайт, он пойдет к reg.ru или nic.ru. И купит хостинг и домен в несколько раз дороже, чем у других менее популярных регистраторов с тем же предложением, потому что он о других вариантах даже не знает. А с нашим приложением пользователь  найдет лучшее для него предложение. Данный проект раньше был моим учебным, но потом у меня стало не хватать времени и мы решили привлечь начинающих разработчиков на волонтёрских условиях. 
+            
+            Сейчас в нашем штате 5 разработчиков, 1 тестировщик и один project manager. Чтобы запустить mvp нам не хватает парсеров для регистраторов доменных имён, упор мы делаем на них, но у нас есть много других задач.
+            В основе нашего продукта лежит Python, Django, Scrapy. Работаем мы на гите, там же у нас таск борд. Для общения используем ТГ группу. Условия сотрудничества такие: мы работаем столько, сколько можем и никого не заставляем, на безвозмездной основе, так как проект волонтерский. Если будут какие-то трудности, то мы поможем разобраться. Хочу уточнить, что это OpenSource, т.е. весь код, тесты и др открыты.
+            Думаю, что это отличный опыт, который можно записать к себе в портфолио для будущей работы в ИТ.</div>
+        
+    </div>
+
+
+</body>
+</html>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');    
+
+.container{
+    position: relative;
+    margin-top: 70px;
+}
+
+/* .background-image {
+  position: absolute;
+  width: 100%;
+  height: 620px;
+  left: 0px;
+  top: 520px;
+  object-fit: cover;
+  filter: grayscale(100%);
+} */
+
+
+.headerone {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 60px;
+  text-align: center;
+  color: #2D2D2D;
+  margin-top: 30px; 
+}
+
+.text-block-1 {
+  margin-top: 35px;
+  position: relative;
+  width: 1293px;
+  height: 1034px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 47px;
+  color: #575757;
+}
+
+</style>
