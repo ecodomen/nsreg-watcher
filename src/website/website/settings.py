@@ -141,3 +141,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://ecodomen.ru', 'http://127.0.0.1:8000']
