@@ -2,18 +2,35 @@
 ## Установка
 1. Скопируйте репозиторий
 2. Установите requirements.txt
-3. Установите Sendmail:
-```bash
-sudo apt install sendemail
-```
-4. Запустить спайдеры:
+3. Запустить спайдеры:
 ```bash
 runspider.sh
 ```
 ## Создание спайдера
+1.1 Разверните приложение, установите зависимости и активируйте env. Инструкция ниже
+1.2 В [папке](/home/maria/projects/nsreg-watcher/src/grabber/nsreg/spiders) нужно создать новый парсер с обязательным нэймингом "nsreg_sitename"
 
-1.1 Посмотрите пример парсера с использованием композиции:
-[src/grabber/nsreg/spiders/nsreg_zonadomenov.py](src/grabber/nsreg/spiders/nsreg_zonadomenov.py)
+2. Посмотрите пример парсера с использованием композиции:
+[src/grabber/nsreg/spiders/nsreg_domainshop.py](src/grabber/nsreg/spiders/nsreg_domainshop.py)
+
+3. По аналогии пишете имена, ссылки в классе вашего Спайдера. site_name нужно найти  на сайте регистратора:
+```
+class NsregDomainshopSpider(scrapy.Spider):
+    name = "nsreg_domainshop.py"
+    start_urls = ["https://domainshop.ru/services/"]
+    allowed_domains = ("domainshop.ru")
+    site_names = ("ООО «Лавка доменов»",)
+```
+
+4. Подбираете путь к ценам: покупка домена, продление, перенос. Например:
+```
+'price_reg': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()',
+```
+Пути можно посмотреть на сайте и скопировать. Могут возникнуть проблемы с тем, что скопированный путь неправильный -- тогда нужно исследовать его самому
+5. Подбираете регулярное выражение (поможет сайт Regex):
+```
+regex=r"([0-9]+[.,\s])?руб"
+```
 
 ```
 # -*- coding: utf-8 -*-
@@ -23,12 +40,12 @@ from ..base_site_spider import BaseSpiderComponent
 
 
 # Пример спайдера для одного сайта
-class NsregZonadomenovSpider(scrapy.Spider):
-    name = "nsreg_zonadomenov"
-    start_urls = ["https://zonadomenov.ru/site/tariffs"]
-    allowed_domains = ("zonadomenov.ru")
+class NsregDomainshopSpider(scrapy.Spider):
+    name = "nsreg_domainshop.py"
+    start_urls = ["https://domainshop.ru/services/"]
+    allowed_domains = ("domainshop.ru")
     # в site_names важно поставить запятую, иначе scrapy вместо целого названия вставит одну букву
-    site_names = ("ООО «Зона Доменов»",)
+    site_names = ("ООО «Лавка доменов»",)
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
@@ -38,9 +55,9 @@ class NsregZonadomenovSpider(scrapy.Spider):
             site_names=self.site_names,
             regex=r"([0-9]+[.,\s])?руб",
             path={
-                'price_reg': 'full/Xpath/1/text()', # например '/html/body/section/div/div/div/div[2]/div[3]/div[2]/span/text()'
-                'price_prolong': 'full/Xpath/2/text()',
-                'price_change': 'full/Xpath/3/text()'
+                'price_reg': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]/div/text()',
+                'price_prolong': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[4]/td[2]/div/p/text()',
+                'price_change': '/html/body/div/div[2]/div/div/div/div/div[3]/div/div/div/div/table/tbody/tr[7]/td[2]/div/text()'
             }
         )
 
