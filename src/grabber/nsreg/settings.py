@@ -23,7 +23,7 @@ BOT_NAME = 'nsreg'
 SPIDER_MODULES = ['nsreg.spiders']
 NEWSPIDER_MODULE = 'nsreg.spiders'
 
-
+SECRET_KEY = os.getenv('SECRET_KEY')
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'nsreg (+http://www.yourdomain.com)'
 
