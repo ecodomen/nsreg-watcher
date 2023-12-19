@@ -20,9 +20,11 @@ from catalog import views
 urlpatterns = [
     path('', views.registrator_list, name='registrator_list'),
     path('list/', views.registrator_list, name='registrator_list'),
-    path('partner/<int:id>/', views.registrator_details, name='registrator_details'),
+    path('partner/<int:id>/', views.DetailRegistratorView.as_view(),
+         name='registrator_details'),
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),
     path('__debug__/', include('debug_toolbar.urls')),
     path('project/', views.project_view, name='project'),
+    path('hitcount/', include('hitcount.urls', namespace='hitcount')),
 ]
