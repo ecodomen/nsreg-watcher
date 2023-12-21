@@ -1,13 +1,20 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
+from hitcount.models import HitCountMixin
+from hitcount.settings import MODEL_HITCOUNT
 
-class Registrator(models.Model):
+
+class Registrator(models.Model, HitCountMixin):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
     nic_handle1 = models.TextField()
     nic_handle2 = models.TextField()
     website = models.TextField()
     city = models.CharField(max_length=255)
+    hit_count_generic = GenericRelation(
+        MODEL_HITCOUNT, object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return f'{self.id}: {self.name}'

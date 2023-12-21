@@ -1,9 +1,8 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% load hitcount_tags %}
 
-            <h1>{{ company.name }}</h1>
-            <p>{{ company.nic_handle1 }}</p>
-            <p>{{ company.nic_handle2 }}</p>
-            <p>{{ company.city }}</p>
-            <p><a href="{{company.website}}" >{{ company.website }}</a></p>
-  {% endblock %}
+<h1>{{ company.name }}</h1>
+<p>{{ company.nic_handle1 }}</p>
+<p>{{ company.nic_handle2 }}</p>
+<p>{{ company.city }}</p>
+<p><a href="{{company.website}}" >{{ company.website }}</a></p>
+<p>Счетчик посещений: {% get_hit_count for company %}</p>

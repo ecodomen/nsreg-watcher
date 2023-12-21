@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% block content %}
+
 {% include 'companies-sort.html' with form=form %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +18,7 @@
           <div class="row">
             <div class="col-md-3">
               <h5 class="card-title" style="font-family: 'Mulish'; font-style: normal; font-weight: 700; font-size: 24px; line-height: 30px; color: #2D2D2D;">
-                {{ company.registrator.name }}
+                <a href="{% url 'registrator_details' company.registrator.id %}">{{ company.registrator.name }}</a>
               </h5>
             </div>
             <div class="col-md-3">
