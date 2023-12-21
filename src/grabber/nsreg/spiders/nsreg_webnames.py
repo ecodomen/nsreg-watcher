@@ -56,4 +56,4 @@ class NsregWebnamesSpider(scrapy.Spider):
         price['price_prolong'] = price_prolong
         item['price'] = price
 
-        yield item
+        return item
