@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from hitcount.views import HitCountDetailView
-
-from .models import Price, ParseHistory, Registrator
+from .models import Price, ParseHistory
 from .forms import CompaniesSortForm
 
 
@@ -22,8 +20,9 @@ def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
         if form.is_valid():
-            sort_by = SORT_FIELD_NAMES.get(
-                form.cleaned_data['sort_by'], 'name')
+            sort_by = (form.cleaned_data['reverse_order']
+                       + SORT_FIELD_NAMES.get(
+                        form.cleaned_data['sort_by'], 'name'))
             search = form.cleaned_data['search']
             companies = Price.objects.order_by(sort_by)
 
@@ -41,19 +40,13 @@ def registrator_list(request):
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 
-class DetailRegistratorView(HitCountDetailView):
-    model = Registrator
-    template_name = 'registrator-details.html'
-    context_object_name = 'company'
-    count_hit = True
+def registrator_details(request, id):
+    try:
+        company = Price.objects.get(id=id)
+    except Price.DoesNotExist:
+        return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")
+    return render(request, 'registrator-details.html', {'company': company})
 
-    def get_object(self, *args, **kwargs):
-        id = self.kwargs.get('id')
-        try:
-            company = Registrator.objects.get(id=id)
-        except Registrator.DoesNotExist:
-            return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")
-        return company
 
 def about(request):
     return render(request, 'about-us.html', )
