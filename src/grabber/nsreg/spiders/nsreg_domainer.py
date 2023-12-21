@@ -15,7 +15,6 @@ class NsregDomainerSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            #Вопрос остался лишь по регулярке: нужен ли тут регех?
             regex=r"([0-9]{3,}).00*",
             path={
                 'price_reg': '/html/body/div[2]/table/tbody/tr[]/td[2]',
