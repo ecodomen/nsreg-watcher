@@ -19,8 +19,11 @@ def find_price(re_pattern, price):
         # Применяем регулярное выражение к строке
         if m := re.match(re_pattern, price):
             price = m.group(1)
-    price = f'{float(price)}'
-    logging.info('price = %s', price)
+        # Убираем пробелы внутри строки, если они есть
+        if " " in price:
+            price = re.sub(r"\s", r"", price)
+    price = f"{float(price)}"
+    logging.info("price = %s", price)
 
     return price
 
