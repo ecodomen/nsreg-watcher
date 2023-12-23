@@ -1,35 +1,30 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from ..utils import find_price
-from nsreg.items import NsregItem
 
-REGEX_PATTERN = r"₽\s*([0-9]+\.[0-9]+)\s*RUB"
-EMPTY_PRICE = {
-    'price_reg': None,
-    'price_prolong': None,
-    'price_change': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregElastichostingSpider(scrapy.Spider):
     name = "nsreg_elastichosting"
     start_urls = ["https://elastichosting.ru/domain/pricing"]
-    allowed_domains = ["elastichosting.ru"]
+    allowed_domains = ("elastichosting.ru")
+    site_names = ("ООО «ЭластикХостинг»",)
+
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r"₽\s*([0-9]+\.[0-9]+)\s*RUB",
+            path={
+                'price_reg': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "New Price")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
+                'price_prolong': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Renewal")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]',
+                'price_change': '//tr[.//strong[.=".ru"]]/td[contains(.//span, "Transfer")]/text()[preceding-sibling::span[contains(@class, "tld-label")]]'
+            }
+        )
 
     def parse(self, response):
-        price_reg = response.xpath(
-            '//tr[.//strong[.=".ru"]]/td[contains(., "New Price")]/text()').getall()[1].strip()
-        price_prolong = response.xpath(
-            '//tr[.//strong[.=".ru"]]/td[contains(., "Renewal")]/text()').getall()[1].strip()
-        price_change = response.xpath(
-            '//tr[.//strong[.=".ru"]]/td[contains(., "Transfer")]/text()').getall()[1].strip()
-
-        item = NsregItem()
-        item['name'] = "ООО «ЭластикХостинг»"
-        price = item.get('price', EMPTY_PRICE)
-        price['price_reg'] = find_price(REGEX_PATTERN, price_reg)
-        price['price_prolong'] = find_price(REGEX_PATTERN, price_prolong)
-        price['price_change'] = find_price(REGEX_PATTERN, price_change)
-        item['price'] = price
-
-        yield item
+        return self.component.parse(response)
