@@ -4,7 +4,7 @@ import scrapy
 from ..base_site_spider import BaseSpiderComponent
 
 
-class NsregR01Spider(scrapy.Spider):
+class NsregDomenySpider(scrapy.Spider):
     name = "nsreg_domeny.py"
     start_urls = ["https://domeny.ru/pricelist/"]
     allowed_domains = ("domeny.ru")
