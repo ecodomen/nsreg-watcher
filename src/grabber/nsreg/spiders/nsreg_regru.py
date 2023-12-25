@@ -4,6 +4,7 @@ import scrapy
 from ..base_site_spider import BaseSpiderComponent, EMPTY_PRICE, find_price
 from ..items import NsregItem
 
+
 class NsregRegruSpider(scrapy.Spider):
     name = "nsreg_regru"
     allowed_domains = ["reg.ru"]
@@ -23,6 +24,7 @@ class NsregRegruSpider(scrapy.Spider):
                 'price_change': '/html/body/div[1]/div/article/div[3]/div/div[2]'
             }
         )
+
     def parse_price_change(self, response):
         price_change = response.xpath(self.component.path['price_change']).get()
         price_change = find_price(r"[\s\S]+(\d{3,}) руб.[\s\S]+", price_change)
