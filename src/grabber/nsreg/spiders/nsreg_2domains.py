@@ -41,13 +41,11 @@ class Nsreg2domainsSpider(scrapy.Spider):
             '//*[@id="app"]/div[1]/section[3]/div/div[1]/div[1]/a/div[4]/text()').get()
         price_prolong = find_price(REGEX_PROLONG_PATTERN, price_prolong)
 
-        yield scrapy.Request('https://2domains.ru/domains/transfer', callback=self.parse_price_change)
-
         item = NsregItem()
         item['name'] = "ООО «2ДОМЕЙНС.РУ»"
         price = item.get('price', EMPTY_PRICE)
         price['price_reg'] = price_reg
         price['price_prolong'] = price_prolong
         item['price'] = price
-
-        yield item
+        
+        yield scrapy.Request('https://2domains.ru/domains/transfer', callback=self.parse_price_change)
