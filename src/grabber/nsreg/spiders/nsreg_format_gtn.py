@@ -3,7 +3,7 @@ import scrapy
 from ..base_site_spider import BaseSpiderComponent
 
 class FormatGtnSpider(scrapy.Spider):
-   name = "format_gtn"
+   name = "nsreg_format_gtn"
    start_urls = ["https://format.gtn.ee/"]
    allowed_domains = ("format.gtn.ee")
    site_names = ("ООО Гет-Нэт",)
