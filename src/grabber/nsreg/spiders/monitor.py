@@ -23,7 +23,7 @@ class NSRegSpider(scrapy.Spider):
         for reg in response.xpath('//*[@id="registrator-list"]/div/div'):
             data = {
                 'name': reg.xpath('div/span[1]/span[1]/span/text()').get(),
-                'nic_handle1 ': reg.xpath('div/span[1]/span[2]/span[1]/text()').get(),
+                'nic_handle1': reg.xpath('div/span[1]/span[2]/span[1]/text()').get(),
                 'nic_handle2': reg.xpath('div/span[1]/span[2]/span[2]/text()').get(),
                 'city': reg.xpath('div/span[2]/text()').get(),
                 'website': reg.xpath('div/a/@href').get()

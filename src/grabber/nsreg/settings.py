@@ -11,7 +11,11 @@
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import os
+import time
 from pathlib import Path
+
+os.environ["TZ"] = "UTC"
+time.tzset()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 GRABBER_DIR = Path(__file__).resolve().parent.parent
