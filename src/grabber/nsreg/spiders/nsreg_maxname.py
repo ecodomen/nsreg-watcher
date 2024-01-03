@@ -3,6 +3,7 @@ import scrapy
 
 from ..base_site_spider import BaseSpiderComponent
 
+
 # Класс
 class NsregMaxnameSpider(scrapy.Spider):
     name = "nsreg_maxname.py"
