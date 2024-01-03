@@ -30,7 +30,6 @@ class RegistratorAdmin(admin.ModelAdmin):
     list_filter = ("city",)
 
     @admin.display(description="Цены регистрации")
-
     def price(self, obj):
         return list(obj.price_set.values_list("price_reg", flat=True))[-3:]
 

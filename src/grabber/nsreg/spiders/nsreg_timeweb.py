@@ -2,11 +2,13 @@ import scrapy
 
 from ..base_site_spider import BaseSpiderComponent
 
+
 class NsregTimewebSpider(scrapy.Spider):
     name = 'nsreg_timeweb.py'
     allowed_domains = ['timeweb.name']
     start_urls = ['https://timeweb.name/tariff']
     site_names = ("ООО «ТаймВэб.Домены»",)
+
     # Конструктор класса
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
