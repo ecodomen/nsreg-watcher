@@ -9,7 +9,7 @@ class NsregZonadomenovSpider(scrapy.Spider):
     name = "nsreg_zonadomenov"
     start_urls = ["https://zonadomenov.ru/site/tariffs"]
     allowed_domains = ["zonadomenov.ru"]
-    site_names = ("ООО «Зона Доменов»")
+    site_names = ("ООО «Зона Доменов»",)
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
