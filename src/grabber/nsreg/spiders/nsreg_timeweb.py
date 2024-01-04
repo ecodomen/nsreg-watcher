@@ -17,11 +17,15 @@ class NsregTimewebSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"([0-9]+)[.,\s]?руб.*",
+            regex={
+                'price_reg': r"([0-9]+)[.,\s]?руб.*",
+                'price_prolong': r"([0-9]+)[.,\s]?руб.*",
+                'price_change': r".*?(бесплатно).*?",
+            },
             path={
-                'price_reg': '/html/body/div/section/div/table/tbody/tr/td[1]/text()',
-                'price_prolong': '/html/body/div/section/div/table/tbody/tr[1]/td[1]/text()',
-                'price_change': '/html/body/div/section/div/table/tbody/tr[2]/td[1]/text()'
+                'price_reg': '/html/body/div/section/div/table/tbody/tr[1]/td[2]/text()',
+                'price_prolong': '/html/body/div/section/div/table/tbody/tr[2]/td[2]/text()',
+                'price_change': '/html/body/div/section/div/table/tbody/tr[3]/td[2]/text()'
             }
         )
 
