@@ -19,15 +19,15 @@ class Nsreg4itSpider(scrapy.Spider):
 
     def parse(self, response):
         price_reg = response.xpath(
-            '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[2]/td[2]/div/p/text()').get()
+            '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[2]/td[2]/div/p/text()').get()
         price_reg = find_price(REGEX_PATTERN, price_reg)
 
         price_prolong = response.xpath(
-            '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[2]/div[3]/table/tr[2]/td/div/p/text()').get()
+            '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[3]/td[2]/div/p/text()').get()
         price_prolong = find_price(REGEX_PATTERN, price_prolong)
 
         price_change = response.xpath(
-            '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[2]/div[3]/table/tr[2]/td/div/p/text()').get()
+            '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[4]/td[2]/div/p/text()').get()
         price_change = find_price(REGEX_PATTERN, price_change)
 
         item = NsregItem()
