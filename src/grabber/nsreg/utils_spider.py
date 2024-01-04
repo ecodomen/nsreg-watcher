@@ -69,18 +69,15 @@ def moscow_price(self, response, re_pattern, name):
 
 def moscow_rich_price(self, response, re_pattern, name):
     price_reg = response.xpath(
-        '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/\
-                div[1]/div/table/tbody/tr[2]/td[2]/div/p/text()').get()
+        '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[2]/td[2]/div/p/text()').get()
     price_reg = find_price(re_pattern, price_reg)
 
     price_prolong = response.xpath(
-        '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/\
-                div[1]/div/table/tbody/tr[3]/td[2]/div/p/text()').get()
+        '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[3]/td[2]/div/p/text()').get()
     price_prolong = find_price(re_pattern, price_prolong)
 
     price_change = response.xpath(
-        '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/\
-                div[1]/div/table/tbody/tr[4]/td[2]/div/p/text()').get()
+        '/html/body/main/section[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[4]/td[2]/div/p/text()').get()
     price_change = find_price(re_pattern, price_change)
 
     item = NsregItem()
