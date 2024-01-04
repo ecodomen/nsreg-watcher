@@ -15,11 +15,11 @@ class NsregCentralregSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex = r"[0-9]",
+            regex = r"\s{3}([0-9]{2,3})",
             path = { 
-                'price_reg': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[4]/td[2]/p/strong',
-                'price_prolong': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[5]/td[2]/p/strong',
-                'price_change': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[8]/td[2]/p/strong'
+                'price_reg': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[4]/td[2]/p/strong/text()',
+                'price_prolong': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[5]/td[2]/p/strong/text()',
+                'price_change': '/html/body/div[1]/div/div/div/div/div/div/div/div/div/div/article/div/div/div/div/div/table/tbody/tr[8]/td[2]/p/strong/text()'
                 }
         )
 
