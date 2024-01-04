@@ -20,8 +20,9 @@ def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
         if form.is_valid():
-            sort_by = SORT_FIELD_NAMES.get(
-                form.cleaned_data['sort_by'], 'name')
+            sort_by = (form.cleaned_data['reverse_order']
+                       + SORT_FIELD_NAMES.get(
+                        form.cleaned_data['sort_by'], 'name'))
             search = form.cleaned_data['search']
             companies = Price.objects.order_by(sort_by)
 
