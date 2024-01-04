@@ -8,7 +8,7 @@ class NsregUninicSpider(scrapy.Spider):
 
     start_urls = 'https://uninic.ru/domainreg.php'
     allowed_domains = 'https://uninic.ru/'
-    site_names = 'ООО «Объединенные доменные имена»'
+    site_names = ('ООО «Объединенные доменные имена»',)
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):

@@ -8,7 +8,7 @@ class NsregAxelnameSpider(scrapy.Spider):
 
     start_urls = 'https://axelname.ru/domains/'
     allowed_domains = 'https://active.domains'
-    site_names = 'ООО «Актив.Домэинс»'
+    site_names = ('ООО «Актив.Домэинс»',)
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):
