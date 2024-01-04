@@ -51,7 +51,7 @@ class MultiSiteSpider1(scrapy.Spider):
         'http://domainfactory.ru/site/tariffs', 'http://firefox.ru/site/tariffs',
         'https://www.hostingpark.ru/site/tariffs', 'https://www.hothosting.ru/site/tariffs',
         'http://domaincenter.ru/site/tariffs', 'http://yu.ru/site/tariffs'
-    ),
+    )
     allowed_domains = (
         'https://sidename.ru', 'https://domainauction.ru', 'https://www.safereg.ru',
         'https://www.speedhosting.ru', 'https://www.gigahosting.ru', 'https://citydomains.ru',

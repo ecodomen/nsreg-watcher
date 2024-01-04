@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregUninicSpider(scrapy.Spider):
     name = 'nsreg_uninic_spider'
 
-    start_urls = 'https://uninic.ru/domainreg.php'
+    start_urls = ['https://uninic.ru/domainreg.php']
     allowed_domains = 'https://uninic.ru/'
     site_names = 'ООО «Объединенные доменные имена»'
 

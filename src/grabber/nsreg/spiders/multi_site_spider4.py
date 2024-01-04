@@ -30,7 +30,7 @@ class MultiSiteSpider4(scrapy.Spider):
         'https://startmail.ru/#price',
         'https://proprovider.ru/#price',
         'https://dproxy.ru/#price'
-    ),
+    )
     allowed_domains = (
         'https://fastdns.ru',
         'https://4it.ru',

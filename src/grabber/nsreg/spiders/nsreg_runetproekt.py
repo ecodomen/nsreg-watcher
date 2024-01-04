@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregRunetproektSpider(scrapy.Spider):
     name = 'nsreg_runetproekt_spider'
 
-    start_urls = 'https://runetproekt.ru/%d0%bf%d0%b5%d1%80%d0%b5%d1%87%d0%b5%d0%bd%d1%8c-%d0%bf%d1%80%d0%b5%d0%b4%d0%be%d1%81%d1%82%d0%b0%d0%b2%d0%bb%d1%8f%d0%b5%d0%bc%d1%8b%d1%85-%d1%83%d1%81%d0%bb%d1%83%d0%b3-%d0%b8-%d1%82%d0%b0%d1%80/'
+    start_urls = ['https://runetproekt.ru/%d0%bf%d0%b5%d1%80%d0%b5%d1%87%d0%b5%d0%bd%d1%8c-%d0%bf%d1%80%d0%b5%d0%b4%d0%be%d1%81%d1%82%d0%b0%d0%b2%d0%bb%d1%8f%d0%b5%d0%bc%d1%8b%d1%85-%d1%83%d1%81%d0%bb%d1%83%d0%b3-%d0%b8-%d1%82%d0%b0%d1%80/']
     allowed_domains = 'https://runetproekt.ru/'
     site_names = 'ООО «РунетПроект»'
 

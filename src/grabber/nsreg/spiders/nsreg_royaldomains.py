@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregRoyaldomainsSpider(scrapy.Spider):
     name = 'nsreg_royaldomains_spider'
 
-    start_urls = 'https://royaldomains.ru//'
+    start_urls = ['https://royaldomains.ru//']
     allowed_domains = 'https://royaldomains.ru/'
     site_names = 'ООО «РОЯЛЬ»'
 
