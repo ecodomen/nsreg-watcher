@@ -8,7 +8,7 @@ class NsregRoyaldomainsSpider(scrapy.Spider):
 
     start_urls = 'https://royaldomains.ru//'
     allowed_domains = 'https://royaldomains.ru/'
-    site_names = 'ООО «РОЯЛЬ»'
+    site_names = ('ООО «РОЯЛЬ»',)
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):

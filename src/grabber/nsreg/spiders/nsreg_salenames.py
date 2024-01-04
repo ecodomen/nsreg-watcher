@@ -8,7 +8,7 @@ class NsregSalenamesSpider(scrapy.Spider):
 
     start_urls = 'https://www.salenames.ru/ru/page/tarify'
     allowed_domains = 'https://www.salenames.ru'
-    site_names = 'ООО «СэйлНэймс»'
+    site_names = ('ООО «СэйлНэймс»',)
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):
