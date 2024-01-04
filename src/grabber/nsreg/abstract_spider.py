@@ -4,6 +4,7 @@ import scrapy
 
 from .items import NsregItem
 
+
 # Класс, реализующий основные компоненты паука для веб-скрапинга
 class AbstractSpiderComponent(scrapy.Spider):
     start_urls = None

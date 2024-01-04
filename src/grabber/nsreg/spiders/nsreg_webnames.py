@@ -1,6 +1,7 @@
 import scrapy
 from ..abstract_spider import AbstractSpiderComponent
 
+
 class NsregWebnamesSpider(AbstractSpiderComponent):
     name = "nsreg_webnames"
 
@@ -26,8 +27,5 @@ class NsregWebnamesSpider(AbstractSpiderComponent):
             'https://www.webnames.ru/domains/transfer/',
             callback=self.parse_price_change,
             dont_filter=True,
-            cb_kwargs = dict(item = item)
+            cb_kwargs=dict(item=item)
         )
-
-
-

@@ -1,5 +1,6 @@
 from ..abstract_spider import AbstractSpiderComponent
 
+
 class NsregWebregSpider(AbstractSpiderComponent):
     name = 'nsreg_webreg'
     allowed_domains = ['www.webreg24.ru']
