@@ -5,7 +5,7 @@ from ..utils_spider import moscow_tariffs
 
 
 REGEX_PATTERN = r"([0-9]+[.,\s])?руб"
-name = "ООО «Мощный Хостинг»POWER-RU"
+name = "ООО «Мощный Хостинг»"
 # MarieCurie
 
 
