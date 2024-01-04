@@ -18,11 +18,11 @@ class NsregDomainshopSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r'\d+\.\d{2}',
+            regex=r'.*?(\d+).*?',
             path={
-                'price_reg': '/html/body/div[2]/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[2]/text()',
-                'price_prolong': '/html/body/div[2]/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[3]/text()',
-                'price_change': '/html/body/div[2]/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[4]/text()'
+                'price_reg': '/html/body/div/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[2]/text()',
+                'price_prolong': '/html/body/div/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[3]/text()',
+                'price_change': '/html/body/div/div[1]/main/div[2]/div[2]/section/div[3]/ul/li[4]/text()'
             }
         )
 
