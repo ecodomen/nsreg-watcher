@@ -66,7 +66,7 @@ class MultiSiteSpider1(scrapy.Spider):
         'https://www.regis.ru', 'http://registr1.ru', 'https://smartdomains.ru', 'https://www.technodata.ru',
         'https://www.turbohosting.ru', 'http://domainfactory.ru', 'http://firefox.ru',
         'https://www.hostingpark.ru', 'https://www.hothosting.ru', 'http://domaincenter.ru', 'http://yu.ru'
-    ),
+    )
     site_names = (
         'ООО «101домен Регистрация Доменов»', 'ООО «Аукцион доменов»', 'ООО «Безопасный регистратор»',
         'ООО «Быстрый Хостинг»', 'ООО «Гига Хостинг»', 'ООО «Городские Домены»', 'ООО «Дата Плюс»',

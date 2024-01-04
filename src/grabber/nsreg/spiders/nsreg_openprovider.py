@@ -7,7 +7,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregDomainshopSpider(scrapy.Spider):
     name = "nsreg_openprovider.py"
     start_urls = ["https://www.openprovider.com/ru/prices-for-domains-in-ru"]
-    allowed_domains = ("openprovider.com")
+    allowed_domains = ["openprovider.com"]
     site_names = ("ОПЕНПРОВАЙДЕР, ООО",)
 
     # Конструктор класса

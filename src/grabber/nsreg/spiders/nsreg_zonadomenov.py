@@ -8,7 +8,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregZonadomenovSpider(scrapy.Spider):
     name = "nsreg_zonadomenov"
     start_urls = ["https://zonadomenov.ru/site/tariffs"]
-    allowed_domains = ("zonadomenov.ru")
+    allowed_domains = ["zonadomenov.ru"]
     site_names = ("ООО «Зона Доменов»")
 
     def __init__(self, name=None, **kwargs):

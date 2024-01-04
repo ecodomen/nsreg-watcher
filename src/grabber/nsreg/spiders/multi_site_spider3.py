@@ -39,7 +39,7 @@ class MultiSiteSpider3(scrapy.Spider):
         'https://regiondomains.ru',
         # 'https://rudy.ru',
         'https://tapereg.ru'
-    ),
+    )
     site_names = (
         # 'ООО «А100»',
         'ООО «БИТНЭЙМС»',

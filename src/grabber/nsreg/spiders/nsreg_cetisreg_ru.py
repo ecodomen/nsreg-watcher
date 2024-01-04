@@ -5,7 +5,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregСetisregSpider(BaseSpiderComponent):
     name = "nsreg_cetisreg_ru"
     start_urls = ["https://www.cetis-reg.ru/price/"]
-    allowed_domains = ("www.cetis-reg.ru")
+    allowed_domains = ["www.cetis-reg.ru"]
     site_names = ("ООО «ЦЭТИС»",)
 
     regex = {

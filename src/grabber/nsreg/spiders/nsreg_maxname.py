@@ -8,7 +8,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregMaxnameSpider(scrapy.Spider):
     name = "nsreg_maxname.py"
     start_urls = ["https://maxname.ru/domains/"]
-    allowed_domains = ("maxname.ru")
+    allowed_domains = ["maxname.ru"]
     site_names = ("ООО «МаксНейм»",)
 
     def __init__(self, *args, **kwargs):

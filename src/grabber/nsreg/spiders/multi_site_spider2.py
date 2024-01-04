@@ -56,7 +56,7 @@ class MultiSiteSpider2(scrapy.Spider):
         'http://telebord24.ru',
         'https://telehost24.ru',
         'http://topdomenreg24.ru'
-    ),
+    )
     site_names = (
         'ООО «БЕСТРЕГ»',
         'ООО «БИГРЕГ»',

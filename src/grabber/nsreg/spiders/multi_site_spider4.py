@@ -43,7 +43,7 @@ class MultiSiteSpider4(scrapy.Spider):
         'https://startmail.ru',
         'https://proprovider.ru',
         'https://dproxy.ru'
-    ),
+    )
     site_names = (
         'ООО «ДНС»',
         'ООО «ИТ»',

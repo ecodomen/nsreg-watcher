@@ -7,7 +7,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregDomainshopSpider(scrapy.Spider):
     name = "nsreg_domainshop.py"
     start_urls = ["https://domainshop.ru/services/"]
-    allowed_domains = ("domainshop.ru")
+    allowed_domains = ["domainshop.ru"]
     site_names = ("ООО «Лавка доменов»",)
 
     # Конструктор класса

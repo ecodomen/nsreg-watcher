@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 class FormatGtnSpider(scrapy.Spider):
     name = "nsreg_format_gtn"
     start_urls = ["https://format.gtn.ee/"]
-    allowed_domains = ("format.gtn.ee")
+    allowed_domains = ["format.gtn.ee"]
     site_names = ("ООО Гет-Нэт",)
 
     def __init__(self, *args, **kwargs):
