@@ -37,7 +37,7 @@ class MultiSiteSpider2(scrapy.Spider):
         'http://telebord24.ru/price',
         'https://telehost24.ru/price',
         'http://topdomenreg24.ru/price'
-    ),
+    )
     allowed_domains = (
         'https://www.bestreg24.ru',
         'https://www.bigreg24.ru',

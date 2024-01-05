@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregAxelnameSpider(scrapy.Spider):
     name = 'nsreg_axelname_spider'
 
-    start_urls = 'https://axelname.ru/domains/'
+    start_urls = ['https://axelname.ru/domains/']
     allowed_domains = 'https://active.domains'
     site_names = ('ООО «Актив.Домэинс»',)
 
