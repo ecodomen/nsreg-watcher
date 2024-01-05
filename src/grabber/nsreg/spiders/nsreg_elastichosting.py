@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 
 class NsregElastichostingSpider(scrapy.Spider):
     name = "nsreg_elastichosting"
-    start_urls = ["https://elastichosting.ru/domain/pricing"]
+    start_urls = ["https://my.elastichosting.ru/domain/pricing"]
     allowed_domains = ("elastichosting.ru")
     site_names = ("ООО «ЭластикХостинг»",)
 
