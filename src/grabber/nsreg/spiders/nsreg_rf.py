@@ -1,41 +1,27 @@
-# -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price
-# работает
-REGEX_PATTERN = r".*(([0-9]*[.,])?[0-9]{3})₽.*"
-EMPTY_PRICE = {
-    'price_reg': None,
-    'price_prolong': None,
-    'price_change': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregRfSpider(scrapy.Spider):
     name = "nsreg_rf"
-    allowed_domains = ["rf.ru"]
     start_urls = ["https://rf.ru/domain-prices"]
+    allowed_domains = ("rf.ru")
+    site_names = ("ООО «ДОМЕНЫ.РФ»",)
+
+    def __init__(self, name=None, **kwargs):
+        super().__init__(name, **kwargs)
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r"([0-9]*)₽",
+            path={
+                'price_reg': '/html/body/div/section[1]/div/table/tbody/tr[1]/td[2]/text()',
+                'price_prolong': '/html/body/div/section[1]/div/table/tbody/tr[1]/td[3]/text()',
+                'price_change': '/html/body/div/section[1]/div/table/tbody/tr[1]/td[4]/text()'
+            }
+        )
 
     def parse(self, response):
-        price_reg = response.xpath(
-            '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[2]/text()').get()
-        price_reg = find_price(REGEX_PATTERN, price_reg)
-
-        price_prolong = response.xpath(
-            '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[3]/text()').get()
-        price_prolong = find_price(REGEX_PATTERN, price_prolong)
-
-        price_change = response.xpath(
-            '//*[@id="wrapper"]/section[1]/div/table/tbody/tr[1]/td[4]/text()').get()
-        price_change = find_price(REGEX_PATTERN, price_change)
-
-        item = NsregItem()
-        item['name'] = "ООО «ДОМЕНЫ.РФ»"
-        price = item.get('price', EMPTY_PRICE)
-        price['price_reg'] = price_reg
-        price['price_prolong'] = price_prolong
-        price['price_change'] = price_change
-        item['price'] = price
-
-        yield item
+        return self.component.parse(response)
