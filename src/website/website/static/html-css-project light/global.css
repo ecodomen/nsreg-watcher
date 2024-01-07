@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+  --font-mulish: Mulish;
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-xl: 20px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-gray: #fafafa;
+  --color-darkslategray-100: #2d2d2d;
+  --color-darkslategray-200: rgba(45, 45, 45, 0.7);
+  --color-white: #fff;
+  --color-silver: #c1c1c1;
+  --color-springgreen: #14d563;
+  --color-gainsboro: #e5e5e5;
+
+  /* Paddings */
+  --padding-3xs: 10px;
+  --padding-xl: 20px;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+}

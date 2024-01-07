@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+  --font-inter: Inter;
+  --font-mulish: Mulish;
+
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-xl: 20px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-darkslategray: #2f303a;
+  --color-silver: #c1c1c1;
+  --color-gray: #272730;
+  --color-springgreen: #14d563;
+
+  /* Paddings */
+  --padding-3xs: 10px;
+  --padding-xl: 20px;
+
+  /* Border radiuses */
+  --br-3xs: 10px;
+}
