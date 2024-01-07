@@ -1,5 +1,6 @@
 import logging
 import re
+from urllib.parse import urlparse
 
 from .items import NsregItem
 
@@ -60,7 +61,9 @@ class BaseSpiderComponent:
         price_change = find_price(self.regex['price_change'], price_change)
 
         # Получение имя сайта
-        site_name = self.site_names[self.start_urls.index(response.url)]
+        start_urls_netloc = [urlparse(url).netloc for url in self.start_urls]
+        response_url_netloc = urlparse(response.url).netloc
+        site_name = self.site_names[start_urls_netloc.index(response_url_netloc)]
 
         # Создание элемента данных и заполнение его информацией
         item = NsregItem()
