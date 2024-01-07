@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
-
 import scrapy
 
 from ..base_site_spider import BaseSpiderComponent, EMPTY_PRICE, find_price
@@ -8,9 +6,10 @@ from ..items import NsregItem
 
 REGEX_PATTERN = r"\.\w+:\s*([\d\s]+)₽"
 
+
 class NsregStarnamesSpider(scrapy.Spider):
     name = "nsreg_starnames"
-    start_urls = ["https://starnames.ru/",]
+    start_urls = ["https://starnames.ru/", ]
     allowed_domains = ("starnames.ru")
     site_names = ("ООО «СтарНэймс»",)
 
