@@ -1,3 +1,4 @@
+import itertools
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
@@ -33,7 +34,8 @@ def registrator_list(request):
 
     if search:
         companies = Price.objects.filter(Q(registrator__name__icontains=search) | Q(
-            registrator__city__icontains=search) | Q(price_reg__icontains=search)).order_by(sort_by)
+            registrator__city__icontains=search) | Q(price_reg__icontains=search)).order_by('-parse_id', sort_by)
+        companies = [next(v) for _,v in itertools.groupby(companies, key=lambda x:x.registrator_id)]
     else:
         last_parses = ParseHistory.objects.order_by("-id").all()
         if len(last_parses) > 0:
