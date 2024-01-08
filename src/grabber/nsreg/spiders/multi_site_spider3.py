@@ -30,16 +30,16 @@ class MultiSiteSpider3(scrapy.Spider):
         'https://tapereg.ru/#features-2'
     )
     allowed_domains = (
-        # 'https://a100.ru',
-        'https://bitnames.ru',
-        'https://betnames.ru',
-        'https://namebit.ru',
-        'https://parpro.ru',
+        # 'a100.ru',
+        'bitnames.ru',
+        'betnames.ru',
+        'namebit.ru',
+        'parpro.ru',
         'http://regeon.ru',
-        'https://regiondomains.ru',
-        # 'https://rudy.ru',
-        'https://tapereg.ru'
-    ),
+        'regiondomains.ru',
+        # 'rudy.ru',
+        'tapereg.ru'
+    )
     site_names = (
         # 'ООО «А100»',
         'ООО «БИТНЭЙМС»',
@@ -60,20 +60,16 @@ class MultiSiteSpider3(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r".*(\d+\s+\d+).*",
+            regex=r".*?(\d+).*",
             path={
                 'price_reg': (
-                    '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[1]/'
-                    'div/div/div[2]/div/p[1]/text()'
-
+                    'translate(/html/body/div[2]/div[2]/div/div[1]/div/div/div[1]/div/p/text(), " ", "")'
                 ),
                 'price_prolong': (
-                    '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[2]/'
-                    'div/div/div[2]/div/p[1]/text()'
+                    'translate(/html/body/div[2]/div[2]/div/div[1]/div/div/div[2]/div/p/text(), " ", "")'
                 ),
                 'price_change': (
-                    '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[3]/'
-                    'div/div/div[2]/div/p[1]/text()'
+                    'translate(/html/body/div[2]/div[2]/div/div[1]/div/div/div[3]/div/p/text(), " ", "")'
                 )
             }
 
