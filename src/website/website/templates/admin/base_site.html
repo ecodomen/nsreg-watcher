@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('NEW TITLE') }}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+:root {
+  --primary: #6774d5;
+  --secondary: #585cab;
+  --link-fg: #5c449b;
+  --link-selected-fg: #8f5bb2;
+}
+</style>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

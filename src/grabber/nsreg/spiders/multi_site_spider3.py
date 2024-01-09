@@ -28,7 +28,7 @@ class MultiSiteSpider3(scrapy.Spider):
         'https://regiondomains.ru/#features-2',
         # 'https://rudy.ru/#overlappable',
         'https://tapereg.ru/#features-2'
-    ),
+    )
     allowed_domains = (
         # 'https://a100.ru',
         'https://bitnames.ru',

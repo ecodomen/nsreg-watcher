@@ -18,6 +18,9 @@
               <h5 class="card-title" style="font-family: 'Mulish'; font-style: normal; font-weight: 700; font-size: 24px; line-height: 30px; color: #2D2D2D;">
                 {{ company.registrator.name }}
               </h5>
+              {% if not company.parse %}
+                <p class="card-text-value">Добавлено вручную {{ company.updated_at }}</p>
+              {% endif %}
             </div>
             <div class="col-md-3">
               <p class="card-text-title">Город:</p>
@@ -38,7 +41,7 @@
     </div>
   {% empty %}
     <div class="col-md-12">
-      <p>There are no companies available.</p>
+      <p>Ничего не найдено.</p>
     </div>
   {% endfor %}
 </div>

@@ -3,11 +3,11 @@ from django.db import models
 
 class Registrator(models.Model):
     id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField("Наименование", max_length=255)
     nic_handle1 = models.TextField()
     nic_handle2 = models.TextField()
-    website = models.TextField()
-    city = models.CharField(max_length=255)
+    website = models.TextField("Сайт")
+    city = models.CharField("Город", max_length=255)
 
     def __str__(self):
         return f'{self.id}: {self.name}'
@@ -17,6 +17,8 @@ class Registrator(models.Model):
         return Registrator.objects.get(id=id)
 
     class Meta:
+        verbose_name = 'Регистратор'
+        verbose_name_plural = 'Регистраторы'
         app_label = 'catalog'
 
 
@@ -30,7 +32,7 @@ class Registrator(models.Model):
 
 class ParseHistory(models.Model):
     id = models.BigAutoField(primary_key=True)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField("Дата парсинга", auto_now=True)
 
     def __str__(self):
         return str(self.date)
@@ -45,16 +47,20 @@ class Price(models.Model):
     ]
     id = models.BigAutoField(primary_key=True)
     registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
-    domain = models.CharField(max_length=10, choices=DOMAINS)
-    parse = models.ForeignKey(ParseHistory, on_delete=models.CASCADE)
-    price_reg = models.DecimalField(max_digits=10, decimal_places=2)
-    price_prolong = models.DecimalField(max_digits=10, decimal_places=2)
-    price_change = models.DecimalField(max_digits=10, decimal_places=2)
+    domain = models.CharField("Домен", max_length=10, choices=DOMAINS)
+    parse = models.ForeignKey(ParseHistory, on_delete=models.CASCADE, null=True)
+    price_reg = models.DecimalField("Регистрация", max_digits=10, decimal_places=2)
+    price_prolong = models.DecimalField("Продление", max_digits=10, decimal_places=2)
+    price_change = models.DecimalField("Перенос", max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
+    updated_at = models.DateTimeField("Дата изменения", auto_now=True, null=True)
 
     def __str__(self):
         return f'{self.id}: {self.price_reg}, {self.price_prolong}, {self.price_change}'
 
     class Meta:
+        verbose_name = 'Цена'
+        verbose_name_plural = 'Цены'
         app_label = 'catalog'
 
 

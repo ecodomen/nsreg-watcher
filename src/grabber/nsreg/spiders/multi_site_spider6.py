@@ -20,9 +20,9 @@ class MultiSiteSpider6(scrapy.Spider):
         'https://technames.ru/tariffs/'
     )
     allowed_domains = (
-        'https://clevereg.ru',
-        'https://targetnames.ru',
-        'https://technames.ru'
+        'clevereg.ru',
+        'targetnames.ru',
+        'technames.ru'
     )
     site_names = (
         'ООО «Клеверег»',
@@ -38,11 +38,11 @@ class MultiSiteSpider6(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"([0-9]{1,3}(?:\s[0-9]{3})*[.,\s]?)?руб\.",
+            regex=r"([0-9]+)?руб\.",
             path={
-                'price_reg': '//*[@id="post-66"]/div/div/figure/table/tbody/tr[1]/td[2]',
-                'price_prolong': '//*[@id="post-66"]/div/div/figure/table/tbody/tr[2]/td[2]',
-                'price_change': '//*[@id="post-66"]/div/div/figure/table/tbody/tr[3]/td[2]'
+                'price_reg': 'translate(//*[@id="post-66"]/div/div/figure/table/tbody/tr[1]/td[2]/text(), " ", "")',
+                'price_prolong': 'translate(//*[@id="post-66"]/div/div/figure/table/tbody/tr[2]/td[2]/text(), " ", "")',
+                'price_change': 'translate(//*[@id="post-66"]/div/div/figure/table/tbody/tr[3]/td[2]/text(), " ", "")'
             }
         )
 

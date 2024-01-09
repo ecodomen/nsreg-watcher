@@ -6,9 +6,9 @@ from ..base_site_spider import BaseSpiderComponent
 class NsregSpacewebdomainsSpider(scrapy.Spider):
     name = 'nsreg_spacewebdomains_spider'
 
-    start_urls = 'https://spacewebdomains.ru/%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B/'
+    start_urls = ['https://spacewebdomains.ru/%D1%82%D0%B0%D1%80%D0%B8%D1%84%D1%8B/']
     allowed_domains = 'spacewebdomains.ru'
-    site_names = 'ООО «СпейсВэб»'
+    site_names = ('ООО «СпейсВэб»',)
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):
