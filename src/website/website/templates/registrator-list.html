@@ -22,17 +22,21 @@
                 <p class="card-text-value">Добавлено вручную {{ company.updated_at }}</p>
               {% endif %}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <p class="card-text-title">Город:</p>
               <p class="card-text-value">{{ company.registrator.city }}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <p class="card-text-title">Регистрация:</p>
               <p class="card-text-value">{{ company.price_reg }}</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <p class="card-text-title" style="margin-right: 20px;">Пролонгация:</p>
               <p class="card-text-value">{{ company.price_prolong }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="card-text-title" style="margin-right: 20px;">Перенос:</p>
+              <p class="card-text-value">{{ company.price_change }}</p>
             </div>
           </div>
           <a href="{{ company.registrator.website }}" class="card-link mt-auto" style="font-family: 'Mulish'; font-style: normal; position: absolute; right: 10px;">Посмотреть на сайте</a>
