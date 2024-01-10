@@ -61,9 +61,9 @@ class BaseSpiderComponent:
         price_change = find_price(self.regex['price_change'], price_change)
 
         # Получение имя сайта
-        start_urls_netloc = [urlparse(url).netloc for url in self.start_urls]
-        response_url_netloc = urlparse(response.url).netloc
-        site_name = self.site_names[start_urls_netloc.index(response_url_netloc)]
+        start_urls_hostname = [urlparse(url).hostname for url in self.start_urls]
+        response_url_hostname = urlparse(response.url).hostname
+        site_name = self.site_names[start_urls_hostname.index(response_url_hostname)]
 
         # Создание элемента данных и заполнение его информацией
         item = NsregItem()
