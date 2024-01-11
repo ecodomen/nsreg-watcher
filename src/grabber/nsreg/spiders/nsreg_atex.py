@@ -6,7 +6,7 @@ from ..base_site_spider import BaseSpiderComponent
 
 class NsregAtexSpider(scrapy.Spider):
     name = "nsreg_atex.py"
-    start_urls = ["https://domainshop.ru/services/"]
+    start_urls = ["https://atex.ru/domains/"]
     allowed_domains = ("atex.ru")
     site_names = ("ООО «Атекс»",)
 
