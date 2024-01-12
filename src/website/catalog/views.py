@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
+
+from .models import Price
 from .forms import CompaniesSortForm
 
 
