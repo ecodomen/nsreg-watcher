@@ -24,7 +24,6 @@ def registrator_list(request):
                        + SORT_FIELD_NAMES.get(
                         form.cleaned_data['sort_by'], 'name'))
             search = form.cleaned_data['search']
-            companies = Price.objects.order_by(sort_by)
 
     else:
         form = CompaniesSortForm()
@@ -33,13 +32,13 @@ def registrator_list(request):
 
     if search:
         companies = Price.objects.filter(Q(registrator__name__icontains=search) | Q(
-            registrator__city__icontains=search) | Q(price_reg__icontains=search)).order_by(sort_by)
+            registrator__city__icontains=search) | Q(price_reg__icontains=search))
     else:
-        last_parses = ParseHistory.objects.order_by("-id").all()
-        if len(last_parses) > 0:
-            companies = list(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
-        else:
-            companies = []
+        companies = Price.objects.filter()
+
+    companies = companies.order_by('-parse_id', sort_by)
+    companies = Price.objects.filter(id__in=companies).distinct('registrator_id')
+
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
 
