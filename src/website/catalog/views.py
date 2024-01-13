@@ -37,7 +37,7 @@ def registrator_list(request):
     else:
         last_parses = ParseHistory.objects.order_by("-id").all()
         if len(last_parses) > 0:
-            companies = list(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
+            companies = set(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
             companies.update(Price.objects.all())
         else:
             companies = []
