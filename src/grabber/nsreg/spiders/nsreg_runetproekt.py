@@ -18,11 +18,11 @@ class NsregRunetproektSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            # regex=r"([0-9]{1,3}(?:\s[0-9]{3})*\s?)?₽",
+            regex=r".*?([0-9]+).*",
             path={
-                'price_reg': '//*[@id="post-83"]/div/table/tbody/tr[2]/td[2]/span',
-                'price_prolong': '//*[@id="post-83"]/div/table/tbody/tr[3]/td[2]/span',
-                'price_change': '//*[@id="post-83"]/div/table/tbody/tr[6]/td[2]/span'
+                'price_reg': '//*[@id="post-83"]/div/table/tbody/tr[2]/td[2]/span/text()',
+                'price_prolong': '//*[@id="post-83"]/div/table/tbody/tr[3]/td[2]/span/text()',
+                'price_change': '//*[@id="post-83"]/div/table/tbody/tr[6]/td[2]/span/text()'
             }
         )
 
