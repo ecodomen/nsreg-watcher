@@ -12,6 +12,7 @@ SORT_FIELD_NAMES = {
     'RE': 'price_reg',
     'PR': 'price_prolong',
     'PE': 'price_change',
+
 }
 
 
@@ -19,7 +20,9 @@ def registrator_list(request):
     if request.method == "POST":
         form = CompaniesSortForm(request.POST)
         if form.is_valid():
-            sort_by = form.cleaned_data['reverse_order'] + SORT_FIELD_NAMES.get(form.cleaned_data['sort_by'], 'name')
+            sort_by = (form.cleaned_data['reverse_order']
+                       + SORT_FIELD_NAMES.get(
+                        form.cleaned_data['sort_by'], 'name'))
             search = form.cleaned_data['search']
             companies = Price.objects.order_by(sort_by)
 
@@ -29,13 +32,12 @@ def registrator_list(request):
         search = ''
 
     if search:
-        companies = Price.objects.filter(
-            Q(registrator__name__icontains=search) | Q(registrator__city__icontains=search) | Q(price_reg__icontains=search)
-        ).order_by(sort_by)
+        companies = Price.objects.filter(Q(registrator__name__icontains=search) | Q(
+            registrator__city__icontains=search) | Q(price_reg__icontains=search)).order_by(sort_by)
     else:
         last_parses = ParseHistory.objects.order_by("-id").all()
         if len(last_parses) > 0:
-            companies = set(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
+            companies = list(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
             companies.update(Price.objects.all())
         else:
             companies = []
@@ -51,10 +53,7 @@ def registrator_details(request, id):
 
 
 def about(request):
-    return render(
-        request,
-        'about-us.html',
-    )
+    return render(request, 'about-us.html', )
 
 
 def project_view(request):
