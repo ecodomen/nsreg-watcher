@@ -1,5 +1,5 @@
 """
-Наименования сайтов: ООО «101домен Регистрация Доменов», ООО «Аукцион доменов», ООО «Безопасный регистратор»,
+Наименования сайтов: ООО «Аукцион доменов», ООО «Безопасный регистратор»,
 ООО «Быстрый Хостинг», ООО «Гига Хостинг», ООО «Городские Домены», ООО «Дата Плюс», ООО «Дата Сити», ООО «Дом Доменов»,
 ООО «Дом Хостинга», ООО «Доменные Сервисы», ООО «Доменный Мастер», ООО «Домены Плюс», ООО «Домены Хостинг»,
 ООО «ДОМЕНЫ.РУ», ООО «Домэйн Агент», ООО «Домэйн Груп», ООО «Зона Доменов», ООО «Изи Хостинг», ООО «Магазин Доменов»
@@ -8,7 +8,7 @@
 ООО «Регио», ООО «Регис», ООО «Регистр 1», ООО «Смарт Домэйнс», ООО «Техно Дата», ООО «Турбо Хостинг»,
 ООО «Фабрика Доменов», ООО «ФАЕРФОКС», ООО «Хостинг Парк», ООО «Хот Хостинг», ООО «Центр Доменов», ООО «Ю.РУ»
 
-Адреса сайтов: https://sidename.ru, https://domainauction.ru, https://www.safereg.ru, https://www.speedhosting.ru,
+Адреса сайтов: https://domainauction.ru, https://www.safereg.ru, https://www.speedhosting.ru,
 https://www.gigahosting.ru, https://citydomains.ru, https://www.data-plus.ru, https://www.datacity.ru,
 https://domainhouse.ru, https://www.domhostinga.ru, https://domainservice.ru, https://domainmaster.ru,
 https://domainplus.ru, https://www.domainshosting.ru, https://domains.ru, https://domainagent.ru,
@@ -30,7 +30,7 @@ class MultiSiteSpider1(scrapy.Spider):
     name = 'multi_site_spider1'
 
     start_urls = (
-        'https://sidename.ru/site/tariffs', 'https://domainauction.ru/site/tariffs',
+        'https://domainauction.ru/site/tariffs',
         'https://www.safereg.ru/site/tariffs', 'https://www.speedhosting.ru/site/tariffs',
         'https://www.gigahosting.ru/site/tariffs', 'https://citydomains.ru/site/tariffs',
         'https://www.data-plus.ru/site/tariffs', 'https://www.datacity.ru/site/tariffs',
@@ -53,7 +53,7 @@ class MultiSiteSpider1(scrapy.Spider):
         'http://domaincenter.ru/site/tariffs', 'http://yu.ru/site/tariffs'
     )
     allowed_domains = (
-        'https://sidename.ru', 'https://domainauction.ru', 'https://www.safereg.ru',
+        'https://domainauction.ru', 'https://www.safereg.ru',
         'https://www.speedhosting.ru', 'https://www.gigahosting.ru', 'https://citydomains.ru',
         'https://www.data-plus.ru', 'https://www.datacity.ru', 'https://domainhouse.ru',
         'https://www.domhostinga.ru', 'https://domainservice.ru', 'https://domainmaster.ru',
@@ -68,7 +68,7 @@ class MultiSiteSpider1(scrapy.Spider):
         'https://www.hostingpark.ru', 'https://www.hothosting.ru', 'http://domaincenter.ru', 'http://yu.ru'
     ),
     site_names = (
-        'ООО «101домен Регистрация Доменов»', 'ООО «Аукцион доменов»', 'ООО «Безопасный регистратор»',
+        'ООО «Аукцион доменов»', 'ООО «Безопасный регистратор»',
         'ООО «Быстрый Хостинг»', 'ООО «Гига Хостинг»', 'ООО «Городские Домены»', 'ООО «Дата Плюс»',
         'ООО «Дата Сити»', 'ООО «Дом Доменов»', 'ООО «Дом Хостинга»', 'ООО «Доменные Сервисы»',
         'ООО «Доменный Мастер»', 'ООО «Домены Плюс»', 'ООО «Домены Хостинг»', 'ООО «ДОМЕНЫ.РУ»',
