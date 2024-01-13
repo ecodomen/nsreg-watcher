@@ -18,7 +18,7 @@ class NsregSalenamesSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            # regex=r".*(([0-9]*[.,])?[0-9]{3}).*",
+            regex=r".*?([0-9]+).*",
             path={
                 'price_reg': '//*[@id="content"]/div/div/table[1]/tbody/tr[1]/td[2]/text()',
                 'price_prolong': '//*[@id="content"]/div/div/table[1]/tbody/tr[2]/td[2]/text()',
