@@ -69,16 +69,13 @@ class MultiSiteSpider4(scrapy.Spider):
             regex=r"([0-9]+)\s+₽.*",
             path={
                 'price_reg': (
-                    '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/'
-                    'table/tbody/tr[2]/td[2]/div/p/text()'
+                    '/html/body/main/section[4]/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[2]/td[2]/div/p/text()'
                 ),
                 'price_prolong': (
-                    '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/'
-                    'table/tbody/tr[3]/td[2]/div/p/text()'
+                    '/html/body/main/section[4]/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[3]/td[2]/div/p/text()'
                 ),
                 'price_change': (
-                    '/html/body/div[1]/div[4]/div/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/'
-                    'table/tbody/tr[4]/td[2]/div/p/text()'
+                    '/html/body/main/section[4]/div[2]/div[3]/div/div/div/div[2]/div/div/div[1]/div/table/tbody/tr[4]/td[2]/div/p/text()'
                 )
             }
         )
