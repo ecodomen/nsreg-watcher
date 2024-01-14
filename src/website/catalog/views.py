@@ -37,8 +37,8 @@ def registrator_list(request):
     else:
         last_parses = ParseHistory.objects.order_by("-id").all()
         if len(last_parses) > 0:
-            companies = set(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by))
-            companies.update(Price.objects.all())
+            companies = list(Price.objects.filter(parse=last_parses[0]).all().order_by(sort_by)) + list(Price.objects.filter(parse__isnull=True))
+            companies = sorted(companies, key=lambda x: x.id)
         else:
             companies = []
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
