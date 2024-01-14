@@ -26,7 +26,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'https://parpro.ru/#features-2',
         'http://regeon.ru/#features-2',
         'https://regiondomains.ru/#features-2',
-        # 'https://rudy.ru/#overlappable',
         'https://tapereg.ru/#features-2'
     )
     allowed_domains = (
@@ -37,7 +36,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'parpro.ru',
         'http://regeon.ru',
         'regiondomains.ru',
-        # 'rudy.ru',
         'tapereg.ru'
     )
     site_names = (
@@ -48,7 +46,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'ООО «Пар»',
         'ООО «РЕГЕОН»',
         'ООО «Регион»',
-        # 'ООО «РУДИ»',
         'ООО «СМП №2»'
     )
 
