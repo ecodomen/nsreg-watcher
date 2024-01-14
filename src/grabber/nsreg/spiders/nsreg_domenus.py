@@ -6,10 +6,10 @@ from ..items import NsregItem
 
 
 class NsregWebnamesSpider(scrapy.Spider):
-    name = 'nsreg_2domains'
-    allowed_domains = ['2domains.ru']
-    start_urls = ['https://2domains.ru/domains']
-    site_names = ("ООО «2ДОМЕЙНС.РУ»",)
+    name = "nsreg_domenus"
+    allowed_domains = ["domenus.ru"]
+    start_urls = ["https://www.domenus.ru/domain/zone/ru"]
+    site_names = ("ООО «Регистратор»",)
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
@@ -17,24 +17,19 @@ class NsregWebnamesSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex={
-                'price_reg': r'(\d+)\s*₽',
-                'price_prolong': r'\s*Продление\s*—\s*(\d+)\s*₽\s*',
-                'price_change': r'(\d+)\s*₽',
-            },
+            regex=r'([0-9]{3})',
             path={
-                'price_reg': '/html/body/div/div[1]/section[3]/div/div[1]/div[1]/a/div[2]/text()',
-                'price_prolong': '/html/body/div/div[1]/section[3]/div/div[1]/div[1]/a/div[4]/text()',
-                'price_change': '//*[@id="tab00"]/div/div[1]/div[1]/span/text()',
+                'price_reg': '/html/body/main/div[1]/div[3]/div/div/div[2]/div[2]/span/text()',
+                'price_prolong': '/html/body/main/div[1]/div[3]/div/div/div[1]/div[2]/text()',
+                'price_change': '/html/body/main/div[1]/div/div/p[3]/strong/text()',
             },
         )
 
     def parse_price_change(self, response):
         price_change = response.xpath(self.component.path['price_change']).get()
         price_change = find_price(self.component.regex['price_change'], price_change)
-
         item = NsregItem()
-        item['name'] = self.site_names[0]
+        item['name'] = "ООО «Регистратор»"
         price = item.get('price', EMPTY_PRICE)
         price['price_change'] = price_change
         item['price'] = price
@@ -49,12 +44,12 @@ class NsregWebnamesSpider(scrapy.Spider):
         price_prolong = find_price(self.component.regex['price_prolong'], price_prolong)
 
         yield scrapy.Request(
-            'https://2domains.ru/domains/transfer',
+            'https://www.domenus.ru/support/help/group/1343472/question/perenos-domenov-ru-su-rf-k-registratoru-domenus-ru-ot-drugogo-registratora',
             callback=self.parse_price_change,
         )
 
         item = NsregItem()
-        item['name'] = self.site_names[0]
+        item['name'] = "ООО «Регистратор»"
         price = item.get('price', EMPTY_PRICE)
         price['price_reg'] = price_reg
         price['price_prolong'] = price_prolong

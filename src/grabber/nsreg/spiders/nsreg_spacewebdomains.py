@@ -20,12 +20,12 @@ class NsregSpacewebdomainsSpider(scrapy.Spider):
             start_urls=self.start_urls,
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
-            regex=r"(\d+)",
+            regex=r".*?([0-9]+).*",
             path={
                 'price_reg': 'translate(/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[2]/td[2]/text(), " ", "")',
                 'price_prolong': 'translate(/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[3]/td[2]/text(), " ", "")',
-                'price_change': 'translate(/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[4]/td[2]/text(), " ", "")',
-            },
+                'price_change': 'translate(/html/body/div[1]/div/div[1]/main/article/div/div/figure/table/tbody/tr[4]/td[2]/text(), " ", "")'
+            }
         )
 
     # Метод для обработки ответов на запросы
