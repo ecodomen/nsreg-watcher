@@ -1,11 +1,11 @@
 """
 Наименования сайтов: ООО «А100», ООО «БИТНЭЙМС», ООО «Бэтнеймс», ООО «НЕЙМБИТ», ООО «Пар», ООО «РЕГЕОН», ООО «Регион»,
-ООО «РУДИ», ООО «СМП №2»
+ ООО «СМП №2»
 
 Адреса сайтов: https://a100.ru, https://bitnames.ru, https://betnames.ru, https://namebit.ru, https://parpro.ru,
-http://regeon.ru, https://regiondomains.ru, https://rudy.ru, https://tapereg.ru,
+http://regeon.ru, https://regiondomains.ru, https://tapereg.ru,
 
-ООО «А100» и  ООО «РУДИ» закомментированы, т.к. есть подозрение, что они не подходят под данную
+ООО «А100» закомментирован, т.к. есть подозрение, что он не подходит под данную
 группу
 
 """
@@ -26,7 +26,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'https://parpro.ru/#features-2',
         'http://regeon.ru/#features-2',
         'https://regiondomains.ru/#features-2',
-        # 'https://rudy.ru/#overlappable',
         'https://tapereg.ru/#features-2'
     )
     allowed_domains = (
@@ -37,7 +36,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'parpro.ru',
         'http://regeon.ru',
         'regiondomains.ru',
-        # 'rudy.ru',
         'tapereg.ru'
     )
     site_names = (
@@ -48,7 +46,6 @@ class MultiSiteSpider3(scrapy.Spider):
         'ООО «Пар»',
         'ООО «РЕГЕОН»',
         'ООО «Регион»',
-        # 'ООО «РУДИ»',
         'ООО «СМП №2»'
     )
 
