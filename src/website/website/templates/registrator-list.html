@@ -20,6 +20,8 @@
               </h5>
               {% if not company.parse %}
                 <p class="card-text-value">Добавлено вручную {{ company.updated_at }}</p>
+              {% else %}
+                <p class="card-text-value">{{ company.parse.date|date:"SHORT_DATE_FORMAT" }}</p>
               {% endif %}
             </div>
             <div class="col-md-2">
