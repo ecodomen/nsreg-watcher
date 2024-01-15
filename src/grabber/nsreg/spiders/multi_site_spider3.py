@@ -5,7 +5,7 @@
 Адреса сайтов: https://a100.ru, https://bitnames.ru, https://betnames.ru, https://namebit.ru, https://parpro.ru,
 http://regeon.ru, https://regiondomains.ru, https://tapereg.ru,
 
-ООО «А100» закомментирован, т.к. есть подозрение, что он не подходяит под данную
+ООО «А100» закомментирован, т.к. есть подозрение, что он не подходит под данную
 группу
 
 """
