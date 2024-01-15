@@ -18,7 +18,7 @@ class MultiSiteSpider3(scrapy.Spider):
             allowed_domains=self.allowed_domains,
             site_names=self.site_names,
             regex=r"([0-9]+)?руб",
-            path={ 
+            path={
                 'price_reg':        (
                     'translate(/html/body/div[1]/div[3]/article/section/table[1]/tr/td[1]/article[1]/'
                     'div/table/tr[5]/td[2]/text(), "\xa0 ", "")'
