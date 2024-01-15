@@ -36,7 +36,7 @@ def registrator_list(request):
     else:
         companies = Price.objects.filter()
 
-    companies = companies.order_by('-parse_id', sort_by)
+    companies = companies.order_by(sort_by, '-parse_id')
     companies = Price.objects.filter(id__in=companies).distinct('registrator_id')
 
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
