@@ -30,15 +30,15 @@
             </div>
             <div class="col-md-2">
               <p class="card-text-title">Регистрация:</p>
-              <p class="card-text-value">{{ company.price_reg }}</p>
+              <p class="card-text-value">{{ company.price_reg|default_if_none:"--" }}</p>
             </div>
             <div class="col-md-2">
               <p class="card-text-title" style="margin-right: 20px;">Пролонгация:</p>
-              <p class="card-text-value">{{ company.price_prolong }}</p>
+              <p class="card-text-value">{{ company.price_prolong|default_if_none:"--" }}</p>
             </div>
             <div class="col-md-3">
               <p class="card-text-title" style="margin-right: 20px;">Перенос:</p>
-              <p class="card-text-value">{{ company.price_change }}</p>
+              <p class="card-text-value">{{ company.price_change|default_if_none:"--" }}</p>
             </div>
           </div>
           <a href="{{ company.registrator.website }}" class="card-link mt-auto" style="font-family: 'Mulish'; font-style: normal; position: absolute; right: 10px;">Посмотреть на сайте</a>
