@@ -10,6 +10,7 @@ TOKEN = os.environ["BOT_TOKEN"]
 ERROR_LOGS_PATH = "logs/grabber_errors.log"
 SPIDERS_SCRIPT_PATH = "compose/scrapy/scrapy-dev.sh"
 CHAT_ID = os.environ["CHAT_ID"]
+TOPIC_SUPPORT_ID = int(os.environ["TOPIC_SUPPORT_ID"])    # 1435
 
 router = Router()
 bot = Bot(TOKEN, parse_mode="markdown")
@@ -30,6 +31,7 @@ async def command_start_handler(*args, **kwargs) -> None:
 
     await bot.send_message(
         chat_id=CHAT_ID,
+        message_thread_id=TOPIC_SUPPORT_ID,
         text="🕷️🕷️🕷️ Запуск спайдеров 🕷️🕷️🕷️"
     )
     try:
@@ -43,12 +45,14 @@ async def command_start_handler(*args, **kwargs) -> None:
 
         await bot.send_message(
             chat_id=CHAT_ID,
+            message_thread_id=TOPIC_SUPPORT_ID,
             text=f"Спайдеры завершили свою работу {spider_1}\nError logs:\n```{error_log}```"
         )
     except subprocess.CalledProcessError as error:
         spider_2 = r"/╲/\╭[ ☉ ﹏ ☉ ]╮/\╱\ "
         await bot.send_message(
             chat_id=CHAT_ID,
+            message_thread_id=TOPIC_SUPPORT_ID,
             text=f"{spider_2}\n{error}"
         )
 
