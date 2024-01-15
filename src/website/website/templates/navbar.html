@@ -30,8 +30,8 @@
       </form>
     </div>
   </nav> -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 
@@ -40,7 +40,7 @@
 
   <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #FFFFFF !important;">
     <a class="navbar-brand" href="/list" style="position: absolute; left: 130px; top: 18px;">
-      <img src="../static/ecoIcons/Логотип (light).svg" width="264" height="72" class="logo d-inline-block align-top" alt="Логотип" style="width: 264px; height: 72px;">
+      <img src="{% static 'ecoIcons/Логотип (light).svg'%}" width="264" height="72" class="logo d-inline-block align-top" alt="Логотип" style="width: 264px; height: 72px;">
     </a>
     <div class="projbutton ml-auto">
       <a href="/project">Проект</a>
