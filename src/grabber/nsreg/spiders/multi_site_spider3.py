@@ -7,6 +7,7 @@ http://regeon.ru, https://regiondomains.ru, https://tapereg.ru,
 
 ООО «А100» закомментирован, т.к. есть подозрение, что он не подходит под данную
 группу
+С ООО «НЕЙМБИТ» то же самое
 
 """
 
@@ -22,7 +23,7 @@ class MultiSiteSpider3(scrapy.Spider):
         # 'https://a100.ru/#overlappable',
         'https://bitnames.ru/#features-2',
         'https://betnames.ru/#features-2',
-        'https://namebit.ru/#features-2',
+        # 'https://namebit.ru/#features-2',
         'https://parpro.ru/#features-2',
         'http://regeon.ru/#features-2',
         'https://regiondomains.ru/#features-2',
@@ -32,7 +33,7 @@ class MultiSiteSpider3(scrapy.Spider):
         # 'a100.ru',
         'bitnames.ru',
         'betnames.ru',
-        'namebit.ru',
+        # 'namebit.ru',
         'parpro.ru',
         'http://regeon.ru',
         'regiondomains.ru',
@@ -42,7 +43,7 @@ class MultiSiteSpider3(scrapy.Spider):
         # 'ООО «А100»',
         'ООО «БИТНЭЙМС»',
         'ООО «Бэтнеймс»',
-        'ООО «НЕЙМБИТ»',
+        # 'ООО «НЕЙМБИТ»',
         'ООО «Пар»',
         'ООО «РЕГЕОН»',
         'ООО «Регион»',
