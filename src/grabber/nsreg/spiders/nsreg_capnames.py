@@ -8,7 +8,7 @@ REGEX_PATTERN = r".*?([0-9]+)₽"
 class NsregCapnamesSpider(scrapy.Spider):
     name = "nsreg_capnames"
     start_urls = ["https://capnames.ru/"]
-    allowed_domains = "capnames.ru"
+    allowed_domains = ["capnames.ru"]
 
     site_names = ("ООО «КАПИТАЛЪ»",)
 
