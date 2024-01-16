@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-md-3">
               <h5 class="card-title" style="font-family: 'Mulish'; font-style: normal; font-weight: 700; font-size: 24px; line-height: 30px; color: #2D2D2D;">
-                {{ company.registrator.name }}
+                <a href="{% url 'registrator_details' id=company.registrator.id %}" style="text-decoration: none; color: #2D2D2D;">{{ company.registrator.name }}</a>
               </h5>
               {% if not company.parse %}
                 <p class="card-text-value">Добавлено вручную {{ company.updated_at }}</p>

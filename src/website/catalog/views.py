@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from .models import Price
+from .models import Price, Registrator
 from .forms import CompaniesSortForm
 
 
@@ -45,10 +45,11 @@ def registrator_list(request):
 
 def registrator_details(request, id):
     try:
-        company = Price.objects.get(id=id)
+        registrator = Registrator.objects.get(id=id)
+        prices = Price.objects.filter(registrator=registrator)
     except Price.DoesNotExist:
         return HttpResponseNotFound(f"Компания с идентификатором {id} в базе не найдена.")
-    return render(request, 'registrator-details.html', {'company': company})
+    return render(request, 'registrator-details.html', {'prices': prices, 'registrator': registrator})
 
 
 def about(request):
