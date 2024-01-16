@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
 
-    'catalog'
+    'catalog',
+    'whois_lookup'
 ]
 
 MIDDLEWARE = [
