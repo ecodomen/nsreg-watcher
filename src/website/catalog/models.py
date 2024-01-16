@@ -49,9 +49,9 @@ class Price(models.Model):
     registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
     domain = models.CharField("Домен", max_length=10, choices=DOMAINS)
     parse = models.ForeignKey(ParseHistory, on_delete=models.CASCADE, null=True)
-    price_reg = models.DecimalField("Регистрация", max_digits=10, decimal_places=2, blank=True, null=True)
-    price_prolong = models.DecimalField("Продление", max_digits=10, decimal_places=2, blank=True, null=True)
-    price_change = models.DecimalField("Перенос", max_digits=10, decimal_places=2, blank=True, null=True)
+    price_reg = models.DecimalField("Регистрация", max_digits=10, decimal_places=2)
+    price_prolong = models.DecimalField("Продление", max_digits=10, decimal_places=2)
+    price_change = models.DecimalField("Перенос", max_digits=10, decimal_places=2)
     created_at = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
     updated_at = models.DateTimeField("Дата изменения", auto_now=True, null=True)
 
