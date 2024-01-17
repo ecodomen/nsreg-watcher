@@ -1,39 +1,37 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price
-# работает
-REGEX_PATTERN = r"([0-9]+[.,\s])?руб"
-EMPTY_PRICE = {
-    'price_reg': None,
-    'price_prolong': None,
-    'price_change': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregMasterhostSpider(scrapy.Spider):
-    name = "nsreg_masterhost"
-    allowed_domains = ["masterhost.ru"]
-    start_urls = ["https://masterhost.ru/domain/price/"]
+    name = "nsreg_masterhost.py"
+    start_urls = ["https://masterhost.ru/domain/"]
+    allowed_domains = ("masterhost.ru")
+    site_names = ("ООО «МАСТЕРХОСТ»",)
 
+    # Конструктор класса
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Инициализация компонента BaseSpiderComponent с требуемыми параметрами
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex={
+                'price_reg': r"(\d+[.,]?)\d{0,2}",
+                'price_prolong': r"(\d+[.,]?)\d{0,2}",
+                'price_change': "Бесплатный"
+            },
+
+            path={
+                'price_reg': '//div[@class="priceBox"][1]//span[@class="text-light"]/text()',
+                'price_prolong': '//div[@class="action-holder"][1]//span[@class="text-light"]/text()',
+                'price_change': '//li[@class="reset-list-margin"][3]/text()'
+            }
+        )
+
+    # Метод для обработки ответов на запросы
     def parse(self, response):
-        price_reg = response.xpath(
-            '//*[@id="app"]/section[1]/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[2]/span/span/text()').get()
-        price_reg = find_price(REGEX_PATTERN, price_reg)
-
-        price_prolong = response.xpath(
-            '//*[@id="app"]/section[1]/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[3]/span/text()').get()
-        price_prolong = find_price(REGEX_PATTERN, price_prolong)
-
-        price_change = None
-
-        item = NsregItem()
-        item['name'] = "ООО «МАСТЕРХОСТ»"
-        price = item.get('price', EMPTY_PRICE)
-        price['price_reg'] = price_reg
-        price['price_prolong'] = price_prolong
-        price['price_change'] = price_change
-        item['price'] = price
-
-        yield item
+        # Применение метода parse компонента BaseSpiderComponent
+        return self.component.parse(response)
