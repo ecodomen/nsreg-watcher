@@ -2,42 +2,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 
-<div class="wrapper">
-    <form class="forma mb-3" action="{% url 'registrator_list' %}" method="post">
+<div class="wrapper-whois">
+    <form class="forma-whois mb-3" action="{% url 'registrator_list' %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input class="btn btn-primary ml-2" type="submit" name="search_sub" value="Показать">
+        {{ domain_lookup_form.domain.label }}
+        {{ domain_lookup_form.domain }}
+        <input class="btn btn-primary ml-2" type="submit" name="whois_sub" value="Проверить">
+        {% if messages %}
+            <ul class="messages" style="list-style-type: none;">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
     </form>
-    </div>
 
+</div>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 
-
-
-
-
-.wrapper {
-    margin-top: 100px !important;
-    margin-bottom: 60px !important;
+.wrapper-whois {
+    margin-top: 20px !important;
     display: flex !important;
     width: 1730px;
-    height: 150px;
     margin: 10px auto; 
-    border: 1px solid #E5E5E9;
-    border-radius: 10px;
     padding: 20px;
-    align-items: center;
-    border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
-    border-radius: 10px;
-    border-image-slice: 1;
-    border-style: solid;
-
+    align-items: center;  
 }
 
-.forma {
+.forma-whois {
     margin-top: 17px;
-    margin-left: 225px;
+    margin-left: 600px;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
@@ -46,8 +41,8 @@
     flex: 1;
 }
 
-.forma input[type="text"] {
-    width: 429px;
+.forma-whois input[type="text"] {
+    width: 600px;
     height: 70px;
     margin-left: 5px;
     box-sizing: border-box;
@@ -64,11 +59,11 @@
     margin-right: 20px;
 }
 
-.forma input[type="text"]::placeholder {
+.forma-whois input[type="text"]::placeholder {
     color: rgba(45, 45, 45, 0.7);
 }
 
-.forma input[type="text"]:focus {
+.forma-whois input[type="text"]:focus {
     border: 1px solid #14D563;
     outline: none;
 }
