@@ -2,9 +2,15 @@
 {% block content %}
 {% include 'domain-lookup-form.html' with form=form %}
 
-<div class="row" style="margin-top: 100px;">
-  <h5>{{results}}</h5>
-</div>
+{% comment %} <div class="row" style="margin-top: 100px;">
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+</div> {% endcomment %}
 
 
             

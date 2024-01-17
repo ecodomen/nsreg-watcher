@@ -1,22 +1,12 @@
 from django import forms
-import validators
-import whois
+from django.core.validators import RegexValidator
+
+URL_VALIDATOR_MESSAGE = 'Недопустимый URL.'
+URL_VALIDATOR = RegexValidator(regex=r'^(https?://)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9._%+-]*)*$', message=URL_VALIDATOR_MESSAGE)
 
 
 class DomainLookupForm(forms.Form):
     search = forms.CharField(
         label="Домен:",
         max_length=253,
-        required=False,)
-
-    def is_valid(self):
-        valid = super(DomainLookupForm, self).is_valid()
-        if (not validators.domain(self.cleaned_data.get("search"))):
-            self.add_error('search', 'Invalid URL')
-        else:
-            try:
-                whois.whois(self.cleaned_data.get("search"))
-                self.add_error('search', f"Домен: {self.cleaned_data.get('search')} занят.")
-            except whois.parser.PywhoisError:
-                self.add_error('search', f"Домен: {self.cleaned_data.get('search')} свободен.")
-        return valid
+        required=False, validators=[URL_VALIDATOR])

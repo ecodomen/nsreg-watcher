@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.contrib import messages
+
 from .forms import DomainLookupForm
+
 import whois
 
 
@@ -8,17 +11,15 @@ def domain_lookup(request):
         form = DomainLookupForm(request.POST)
         if form.is_valid():
             search = form.cleaned_data.get('search')
-            results = ""
+            try:
+                whois.whois(search)
+                messages.success(request, f"Домен: {search} занят.")
+            except whois.parser.PywhoisError:
+                messages.success(request, f"Домен: {search} свободен.")
+        else:
+            messages.error(request, "Недопустимый URL.")
     else:
         form = DomainLookupForm()
-        search = ''
-        results = ''
 
-    if search:
-        try:
-            whois.whois(search)
-            results = f"Домен: {search} занят."
-        except whois.parser.PywhoisError:
-            results = f"Домен: {search} свободен."
-
-    return render(request, 'domain-lookup-details.html', {'results': results, 'form': form})
+    # return render(request, 'registrator-list.html', {'form': form})
+    return render(request, 'domain-lookup-details.html', {'form': form})
