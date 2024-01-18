@@ -1,42 +1,29 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from nsreg.items import NsregItem
 
-from ..utils import find_price_sub
-
-
-REGEX_PATTERN = r".*(\d+\s+\d+).*"
-EMPTY_PRICE = {
-    'price_reg': None,
-    'price_prolong': None,
-    'price_change': None,
-}
+from ..base_site_spider import BaseSpiderComponent
 
 
 class Nsreg_ad100Spider(scrapy.Spider):
     name = 'nsreg_a100'
     allowed_domains = ['a100.ru']
     start_urls = ['https://a100.ru/#overlappable']
+    site_names = ("ООО «А100»",)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.component = BaseSpiderComponent(
+            start_urls=self.start_urls,
+            allowed_domains=self.allowed_domains,
+            site_names=self.site_names,
+            regex=r".*?(\d+).*",
+            path={
+                'price_reg':        'translate(/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/p[1]/text(), " ", "")',
+                'price_prolong':    'translate(/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/p[1]/text(), " ", "")',
+                'price_change':     'translate(/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[3]/div/div/div[2]/div/p[1]/text(), " ", "")'
+            }
+        )
 
     def parse(self, response):
-        price_reg = response.xpath(
-            '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[1]/div/div/div[2]/div/p[1]/text()').get()
-        price_reg = find_price_sub(REGEX_PATTERN, price_reg)
-
-        price_prolong = response.xpath(
-            '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/p[1]/text()').get()
-        price_prolong = find_price_sub(REGEX_PATTERN, price_prolong)
-
-        price_change = response.xpath(
-            '/html/body/div[1]/div[2]/div/div/div[1]/div/div/div/div[3]/div/div/div[2]/div/p[1]/text()').get()
-        price_change = find_price_sub(REGEX_PATTERN, price_change)
-
-        item = NsregItem()
-        item['name'] = "ООО «А100»"
-        price = item.get('price', EMPTY_PRICE)
-        price['price_reg'] = price_reg
-        price['price_prolong'] = price_prolong
-        price['price_change'] = price_change
-        item['price'] = price
-
-        yield item
+        return self.component.parse(response)
