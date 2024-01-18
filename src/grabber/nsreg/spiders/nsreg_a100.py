@@ -9,6 +9,10 @@ class Nsreg_ad100Spider(scrapy.Spider):
     allowed_domains = ['a100.ru']
     start_urls = ['https://a100.ru/#overlappable']
     site_names = ("ООО «А100»",)
+    custom_settings = {
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': False
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
