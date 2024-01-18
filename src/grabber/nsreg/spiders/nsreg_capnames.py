@@ -9,8 +9,11 @@ class NsregCapnamesSpider(scrapy.Spider):
     name = "nsreg_capnames"
     start_urls = ["https://capnames.ru/"]
     allowed_domains = ["capnames.ru"]
-
     site_names = ("ООО «КАПИТАЛЪ»",)
+    custom_settings = {
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': False
+        }
 
     def __init__(self, name=None, **kwargs):
         super().__init__(name, **kwargs)
