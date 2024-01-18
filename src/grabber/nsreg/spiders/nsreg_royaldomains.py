@@ -9,6 +9,10 @@ class NsregRoyaldomainsSpider(scrapy.Spider):
     start_urls = ['https://royaldomains.ru']
     allowed_domains = ['royaldomains.ru']
     site_names = ('ООО «РОЯЛЬ»',)
+    custom_settings = {
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': False
+        }
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):

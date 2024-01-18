@@ -12,6 +12,10 @@ class NsregNamebitSpider(scrapy.Spider):
     allowed_domains = ["namebit.ru"]
     start_urls = ["https://namebit.ru/#features-2"]
     site_names = ("ООО «НЕЙМБИТ»",)
+    custom_settings = {
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': False
+        }
 
     # Конструктор класса
     def __init__(self, *args, **kwargs):
