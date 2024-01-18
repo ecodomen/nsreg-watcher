@@ -53,20 +53,20 @@ class MultiSiteSpider1(scrapy.Spider):
         'http://domaincenter.ru/site/tariffs', 'http://yu.ru/site/tariffs'
     )
     allowed_domains = (
-        'https://domainauction.ru', 'https://www.safereg.ru',
-        'https://www.speedhosting.ru', 'https://www.gigahosting.ru', 'https://citydomains.ru',
-        'https://www.data-plus.ru', 'https://www.datacity.ru', 'https://domainhouse.ru',
-        'https://www.domhostinga.ru', 'https://domainservice.ru', 'https://domainmaster.ru',
-        'https://domainplus.ru', 'https://www.domainshosting.ru', 'https://domains.ru',
-        'https://domainagent.ru', 'https://domaingroup.ru', 'https://zonadomenov.ru',
-        'https://www.easyhosting.ru', 'https://domain.ru', 'https://mstci.ru', 'https://mirdomenov.ru',
-        'https://www.mirhostinga.ru', 'https://www.powerhosting.ru', 'https://www.multireg.ru',
-        'https://www.netdata.ru', 'https://opendomains.ru', 'https://privatedomains.ru',
-        'https://www.privatehosting.ru', 'https://www.profhosting.ru', 'https://www.regio.ru',
-        'https://www.regis.ru', 'http://registr1.ru', 'https://smartdomains.ru', 'https://www.technodata.ru',
-        'https://www.turbohosting.ru', 'http://domainfactory.ru', 'http://firefox.ru',
-        'https://www.hostingpark.ru', 'https://www.hothosting.ru', 'http://domaincenter.ru', 'http://yu.ru'
-    ),
+        'domainauction.ru', 'www.safereg.ru',
+        'www.speedhosting.ru', 'www.gigahosting.ru', 'citydomains.ru',
+        'www.data-plus.ru', 'www.datacity.ru', 'domainhouse.ru',
+        'www.domhostinga.ru', 'domainservice.ru', 'domainmaster.ru',
+        'domainplus.ru', 'www.domainshosting.ru', 'domains.ru',
+        'domainagent.ru', 'domaingroup.ru', 'zonadomenov.ru',
+        'www.easyhosting.ru', 'domain.ru', 'mstci.ru', 'mirdomenov.ru',
+        'www.mirhostinga.ru', 'www.powerhosting.ru', 'www.multireg.ru',
+        'www.netdata.ru', 'opendomains.ru', 'privatedomains.ru',
+        'www.privatehosting.ru', 'www.profhosting.ru', 'www.regio.ru',
+        'www.regis.ru', 'registr1.ru', 'smartdomains.ru', 'www.technodata.ru',
+        'www.turbohosting.ru', 'domainfactory.ru', 'firefox.ru',
+        'www.hostingpark.ru', 'www.hothosting.ru', 'domaincenter.ru', 'yu.ru'
+    )
     site_names = (
         'ООО «Аукцион доменов»', 'ООО «Безопасный регистратор»',
         'ООО «Быстрый Хостинг»', 'ООО «Гига Хостинг»', 'ООО «Городские Домены»', 'ООО «Дата Плюс»',

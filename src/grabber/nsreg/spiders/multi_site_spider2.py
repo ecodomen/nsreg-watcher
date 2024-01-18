@@ -38,23 +38,23 @@ class MultiSiteSpider2(scrapy.Spider):
         'http://topdomenreg24.ru/price'
     )
     allowed_domains = (
-        'https://www.regdomainhost.ru/',
-        'https://www.bestreg24.ru',
-        'https://www.bigreg24.ru',
-        'https://www.webreg24.ru',
-        'https://www.domenservice.ru',
-        'https://www.clickreg.ru',
-        'https://www.clickhost24.ru',
-        'https://www.neton-line.ru',
-        'https://www.online-reg.ru',
-        'https://www.open-reg.ru',
-        'https://www.prima-host.ru',
-        'https://www.red-reg.ru',
-        'https://www.sm-domains.ru',
-        'http://telebord24.ru',
-        'https://telehost24.ru',
-        'http://topdomenreg24.ru'
-    ),
+        'www.regdomainhost.ru',
+        'www.bestreg24.ru',
+        'www.bigreg24.ru',
+        'www.webreg24.ru',
+        'www.domenservice.ru',
+        'www.clickreg.ru',
+        'www.clickhost24.ru',
+        'www.neton-line.ru',
+        'www.online-reg.ru',
+        'www.open-reg.ru',
+        'www.prima-host.ru',
+        'www.red-reg.ru',
+        'www.sm-domains.ru',
+        'telebord24.ru',
+        'telehost24.ru',
+        'topdomenreg24.ru'
+    )
     site_names = (
         'ООО «ДОМЕНХОСТ»',
         'ООО «БЕСТРЕГ»',
