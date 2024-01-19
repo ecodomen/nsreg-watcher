@@ -28,3 +28,22 @@ class CompaniesSortForm(forms.Form):
         label="Поиск",
         max_length=50,
         required=False,)
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Ваше Имя'})
+        )
+    contact = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Телефон или email'})
+        )
+    speciality = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={'placeholder': 'Специальность'})
+        )
+    message = forms.CharField(
+        max_length=1000,
+        widget=forms.TextInput(attrs={'placeholder': 'Сообщение'})
+        )
