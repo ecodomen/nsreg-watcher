@@ -5,9 +5,9 @@ from ..base_site_spider import BaseSpiderComponent
 
 
 class NsregMasterhostSpider(scrapy.Spider):
-    name = "nsreg_masterhost.py"
+    name = "nsreg_masterhost"
     start_urls = ["https://masterhost.ru/domain/"]
-    allowed_domains = ("masterhost.ru")
+    allowed_domains = ("masterhost.ru",)
     site_names = ("ООО «МАСТЕРХОСТ»",)
 
     # Конструктор класса
