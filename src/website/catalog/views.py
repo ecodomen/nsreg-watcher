@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
-from django.db.models import Q, Min
+from django.db.models import Q, Case, CharField, When, Value
 
 from .models import Price
 from .forms import CompaniesSortForm
@@ -24,8 +24,6 @@ def registrator_list(request):
                        + SORT_FIELD_NAMES.get(
                         form.cleaned_data['sort_by'], 'name'))
             search = form.cleaned_data['search']
-            print(f"****************** SORT BY: {sort_by}")
-
     else:
         form = CompaniesSortForm()
         sort_by = 'id'
@@ -34,18 +32,20 @@ def registrator_list(request):
     if search:
         companies = Price.objects.filter(Q(registrator__name__icontains=search) | Q(
             registrator__city__icontains=search) | Q(price_reg__icontains=search))
-        print("****************** SEARCH")
     else:
         companies = Price.objects.filter()
 
-    # companies = companies.order_by('registrator_id', '-parse__id')
-    # companies = Price.objects.filter(id__in=companies).distinct('registrator_id')
-    # companies = Price.objects.filter(id__in=companies).order_by(sort_by)
     companies = companies.annotate(
-        min_status=Min('reg_status', 'prolong_status', 'change_status')
+        min_status=Case(
+            When(reg_status='A', then=Value('A')),
+            When(prolong_status='A', then=Value('A')),
+            When(change_status='A', then=Value('A')),
+            default=Value('V'),
+            output_field=CharField()
+        )
     )
 
-    companies = companies.order_by('min_status', 'registrator_id', '-parse__id', sort_by)
+    companies = companies.order_by('-min_status', 'registrator_id', '-parse__id', sort_by)
 
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
