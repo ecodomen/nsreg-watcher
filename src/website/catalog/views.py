@@ -35,17 +35,16 @@ def registrator_list(request):
     else:
         companies = Price.objects.filter()
 
-    companies = companies.annotate(
-        min_status=Case(
-            When(reg_status='A', then=Value('A')),
-            When(prolong_status='A', then=Value('A')),
-            When(change_status='A', then=Value('A')),
-            default=Value('V'),
-            output_field=CharField()
-        )
-    )
-
-    companies = companies.order_by('-min_status', 'registrator_id', '-parse__id', sort_by)
+    companies = companies.order_by('registrator_id', '-parse__id', '-created_at').distinct('registrator_id')
+    companies = Price.objects.filter(id__in=companies).annotate(
+            min_status=Case(
+                When(reg_status='A', then=Value('A')),
+                When(prolong_status='A', then=Value('A')),
+                When(change_status='A', then=Value('A')),
+                default=Value('V'),
+                output_field=CharField()
+            )
+        ).order_by('-min_status', sort_by)
 
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 
