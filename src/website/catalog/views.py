@@ -4,6 +4,7 @@ from django.db.models import Q
 
 from .models import Price, Registrator, TeamMember
 from .forms import CompaniesSortForm, ContactForm
+from .tasks import send_join_team_mail
 
 
 SORT_FIELD_NAMES = {
@@ -63,7 +64,8 @@ def about(request):
             contact = request.POST.get("contact")
             speciality = request.POST.get("speciality")
             message = request.POST.get("message")
-            print(f"{name}\n{contact}\n{speciality}\n{message}")
+            send_join_team_mail.delay(name, contact, speciality, message)
+
     else:
         form = ContactForm()
 
