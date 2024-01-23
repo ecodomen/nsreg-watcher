@@ -1,8 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
 body {
-    padding-top: 5rem;
+  padding-top: 5rem;
+}
+
+.starter-template {
+  /* padding: 3rem 1.5rem; */
+  text-align: center;
+}
+
+.cards {
+  justify-content: center;
+}
+
+h5 a {
+  text-decoration: none;
+  color: #2D2D2D;
+}
+
+.card-title {
+  margin-top: 20px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #2D2D2D;
+}
+
+.row {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.card-text-title {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  color: #333;
+}
+
+.card-text-value {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #666;
+}
+
+.card-link {
+  margin-right: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  background: #FFFFFF;
+  border: 1px solid #C1C1C1;
+  border-radius: 10px;
+  position: absolute;
+  right: 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+
+  line-height: 24px;
+  text-align: center;
+  color: #2D2D2D;
+  text-decoration: none;
+}
+
+.link-inline {
+  display: none;
+}
+
+.card-link:hover {
+  background: #EFEFEF;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -10px;
+}
+
+.card {
+  flex: 0 0 calc(25% - 20px);
+  margin: 10px;
+  border: 1px solid #E5E5E5;
+  box-shadow: 0px 2px 2px #E8E9ED;
+  border-radius: 10p;
+  width: 1730px;
+  height: 166px;
+}
+
+.prices {
+  display: flex;
+}
+
+/* SEARCH FORM */
+.wrapper {
+  margin-top: 100px !important;
+  margin-bottom: 60px;
+  display: flex !important;
+  width: 1730px;
+  height: 150px;
+  margin: 10px auto;
+  border: 1px solid #E5E5E9;
+  border-radius: 10px;
+  padding: 20px;
+  align-items: center;
+  border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
+  border-radius: 10px;
+  border-image-slice: 1;
+  border-style: solid;
+}
+
+.forma {
+  display: flex;
+  margin-top: 17px;
+  margin-left: 225px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+  flex: 1;
+}
+
+.forma input[type="text"] {
+  width: 429px;
+  height: 70px;
+  margin-left: 5px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #C1C1C1;
+  border-radius: 10px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding-left: 40px;
+  color: rgba(45, 45, 45, 0.7);
+  margin-right: 20px;
+}
+
+.forma input[type="text"]::placeholder {
+  color: rgba(45, 45, 45, 0.7);
+}
+
+.forma input[type="text"]:focus {
+  border: 1px solid #14D563;
+  outline: none;
+}
+
+.input {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #666;
+  flex: 3;
+}
+
+.btn {
+  width: 166px;
+  height: 55px;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  background: #14D563;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.submit:hover {
+  background: #0f9b4b;
+}
+
+.forma select {
+  height: 70px;
+  padding: 11px;
+  background: #FAFAFA;
+  border: 1px solid #C1C1C1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #2D2D2D;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-right: 45px;
+}
+
+#search-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: auto;
+  margin-top: auto;
+  text-align: center;
+}
+
+#adaptive-button {
+  display: none;
+}
+
+@media only screen and (max-width: 747px) {
+  .row {
+    margin-left: -23px;
   }
-  .starter-template {
-    padding: 3rem 1.5rem;
+
+  .card {
+    width: 322px;
+    height: 158px;
+    margin: 2px 10px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-title {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    color: #2D2D2D;
+  }
+
+  .card-text-value {
+    display: flex;
+    justify-content: center;
+  }
+
+  .card-text-title {
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 0;
+    margin-bottom: 4px;
+  }
+
+  .parse-date {
+    color: #2D2D2D;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    margin-bottom: 4px;
+  }
+
+  .city {
+    display: none;
+  }
+
+  .prices {
+    display: flex;
+    width: 280px;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .price {
+    color: #2D2D2D;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .price-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px 6px;
+  }
+
+  .card-link {
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+    width: 200px;
+  }
+
+  /* SEARCH FORM RESPONSIVE */
+  .wrapper {
+    display: flex !important;
+    flex-direction: column;
+    width: 322px;
+    height: 120px;
+    margin-top: 60px !important;
+    padding-top: 0;
+  }
+
+  .forma {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 322px;
+    margin-top: 17px;
+    margin-left: 0px;
+  }
+
+  .forma input[type="text"] {
+    width: 300px;
+    height: 70px;
+  }
+
+  label,
+  #search-label {
+    display: none;
+  }
+
+  .selection {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #id_sort_by {
+    padding: auto;
+    margin: 0 3px;
+    height: 40px;
+    width: 134px;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #id_reverse_order {
+    margin: 0 3px;
+    height: 40px;
+    width: 116px;
+    padding: auto;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #adaptive-button {
+    display: flex;
+    margin: 0 3px;
+    height: 40px;
+    width: 46px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #id_search {
+    margin: 0 3px;
+    height: 40px;
+    width: 313px;
+    padding: auto;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #large-submit {
+    display: none;
+  }
+
+  .link-inline {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 748px) and (max-width: 1730px) {
+  .cards {
+    justify-content: center;
+  }
+
+  h5 a {
+    text-decoration: none;
+    color: #2D2D2D;
+  }
+
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: #2D2D2D;
+
+  }
+
+  .row {
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 748px;
+    justify-content: center;
+  }
+
+  .card-text-title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .card-text-value {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #666;
     text-align: center;
   }
-  
+
+  .link-inline {
+    margin-right: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background: #FFFFFF;
+    border: 1px solid #C1C1C1;
+    border-radius: 10px;
+    position: relative;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #2D2D2D;
+    text-decoration: none;
+  }
+
+  .card-link {
+    display: none;
+  }
+
+  .card-link:hover {
+    background: #EFEFEF;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -10px;
+  }
+
+  .card {
+    flex: 0 0 calc(25% - 20px);
+    margin: 10px;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0px 2px 2px #E8E9ED;
+    border-radius: 10p;
+    width: 748px;
+    height: 166px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    padding-top: 5px;
+  }
+
+  .prices {
+    display: flex;
+  }
+
+  .city {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: center;
+  }
+
+  .price-title {
+    min-width: 150px;
+  }
+
+  /* SEARCH FORM RESPONSIVE */
+  .wrapper {
+    display: flex !important;
+    flex-direction: column;
+    width: 748px;
+    height: 80px;
+    margin-top: 60px !important;
+    padding-top: 0;
+  }
+
+  .forma {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 748px;
+    margin-top: 17px;
+    margin-left: 0px;
+  }
+
+  .forma input[type="text"] {
+    width: 300px;
+    height: 70px;
+  }
+
+  label,
+  #search-label {
+    display: none;
+  }
+
+  .selection {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #id_sort_by {
+    padding: auto;
+    margin: 0 3px;
+    height: 40px;
+    width: 134px;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #id_reverse_order {
+    margin: 0 3px;
+    height: 40px;
+    width: 116px;
+    padding: auto;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #adaptive-button {
+    display: flex;
+    margin: 0 3px;
+    height: 40px;
+    width: 46px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #id_search {
+    margin: 0 3px;
+    height: 40px;
+    width: 313px;
+    padding: auto;
+    color: rgba(45, 45, 45, 0.70);
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+  }
+
+  #large-submit {
+    display: none;
+  }
+}
