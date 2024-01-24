@@ -3,6 +3,7 @@ from celery import shared_task
 from django.core.mail import send_mail
 from website import settings
 
+
 @shared_task
 def send_join_team_mail(name, contact, speciality, message):
     message_to_send = f'Имя: {name}\nКонтакы: {contact}\nСообщение: {message}'
