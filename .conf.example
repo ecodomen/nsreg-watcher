@@ -23,7 +23,7 @@ numprocs=1
 stdout_logfile=/path/to/celery_worker.log
 
 ; Put process stderr output in this file
-stderr_logfile=/path/to/celery/celery_worker.log
+stderr_logfile=/path/to/celery_worker.log
 
 ; If true, this program will start automatically when supervisord is started
 autostart=true
