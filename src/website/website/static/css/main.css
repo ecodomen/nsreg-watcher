@@ -226,6 +226,11 @@ h5 a {
   display: none;
 }
 
+.empty-list {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 747px) {
   .row {
     width: 322px;
