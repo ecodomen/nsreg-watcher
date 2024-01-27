@@ -10,7 +10,7 @@ class PriceRegistratorInline(admin.TabularInline):
     model = Price
     readonly_fields = ("last_change_at", "parse_at",)
     fields = ("last_change_at", "parse_at", "domain",
-              "price_reg", "price_prolong", "price_change")
+              "price_reg", "reg_status", "price_prolong", "prolong_status", "price_change", "change_status")
     extra = 1
     min_num = 1
 

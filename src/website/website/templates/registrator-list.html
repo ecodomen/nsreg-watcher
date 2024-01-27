@@ -30,15 +30,27 @@
             </div>
             <div class="col-md-2">
               <p class="card-text-title">Регистрация:</p>
-              <p class="card-text-value">{{ company.price_reg }}</p>
+              {% if company.reg_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_reg }}</p>
+              {% endif %}
             </div>
             <div class="col-md-2">
               <p class="card-text-title" style="margin-right: 20px;">Пролонгация:</p>
-              <p class="card-text-value">{{ company.price_prolong }}</p>
+              {% if company.prolong_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_prolong }}</p>
+              {% endif %}
             </div>
             <div class="col-md-3">
               <p class="card-text-title" style="margin-right: 20px;">Перенос:</p>
-              <p class="card-text-value">{{ company.price_change }}</p>
+              {% if company.change_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_change }}</p>
+              {% endif %}
             </div>
           </div>
           <a href="{{ company.registrator.website }}" class="card-link mt-auto" style="font-family: 'Mulish'; font-style: normal; position: absolute; right: 10px;">Посмотреть на сайте</a>
