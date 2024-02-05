@@ -5,6 +5,50 @@ body {
   padding-top: 5rem;
 }
 
+.navbar {
+  margin: auto;
+  background-color: #FFFFFF !important;
+  height: 115px;
+  width: 90vw;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .projbutton a {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2D2D2D;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+
+.projbutton {
+  position: relative;
+  width: 88px;
+  height: 30px;
+  margin-right: 5vw;
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #2D2D2D;
+}
+
+.navbar-brand {
+  position: relative;
+  margin-left: 5vw;
+  background-image: url('../ecoIcons/Логотип\ \(light\).svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 264px; 
+  height: 70px;
+}
 .starter-template {
   /* padding: 3rem 1.5rem; */
   text-align: center;
@@ -30,6 +74,9 @@ h5 a {
 }
 
 .row {
+  max-width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
   display: flex !important;
   justify-content: center !important;
 }
@@ -93,7 +140,7 @@ h5 a {
   border: 1px solid #E5E5E5;
   box-shadow: 0px 2px 2px #E8E9ED;
   border-radius: 10p;
-  width: 1730px;
+  width: 90vw;
   height: 166px;
 }
 
@@ -106,7 +153,7 @@ h5 a {
   margin-top: 100px !important;
   margin-bottom: 60px;
   display: flex !important;
-  width: 1730px;
+  width: 90vw;
   height: 150px;
   margin: 10px auto;
   border: 1px solid #E5E5E9;
@@ -121,8 +168,9 @@ h5 a {
 
 .forma {
   display: flex;
+  justify-content: center;
   margin-top: 17px;
-  margin-left: 225px;
+  margin-left: auto;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
@@ -190,7 +238,7 @@ h5 a {
 
 .forma select {
   height: 70px;
-  padding: 11px;
+  /* padding: 11px; */
   background: #FAFAFA;
   border: 1px solid #C1C1C1;
   border-radius: 10px;
@@ -231,15 +279,53 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 747px) {
+@media only screen and (max-width: 763px) {
+  .navbar {
+    width: 380px;
+  }
+
+  .navbar-brand {
+    position: relative;
+    margin-left: -60px;
+    background-image: url('../ecoIcons/Логотип\ \(light\).svg');
+    transform: scale(0.5);
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+
+  .navbar .projbutton a {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #2D2D2D;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .projbutton {
+    position: relative;
+    width: 88px;
+    height: 30px;
+    margin-right: -25px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    color: #2D2D2D;
+  }
   .row {
-    width: 322px;
+    width: 380px;
     margin-right: auto;
     margin-left: auto;
   }
 
   .card {
-    width: 322px;
+    width: 380px;
     height: 158px;
     /* margin: 2px 10px; */
   }
@@ -324,18 +410,20 @@ h5 a {
   .card-link {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
     padding: 0;
     margin: 0 auto;
-    margin-left: 71px;
+    margin-left: 95px;
     width: 200px;
+    height: 40px;
   }
 
   /* SEARCH FORM RESPONSIVE */
   .wrapper {
     display: flex !important;
     flex-direction: column;
-    width: 322px;
+    width: 380px;
     height: 120px;
     margin-top: 60px !important;
     margin-left: auto;
@@ -426,7 +514,47 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 748px) and (max-width: 1730px) {
+@media only screen and (min-width: 764px) and (max-width: 1347px) {
+  .navbar {
+    margin: auto;
+    background-color: #FFFFFF !important;
+    height: 115px;
+    width: 75vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .navbar-brand {
+    position: relative;
+    background-image: url('../ecoIcons/Логотип\ \(light\).svg');
+    transform: scale(0.7);
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+
+  .navbar .projbutton a {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #2D2D2D;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .projbutton {
+    position: relative;
+    width: 88px;
+    height: 30px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    color: #2D2D2D;
+  }
+
   .cards {
     justify-content: center;
   }
@@ -520,7 +648,7 @@ h5 a {
     border: 1px solid #E5E5E5;
     box-shadow: 0px 2px 2px #E8E9ED;
     border-radius: 10p;
-    width: 748px;
+    width: 75vw;
     height: 166px;
   }
 
@@ -546,11 +674,10 @@ h5 a {
     min-width: 150px;
   }
 
-  /* SEARCH FORM RESPONSIVE */
   .wrapper {
     display: flex !important;
     flex-direction: column;
-    width: 748px;
+    width: 75vw;
     height: 80px;
     margin-top: 60px !important;
     padding-top: 0;
@@ -620,7 +747,7 @@ h5 a {
   #id_search {
     margin: 0 3px;
     height: 40px;
-    width: 313px;
+    width: 25vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
