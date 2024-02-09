@@ -161,7 +161,7 @@ h5 a {
   padding: 20px;
   align-items: center;
   border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
-  border-radius: 10px;
+  border-radius: 5px;
   border-image-slice: 1;
   border-style: solid;
 }
@@ -180,7 +180,7 @@ h5 a {
 }
 
 .forma input[type="text"] {
-  width: 429px;
+  width: 20vw;
   height: 70px;
   margin-left: 5px;
   box-sizing: border-box;
@@ -647,7 +647,7 @@ h5 a {
     margin: 10px;
     border: 1px solid #E5E5E5;
     box-shadow: 0px 2px 2px #E8E9ED;
-    border-radius: 10p;
+    border-radius: 10px;
     width: 75vw;
     height: 166px;
   }
