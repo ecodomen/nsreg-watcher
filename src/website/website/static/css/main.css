@@ -326,7 +326,7 @@ h5 a {
 
   .card {
     width: 380px;
-    height: 158px;
+    height: 190px;
     /* margin: 2px 10px; */
   }
 
@@ -514,12 +514,12 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 764px) and (max-width: 1347px) {
+@media only screen and (min-width: 764px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
     height: 115px;
-    width: 75vw;
+    width: 90vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .navbar-brand {
@@ -585,7 +585,7 @@ h5 a {
   .info-column {
     display: flex;
     flex-direction: column;
-    min-width: 748px;
+    min-width: 95vw;
     justify-content: center;
   }
 
@@ -648,7 +648,7 @@ h5 a {
     border: 1px solid #E5E5E5;
     box-shadow: 0px 2px 2px #E8E9ED;
     border-radius: 10px;
-    width: 75vw;
+    width: 90vw;
     height: 166px;
   }
 
@@ -671,13 +671,13 @@ h5 a {
   }
 
   .price-title {
-    min-width: 150px;
+    min-width: 8em;
   }
 
   .wrapper {
     display: flex !important;
     flex-direction: column;
-    width: 75vw;
+    width: 90vw;
     height: 80px;
     margin-top: 60px !important;
     padding-top: 0;
