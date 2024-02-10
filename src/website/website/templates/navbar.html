@@ -42,6 +42,7 @@
     <a class="navbar-brand" href="/list" style="position: absolute; left: 130px; top: 18px;">
       <img src="{% static 'ecoIcons/Логотип (light).svg'%}" width="264" height="72" class="logo d-inline-block align-top" alt="Логотип" style="width: 264px; height: 72px;">
     </a>
+    {% include 'domain-lookup-form.html' with form=form %}
     <div class="projbutton ml-auto">
       <a href="/project">Проект</a>
     </div>
