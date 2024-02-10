@@ -36,9 +36,19 @@ def registrator_list(request):
     else:
         companies = Price.objects.filter()
 
-    companies = companies.order_by('registrator_id', '-parse__id')
-    companies = Price.objects.filter(id__in=companies).distinct('registrator_id')
-    companies = Price.objects.filter(id__in=companies).order_by(sort_by)
+    companies = companies.order_by('registrator_id', '-parse__id', '-created_at').distinct('registrator_id')
+
+    sort_by_lst = []
+    if 'price_reg' in sort_by:
+        sort_by_lst = ['-reg_status', sort_by]
+    elif 'price_prolong' in sort_by:
+        sort_by_lst = ['-prolong_status', sort_by]
+    elif 'price_change' in sort_by:
+        sort_by_lst = ['-change_status', sort_by]
+    else:
+        sort_by_lst = [sort_by]
+
+    companies = Price.objects.filter(id__in=companies).order_by(*sort_by_lst)
 
     return render(request, 'registrator-list.html', {'companies': companies, 'form': form})
 

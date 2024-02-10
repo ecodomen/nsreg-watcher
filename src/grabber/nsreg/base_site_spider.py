@@ -20,6 +20,10 @@ def find_price(re_pattern, price):
         # Применяем регулярное выражение к строке
         if m := re.match(re_pattern, price):
             price = m.group(1)
+
+            # Удаляем пробельные символы из строки
+            price = re.sub(r'\s', '', price)
+
     price = f'{float(price)}'
     logging.info('price = %s', price)
 

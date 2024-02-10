@@ -28,26 +28,30 @@
               <p class="card-text-title">Город:</p>
               <p class="card-text-value">{{ company.registrator.city }}</p>
             </div>
-
-            <div class="col-md-7 prices">
-              <div class="col-md-3 price-title">
-                <p class="card-text-title">Регистрация:</p>
-                <p class="card-text-value price">{{ company.price_reg }}</p>
-              </div>
-
-              <div class="col-md-3 price-title">
-                <p class="card-text-title">Пролонгация:</p>
-                <p class="card-text-value price ">{{ company.price_prolong }}</p>
-              </div>
-
-              <div class="col-md-3 price-title">
-                <p class="card-text-title">Перенос:</p>
-                <p class="card-text-value price">{{ company.price_change }}</p>
-              </div>
+            <div class="col-md-2">
+              <p class="card-text-title">Регистрация:</p>
+              {% if company.reg_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_reg }}</p>
+              {% endif %}
+            </div>
+            <div class="col-md-2">
+              <p class="card-text-title" style="margin-right: 20px;">Пролонгация:</p>
+              {% if company.prolong_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_prolong }}</p>
+              {% endif %}
             </div>
 
             <div class="col-md-3">
-              <a href="{{ company.registrator.website }}" class="mt-auto link-inline " style="text-decoration: none;">Посмотреть на сайте</a>
+              <p class="card-text-title" style="margin-right: 20px;">Перенос:</p>
+              {% if company.change_status == "A" %}
+                <p class="card-text-value">нет данных</p>
+              {% else %}
+                <p class="card-text-value">{{ company.price_change }}</p>
+              {% endif %}
             </div>
           </div>
           <a href="{{ company.registrator.website }}" class="card-link mt-auto" >Посмотреть на сайте</a>
