@@ -282,6 +282,7 @@ h5 a {
 @media only screen and (max-width: 763px) {
   .navbar {
     width: 380px;
+    height: auto;
   }
 
   .navbar-brand {
@@ -425,7 +426,7 @@ h5 a {
     flex-direction: column;
     width: 380px;
     height: 120px;
-    margin-top: 60px !important;
+    margin-top: 20px !important;
     margin-left: auto;
     margin-right: auto;
     padding-top: 0;
