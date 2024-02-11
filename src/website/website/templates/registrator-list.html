@@ -6,139 +6,71 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 
-
-
 <div class="row">
   {% for company in companies %}
-    <div class="cards" style="justify-content: center;">
-      <div class="card" style="width: 1730px; height: 166px;">
+    <div class="cards">
+      <div class="card">
         <div class="card-body d-flex flex-column justify-content-center">
           <div class="row">
-            <div class="col-md-3">
-              <h5 class="card-title" style="font-family: 'Mulish'; font-style: normal; font-weight: 700; font-size: 24px; line-height: 30px; color: #2D2D2D;">
-                <a href="{% url 'registrator_details' id=company.registrator.id %}" style="text-decoration: none; color: #2D2D2D;">{{ company.registrator.name }}</a>
+          
+            <div class="info-column col-md-3">
+              <h5 class="card-title">
+                <a href="{% url 'registrator_details' id=company.registrator.id %}">{{ company.registrator.name }}</a>
               </h5>
               {% if not company.parse %}
-                <p class="card-text-value">Добавлено вручную {{ company.updated_at }}</p>
+                <p class="card-text-value parse-date">Добавлено вручную {{ company.updated_at }}</p>
               {% else %}
-                <p class="card-text-value">{{ company.parse.date|date:"SHORT_DATE_FORMAT" }}</p>
+                <p class="card-text-value parse-date">{{ company.parse.date|date:"SHORT_DATE_FORMAT" }}</p>
               {% endif %}
             </div>
-            <div class="col-md-2">
+
+            <div class="col-md-2 city">
               <p class="card-text-title">Город:</p>
               <p class="card-text-value">{{ company.registrator.city }}</p>
             </div>
-            <div class="col-md-2">
-              <p class="card-text-title">Регистрация:</p>
-              {% if company.reg_status == "A" %}
-                <p class="card-text-value">нет данных</p>
-              {% else %}
-                <p class="card-text-value">{{ company.price_reg }}</p>
-              {% endif %}
+
+            <div class="col-md-7 prices">
+              <div class="col-md-3 price-title">
+                <p class="card-text-title">Регистрация:</p>
+                {% if company.reg_status == "A" %}
+                <p class="card-text-value price">нет данных</p>
+                {% else %}
+                <p class="card-text-value price">{{ company.price_reg }}</p>
+                {% endif %}
+              </div>
+
+              <div class="col-md-3 price-title">
+                <p class="card-text-title">Пролонгация:</p>
+                {% if company.reg_status == "A" %}
+                <p class="card-text-value price">нет данных</p>
+                {% else %}
+                <p class="card-text-value price">{{ company.price_prolong }}</p>
+                {% endif %}
+              </div>
+
+              <div class="col-md-3 price-title">
+                <p class="card-text-title">Перенос:</p>
+                {% if company.reg_status == "A" %}
+                <p class="card-text-value price">нет данных</p>
+                {% else %}
+                <p class="card-text-value price">{{ company.price_change }}</p>
+                {% endif %}
+              </div>
             </div>
-            <div class="col-md-2">
-              <p class="card-text-title" style="margin-right: 20px;">Пролонгация:</p>
-              {% if company.prolong_status == "A" %}
-                <p class="card-text-value">нет данных</p>
-              {% else %}
-                <p class="card-text-value">{{ company.price_prolong }}</p>
-              {% endif %}
-            </div>
+
             <div class="col-md-3">
-              <p class="card-text-title" style="margin-right: 20px;">Перенос:</p>
-              {% if company.change_status == "A" %}
-                <p class="card-text-value">нет данных</p>
-              {% else %}
-                <p class="card-text-value">{{ company.price_change }}</p>
-              {% endif %}
+              <a href="{{ company.registrator.website }}" class="mt-auto link-inline " style="text-decoration: none;">Посмотреть на сайте</a>
             </div>
           </div>
-          <a href="{{ company.registrator.website }}" class="card-link mt-auto" style="font-family: 'Mulish'; font-style: normal; position: absolute; right: 10px;">Посмотреть на сайте</a>
+          <a href="{{ company.registrator.website }}" class="card-link mt-auto" >Посмотреть на сайте</a>
         </div>
       </div>
     </div>
   {% empty %}
-    <div class="col-md-12">
+    <div class="col-md-12 empty-list">
       <p>Ничего не найдено.</p>
     </div>
   {% endfor %}
 </div>
-
-
-
-<style>
-
-
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-
-
-
-
-
-.card-title {
-    margin-top: 20px;
-  }
-
-  .row {
-  display: flex !important;
-  justify-content: center !important;
-}
-
-
-  .card-text-title {
-    font-family: 'Mulish'; 
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    color: #333; 
-  }
-  .card-text-value {
-    font-family: 'Mulish'; 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #666; 
-  }
-
-  .card-link {
-  margin-right: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 15px; 
-  background: #FFFFFF;
-  border: 1px solid #C1C1C1;
-  border-radius: 10px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #2D2D2D;
-  text-decoration: none; 
-}
-
-.card-link:hover {
-  background: #EFEFEF;
-}
-
-
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 -10px; 
-}
-
-.card {
-  flex: 0 0 calc(25% - 20px);
-  margin: 10px; 
-  border: 1px solid #E5E5E5;
-  box-shadow: 0px 2px 2px #E8E9ED;
-  border-radius: 10px;
-}
-
-</style>
 
 {% endblock %}

@@ -5,121 +5,23 @@
 <div class="wrapper">
     <form class="forma mb-3" action="{% url 'registrator_list' %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input class="btn btn-primary ml-2" type="submit" value="Показать">
+
+        <div class="selection">
+          <label for="id_sort_by">{{form.sort_by.label}}</label>
+          {{form.sort_by}}
+
+          <label for="id_reverse_order">{{form.reverse_order.label}}</label>
+          {{form.reverse_order}}
+          <button id="adaptive-button" class="btn btn-primary ml-2"> 
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50" style="fill:#FFFFFF;">
+              <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+            </svg>
+           </button>
+        </div>
+
+        <label for="id_search" id="search-label">{{form.search.label}}</label>
+        {{form.search}}
+        {% comment %} {{ form }} {% endcomment %}
+        <input id="large-submit" class="btn btn-primary ml-2" type="submit" value="Показать">
     </form>
-    </div>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-
-
-
-
-
-.wrapper {
-    margin-top: 100px !important;
-    margin-bottom: 60px !important;
-    display: flex !important;
-    width: 1730px;
-    height: 150px;
-    margin: 10px auto; 
-    border: 1px solid #E5E5E9;
-    border-radius: 10px;
-    padding: 20px;
-    align-items: center;
-    border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
-    border-radius: 10px;
-    border-image-slice: 1;
-    border-style: solid;
-
-}
-
-.forma {
-    margin-top: 17px;
-    margin-left: 225px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    color: #333;
-    flex: 1;
-}
-
-.forma input[type="text"] {
-    width: 429px;
-    height: 70px;
-    margin-left: 5px;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border: 1px solid #C1C1C1;
-    border-radius: 10px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    padding-left: 40px;
-    color: rgba(45, 45, 45, 0.7);
-    margin-right: 20px;
-}
-
-.forma input[type="text"]::placeholder {
-    color: rgba(45, 45, 45, 0.7);
-}
-
-.forma input[type="text"]:focus {
-    border: 1px solid #14D563;
-    outline: none;
-}
-
-
-.input {
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: #666;
-    flex: 3;
-}
-
-.btn {
-    width: 166px;
-    height: 55px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-    color: #FFFFFF;
-    background: #14D563;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.submit:hover {
-    background: #0f9b4b;
-}
-
-.forma select {
-    height: 70px;
-    padding: 11px;
-    background: #FAFAFA;
-    border: 1px solid #C1C1C1;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: #2D2D2D;
-    position: relative;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin-right: 45px;
-}
-</style>
+</div>
