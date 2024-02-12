@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
+from rest_framework import generics
 
 from .models import Price, Registrator
 from .forms import CompaniesSortForm
+from .serializers import PriceSerializer
 
 
 SORT_FIELD_NAMES = {
@@ -14,6 +16,13 @@ SORT_FIELD_NAMES = {
     'PE': 'price_change',
 
 }
+
+
+class RegistratorList(generics.ListAPIView):
+    serializer_class = PriceSerializer
+
+    def get_queryset(self):
+        return Price.objects.filter()
 
 
 def registrator_list(request):
