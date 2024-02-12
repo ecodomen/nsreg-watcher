@@ -17,7 +17,7 @@ class RegistratorSerializer(serializers.ModelSerializer):
 class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Price
-        fileds = "__all__"
+        fields = "__all__"
     # id = models.BigAutoField(primary_key=True)
     # registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
     # domain = models.CharField("Домен", max_length=10, choices=DOMAINS)
