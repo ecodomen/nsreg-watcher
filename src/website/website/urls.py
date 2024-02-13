@@ -20,7 +20,8 @@ from catalog import views
 urlpatterns = [
     path('', views.registrator_list, name='registrator_list'),
     path('list/', views.registrator_list, name='registrator_list'),
-    path('api_list/', views.RegistratorList.as_view(), name='registrator_api'),
+    path('api/v1/list/', views.RegistratorList.as_view(), name='registrator_list_api'),
+    path('api/v1/<int:pk>/', views.RegistratorDetail.as_view(), name='registrator_details_api'),
     path('partner/<int:id>/', views.registrator_details, name='registrator_details'),
     path('admin/', admin.site.urls),
     path('about-us/', views.about, name='about-us'),

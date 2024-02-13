@@ -1,7 +1,8 @@
 scrapy==2.11.0
 psycopg2-binary==2.9.6
 django==4.1.7
-djangorestframework 3.14.0
+djangorestframework==3.14.0
 django-debug-toolbar==4.0.0
+django-filter==23.5
 aiogram==3.0.0b8
 python-dotenv==1.0.0

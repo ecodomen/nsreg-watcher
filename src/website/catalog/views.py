@@ -19,10 +19,28 @@ SORT_FIELD_NAMES = {
 
 
 class RegistratorList(generics.ListAPIView):
+    queryset = Price.objects.all()
     serializer_class = PriceSerializer
+    search_fields = ['registrator__city', 'registrator__name', 'price_reg']
+    ordering_fields = [
+        'id',
+        'registrator__name',
+        'registrator__city',
+        'registrator__id',
+        'parse__id',
+        'created_at',
+        'price_reg',
+        'price_prolong',
+        'price_change'
+        'reg_status',
+        'prolong_status',
+        'change_status',
+    ]
 
-    def get_queryset(self):
-        return Price.objects.filter()
+
+class RegistratorDetail(generics.RetrieveAPIView):
+    serializer_class = PriceSerializer
+    queryset = Price.objects.all()
 
 
 def registrator_list(request):

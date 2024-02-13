@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'django_filters',
     'rest_framework',
 
     'catalog'
@@ -144,3 +145,11 @@ INTERNAL_IPS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://ecodomen.ru', 'http://127.0.0.1:8000']
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter'
+    ]
+}
