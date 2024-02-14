@@ -2,14 +2,20 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
 body {
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar {
-  margin: auto;
+  display: flex;
+  /* margin: auto; */
+  justify-content: space-between;
+  align-items: center;
   background-color: #FFFFFF !important;
   height: 115px;
-  width: 90vw;
+  width: 100vw;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -29,7 +35,7 @@ body {
 
 .projbutton {
   position: relative;
-  width: 88px;
+  width: auto;
   height: 30px;
   margin-right: 5vw;
   font-family: 'Mulish';
@@ -42,7 +48,8 @@ body {
 
 .navbar-brand {
   position: relative;
-  margin-left: 5vw;
+  margin-right: 45vw;
+  margin-left: 60px;
   background-image: url('../ecoIcons/Логотип\ \(light\).svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -98,9 +105,9 @@ h5 a {
 }
 
 .card-link {
-  margin-right: 20px;
+  margin-right: 1vw;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin-top: 15px;
   background: #FFFFFF;
   border: 1px solid #C1C1C1;
@@ -124,7 +131,8 @@ h5 a {
 }
 
 .card-link:hover {
-  background: #EFEFEF;
+  background-color: #14D563;
+  color: #2D2D2D;
 }
 
 .card-container {
@@ -150,7 +158,7 @@ h5 a {
 
 /* SEARCH FORM */
 .wrapper {
-  margin-top: 100px !important;
+  margin-top: 130px !important;
   margin-bottom: 60px;
   display: flex !important;
   width: 90vw;
@@ -180,8 +188,9 @@ h5 a {
 }
 
 .forma input[type="text"] {
+  margin-top: 8px;
   width: 20vw;
-  height: 70px;
+  height: 55px;
   margin-left: 5px;
   box-sizing: border-box;
   background: #FFFFFF;
@@ -237,7 +246,8 @@ h5 a {
 }
 
 .forma select {
-  height: 70px;
+  height: 55px;
+  margin-top: 8px;
   /* padding: 11px; */
   background: #FAFAFA;
   border: 1px solid #C1C1C1;
@@ -258,7 +268,7 @@ h5 a {
 #search-label {
   display: flex;
   align-items: center;
-  margin-bottom: 0;
+  margin-top: 20px;
 }
 
 .btn {
@@ -320,14 +330,14 @@ h5 a {
     color: #2D2D2D;
   }
   .row {
-    width: 380px;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
   }
 
   .card {
-    width: 380px;
-    height: 190px;
+    width: 90vw;
+    height: 250px;
     /* margin: 2px 10px; */
   }
 
@@ -339,7 +349,7 @@ h5 a {
   }
 
   .info-column {
-    padding: 0;
+    padding-top: 15px;
   }
 
   .card-title {
@@ -387,9 +397,11 @@ h5 a {
 
   .prices {
     display: flex;
-    width: 280px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80vw;
     justify-content: center;
-    padding: 0 20px;
+    /* padding: 0 20px; */
   }
 
   .price {
@@ -403,9 +415,12 @@ h5 a {
 
   .price-title {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between  ;
     padding: 2px 6px;
+    align-content: space-between;
   }
 
   .card-link {
@@ -415,8 +430,8 @@ h5 a {
     position: relative;
     padding: 0;
     margin: 0 auto;
-    margin-left: 95px;
-    width: 200px;
+    margin-left: auto;
+    width: 80vw;
     height: 40px;
   }
 
@@ -424,9 +439,9 @@ h5 a {
   .wrapper {
     display: flex !important;
     flex-direction: column;
-    width: 380px;
+    width: 90vw;
     height: 120px;
-    margin-top: 20px !important;
+    margin-top: 130px !important;
     margin-left: auto;
     margin-right: auto;
     padding-top: 0;
