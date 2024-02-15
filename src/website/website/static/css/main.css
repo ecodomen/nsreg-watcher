@@ -89,6 +89,7 @@ h5 a {
 }
 
 .card-text-title {
+  margin-top: 15px;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
@@ -188,7 +189,7 @@ h5 a {
 }
 
 .forma input[type="text"] {
-  margin-top: 8px;
+  margin-top: 4px;
   width: 20vw;
   height: 55px;
   margin-left: 5px;
@@ -247,7 +248,7 @@ h5 a {
 
 .forma select {
   height: 55px;
-  margin-top: 8px;
+  margin-top: 5px;
   /* padding: 11px; */
   background: #FAFAFA;
   border: 1px solid #C1C1C1;
@@ -268,7 +269,7 @@ h5 a {
 #search-label {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .btn {
@@ -291,13 +292,14 @@ h5 a {
 
 @media only screen and (max-width: 763px) {
   .navbar {
-    width: 380px;
+    width: 100%;
     height: auto;
   }
 
   .navbar-brand {
     position: relative;
-    margin-left: -60px;
+    margin-left: -50px;
+    margin-right: 30vw;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.5);
     background-repeat: no-repeat;
@@ -371,6 +373,7 @@ h5 a {
   }
 
   .card-text-title {
+    margin-top: 0;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -442,6 +445,7 @@ h5 a {
     width: 90vw;
     height: 120px;
     margin-top: 130px !important;
+    margin-bottom: 65px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 0;
@@ -450,13 +454,13 @@ h5 a {
   .forma {
     display: flex;
     flex-direction: column-reverse;
-    width: 322px;
+    width: 100%;
     margin-top: 17px;
     margin-left: 0px;
   }
 
   .forma input[type="text"] {
-    width: 300px;
+    width: 85vw;
     height: 70px;
   }
 
@@ -467,14 +471,17 @@ h5 a {
 
   .selection {
     display: flex;
+    width: auto;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   #id_sort_by {
     padding: auto;
     margin: 0 3px;
     height: 40px;
-    width: 134px;
+    width: 35vw;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
     font-size: 15px;
@@ -487,7 +494,7 @@ h5 a {
   #id_reverse_order {
     margin: 0 3px;
     height: 40px;
-    width: 116px;
+    width: 35vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -510,7 +517,7 @@ h5 a {
   #id_search {
     margin: 0 3px;
     height: 40px;
-    width: 313px;
+    width: 80vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -534,12 +541,13 @@ h5 a {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
-    height: 115px;
-    width: 90vw;
+    height: 100px;
+    width: 100vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .navbar-brand {
     position: relative;
+    margin-left: 0;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.7);
     background-repeat: no-repeat;
@@ -606,6 +614,7 @@ h5 a {
   }
 
   .card-text-title {
+    margin-top: 0;
     display: flex;
     justify-content: center;
     font-family: 'Mulish';
@@ -665,7 +674,7 @@ h5 a {
     box-shadow: 0px 2px 2px #E8E9ED;
     border-radius: 10px;
     width: 90vw;
-    height: 166px;
+    height: 180px;
   }
 
   .card-body {
@@ -695,7 +704,7 @@ h5 a {
     flex-direction: column;
     width: 90vw;
     height: 80px;
-    margin-top: 60px !important;
+    margin-top: 120px !important;
     padding-top: 0;
   }
 
