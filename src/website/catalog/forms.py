@@ -26,6 +26,8 @@ class CompaniesSortForm(forms.Form):
         required=False,
     )
     search = forms.CharField(
-        label="Поиск",
+        label="",
         max_length=50,
-        required=False,)
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Поиск...'}),
+        )

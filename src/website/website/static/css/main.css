@@ -10,7 +10,7 @@ body {
 
 .navbar {
   display: flex;
-  /* margin: auto; */
+  margin: auto;
   justify-content: space-between;
   align-items: center;
   background-color: #FFFFFF !important;
@@ -47,7 +47,6 @@ body {
 }
 
 .navbar-toggler,
-.navbar-collapse,
 .nav-item{
   display: none;
 }
@@ -195,8 +194,8 @@ h5 a {
 
 .forma input[type="text"] {
   margin-top: 4px;
-  width: 20vw;
-  height: 55px;
+  width: 28vw;
+  height: 70px;
   margin-left: 5px;
   box-sizing: border-box;
   background: #FFFFFF;
@@ -232,7 +231,7 @@ h5 a {
 
 .btn {
   width: 166px;
-  height: 55px;
+  height: 70px;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 500;
@@ -252,7 +251,7 @@ h5 a {
 }
 
 .forma select {
-  height: 55px;
+  height: 70px;
   margin-top: 5px;
   /* padding: 11px; */
   background: #FAFAFA;
@@ -295,7 +294,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 763px) {
+@media only screen and (max-width: 769px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -313,17 +312,15 @@ h5 a {
   .projbutton {
     display: none;
   }
-
+.navbar-collapse {
+  display: none;
+}
   .navbar-toggler {
       display: block;
       background-image: url('../icons/burger2.png');
       background-repeat: no-repeat;
       padding-right: 5vw;
     }
-  .navbar-collapse {
-    display: none;
-  }
-  
 
   /* Стилизация меню */
   .navbar-nav {
@@ -348,6 +345,9 @@ h5 a {
     line-height: 50px; 
   }
 
+  .navbar-nav .nav-item a {
+    color: #14D563;
+  }
   .row {
     width: 100%;
     margin-right: auto;
@@ -458,7 +458,7 @@ h5 a {
   /* SEARCH FORM RESPONSIVE */
   .wrapper {
     display: flex !important;
-    flex-direction: column;
+    flex-direction: column-reverse;
     width: 90vw;
     height: 120px;
     margin-top: 130px !important;
@@ -470,7 +470,7 @@ h5 a {
 
   .forma {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 100%;
     margin-top: 17px;
     margin-left: 0px;
@@ -522,14 +522,6 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #adaptive-button {
-    display: flex;
-    margin: 0 3px;
-    height: 40px;
-    width: 46px;
-    align-items: center;
-    justify-content: center;
-  }
 
   #id_search {
     margin: 0 3px;
@@ -544,11 +536,23 @@ h5 a {
     line-height: normal;
     margin-bottom: 4px;
   }
-
-  #large-submit {
-    display: none;
+  .btn {
+    width: 80vw;
+    height: 40px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #14D563;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
-
+ 
   .link-inline {
     display: none;
   }
@@ -705,13 +709,15 @@ h5 a {
 
   .prices {
     display: flex;
+    justify-content: space-between;
   }
 
   .city {
-    display: flex;
+    display: none;
+    /* display: flex;
     flex-direction: column;
     width: 300px;
-    justify-content: center;
+    justify-content: center; */
   }
 
   .price-title {
@@ -729,7 +735,7 @@ h5 a {
 
   .forma {
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     justify-content: center;
     width: 748px;
     margin-top: 17px;
@@ -779,19 +785,27 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #adaptive-button {
-    display: flex;
-    margin: 0 3px;
+  .btn {
+    width: 166px;
     height: 40px;
-    width: 46px;
-    align-items: center;
-    justify-content: center;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #14D563;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
   }
 
   #id_search {
     margin: 0 3px;
     height: 40px;
-    width: 25vw;
+    width: 35vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -802,7 +816,5 @@ h5 a {
     margin-bottom: 4px;
   }
 
-  #large-submit {
-    display: none;
-  }
+
 }
