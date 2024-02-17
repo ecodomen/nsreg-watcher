@@ -2,11 +2,24 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
 body {
-  /* padding-top: 5rem; */
   width: 100%;
   padding: 0;
   margin: 0;
 }
+
+::-webkit-scrollbar {
+  width: 15px; 
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14D563 0%, #FFCF23 100%); 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 
 .navbar {
   display: flex;
@@ -294,7 +307,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 762px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -461,7 +474,7 @@ h5 a {
     flex-direction: column-reverse;
     width: 90vw;
     height: 120px;
-    margin-top: 130px !important;
+    margin-top: 100px !important;
     margin-bottom: 65px;
     margin-left: auto;
     margin-right: auto;
@@ -490,7 +503,7 @@ h5 a {
     display: flex;
     width: auto;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
   }
 
@@ -526,7 +539,7 @@ h5 a {
   #id_search {
     margin: 0 3px;
     height: 40px;
-    width: 80vw;
+    width: auto;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
@@ -550,7 +563,8 @@ h5 a {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: -95px;
   }
  
   .link-inline {
@@ -558,7 +572,7 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 764px) and (max-width: 1300px) {
+@media only screen and (min-width: 763px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
@@ -568,9 +582,10 @@ h5 a {
   }
   .navbar-brand {
     position: relative;
-    margin-left: 0;
+    margin-left: -20px;
+    margin-right: 40vw;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
-    transform: scale(0.7);
+    transform: scale(0.6);
     background-repeat: no-repeat;
     background-position: center left;
   }
@@ -805,7 +820,7 @@ h5 a {
   #id_search {
     margin: 0 3px;
     height: 40px;
-    width: 35vw;
+    width: 29vw;
     padding: auto;
     color: rgba(45, 45, 45, 0.70);
     font-family: Inter;
