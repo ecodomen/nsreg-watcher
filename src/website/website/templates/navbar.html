@@ -8,13 +8,45 @@
 
   <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #FFFFFF !important;">
     <a class="navbar-brand" href="/list">
-      <!-- <img src="{% static 'ecoIcons/Логотип (light).svg'%}" class="logo d-inline-block align-top" alt="Логотип" > -->
     </a>
     <div class="projbutton ml-auto">
       <a href="/project">Проект</a>
     </div>
+    <div class="projbutton ml-auto">
+      <a href="/team">Команда</a>
+    </div>
+
+        <!-- Ваша иконка бургер меню -->
+    <div class="navbar-toggler" id="burger-menu">
+      <img src="" alt="" width="30">
+    </div>
+
+    <!-- Меню с пунктами -->
+    <div class="navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="/team">КОМАНДА</a></li>
+        <li class="nav-item"><a href="/project">О ПРОЕКТЕ</a></li>
+      </ul>
+    </div>
+
 
   </nav>
   
+  <script>
+   
+  const burgerMenu = document.getElementById('burger-menu');
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+
+
+  burgerMenu.addEventListener('click', function() {
+    
+    if (navbarCollapse.style.display === 'none' || navbarCollapse.style.display === '') {
+      navbarCollapse.style.display = 'block';
+    } else { // Иначе скрываем его
+      navbarCollapse.style.display = 'none';
+    }
+  });
+
+  </script>
 
 
