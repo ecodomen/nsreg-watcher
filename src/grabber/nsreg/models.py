@@ -52,7 +52,11 @@ class ParseHistory(models.Model):
 
 class Price(models.Model):
     DOMAINS = [
-            ("ru", "Ru"),
+        ('ru', 'Ru'),
+    ]
+    VALID_CHOICES = [
+        ('V', 'valid'),
+        ('A', 'absent'),
     ]
     id = models.BigAutoField(primary_key=True)
     registrator = models.ForeignKey(Registrator, on_delete=models.CASCADE)
@@ -61,6 +65,9 @@ class Price(models.Model):
     price_reg = models.DecimalField(max_digits=10, decimal_places=2)
     price_prolong = models.DecimalField(max_digits=10, decimal_places=2)
     price_change = models.DecimalField(max_digits=10, decimal_places=2)
+    reg_status = models.CharField('Статус', max_length=1, choices=VALID_CHOICES, default='V')
+    prolong_status = models.CharField('Статус', max_length=1, choices=VALID_CHOICES, default='V')
+    change_status = models.CharField('Статус', max_length=1, choices=VALID_CHOICES, default='V')
 
     def __str__(self):
         return f'{self.id}: {self.price_reg}, {self.price_prolong}, {self.price_change}'

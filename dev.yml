@@ -10,8 +10,11 @@ services:
       POSTGRES_PASSWORD: $PASSWORD_DB
       POSTGRES_USER: $USERNAME_DB
       POSTGRES_DB: $DATABASE_NAME
+      PGDATA: /data/postgres
     ports:
       - 5433:5432
+    volumes:
+      - postgres:/data/postgres
 
 
   scrapy_telbot:
@@ -38,3 +41,6 @@ services:
       - postgres
     env_file: .env
     restart: always
+
+volumes:
+    postgres:

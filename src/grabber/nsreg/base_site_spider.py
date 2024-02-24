@@ -14,12 +14,16 @@ EMPTY_PRICE = {
 # Функция поиска цен в тексте, используя регулярное выражение
 def find_price(re_pattern, price):
     price = str(price).strip()
-    if price.casefold() == "бесплатно":
+    if "бесплатн" in price.casefold():
         price = 0
     else:
         # Применяем регулярное выражение к строке
         if m := re.match(re_pattern, price):
             price = m.group(1)
+
+            # Удаляем пробельные символы из строки
+            price = re.sub(r'\s', '', price)
+
     price = f'{float(price)}'
     logging.info('price = %s', price)
 
