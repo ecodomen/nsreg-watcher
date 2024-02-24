@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponseNotFound
 from django.db.models import Q
 
-from .models import Price, Registrator
-from .forms import CompaniesSortForm
+from .models import Price, Registrator, TeamMember
+from .forms import CompaniesSortForm, ContactForm
+from .tasks import send_join_team_mail
 
 
 SORT_FIELD_NAMES = {
@@ -63,7 +64,24 @@ def registrator_details(request, id):
 
 
 def about(request):
-    return render(request, 'about-us.html', )
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Логика обработки из формы обратной связи
+            # отправка сообщения по почте админу.
+            # TODO
+            name = request.POST.get("name")
+            contact = request.POST.get("contact")
+            speciality = request.POST.get("speciality")
+            message = request.POST.get("message")
+            send_join_team_mail.delay(name, contact, speciality, message)
+
+    else:
+        form = ContactForm()
+
+    team_members = TeamMember.objects.all()
+
+    return render(request, 'about-us.html', {'contact_form': form, 'team_members': team_members})
 
 
 def project_view(request):

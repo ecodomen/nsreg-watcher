@@ -4,3 +4,6 @@ django==4.1.7
 django-debug-toolbar==4.0.0
 aiogram==3.0.0b8
 python-dotenv==1.0.0
+pillow==10.2.0
+celery==5.3.6
+redis==5.0.1

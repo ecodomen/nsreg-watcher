@@ -143,3 +143,23 @@ INTERNAL_IPS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://ecodomen.ru', 'http://127.0.0.1:8000']
+
+
+# CELERY SETTINGS
+CELERY_BROKER_URL = f"redis://{os.environ['HOSTNAME_REDIS']}:{os.environ['PORT_REDIS']}/0"
+CELERY_RESULT_BACKEND = f"redis://{os.environ['HOSTNAME_REDIS']}:{os.environ['PORT_REDIS']}/0"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "Europe/Moscow"
+
+# SMTP SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['EMAIL_SMTP']
+EMAIL_PORT = os.environ['EMAIL_PORT']
+EMAIL_HOST_USER = os.environ['EMAIL_LOGIN']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+DEFAULT_FROM_EMAIL = f"Celery <{os.environ['EMAIL_FROM']}>"
