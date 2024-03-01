@@ -65,12 +65,12 @@ body {
 }
 .navbar-brand {
   position: relative;
-  margin-right: 45vw;
-  margin-left: 60px;
+  margin-right: 50vw;
+  margin-left: 20px;
   background-image: url('../ecoIcons/Логотип\ \(light\).svg');
   background-repeat: no-repeat;
   background-position: center;
-  width: 264px; 
+  min-width: 264px; 
   height: 70px;
 }
 .starter-template {
@@ -312,7 +312,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 763px) {
+@media only screen and (max-width: 770px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -321,7 +321,7 @@ h5 a {
   .navbar-brand {
     position: relative;
     margin-left: -50px;
-    margin-right: 20vw;
+    margin-right: auto;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.5);
     background-repeat: no-repeat;
@@ -332,12 +332,23 @@ h5 a {
   }
 .navbar-collapse {
   display: none;
+  animation: slideDown 0.5s forwards;
 }
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
   .navbar-toggler {
       display: block;
       background-image: url('../icons/burger2.png');
       background-repeat: no-repeat;
-      padding-right: 5vw;
+      margin-left: auto;
     }
 
   /* Стилизация меню */
@@ -577,7 +588,7 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 763px) and (max-width: 1300px) {
+@media only screen and (min-width: 770px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
@@ -587,7 +598,7 @@ h5 a {
   }
   .navbar-brand {
     position: relative;
-    margin-left: -20px;
+    margin-left: 0px;
     margin-right: 40vw;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.6);
@@ -611,7 +622,7 @@ h5 a {
 
   .projbutton {
     position: relative;
-    margin-right: 3vw;
+    margin-right: 5vw;
     width: 88px;
     height: 30px;
     font-family: 'Mulish';
