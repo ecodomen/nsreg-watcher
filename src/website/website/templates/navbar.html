@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
-
+<
 
 
 
@@ -10,13 +10,12 @@
     <a class="navbar-brand" href="/list">
     </a>
     <div class="projbutton ml-auto">
-      <a href="{% url 'project' %}">Проект</a>
+      <a href="/project">Проект</a>
     </div>
     <div class="projbutton ml-auto">
-      <a href="{% url 'about-us'%}">Команда</a>
+      <a href="/about-us">Команда</a>
     </div>
 
-        <!-- Ваша иконка бургер меню -->
     <div class="navbar-toggler" id="burger-menu">
       <img src="" alt="" width="30">
     </div>
@@ -24,8 +23,8 @@
     <!-- Меню с пунктами -->
     <div class="navbar-collapse">
       <ul class="navbar-nav">
-        <li class="nav-item"><a href="{% url 'about-us'%}">КОМАНДА</a></li>
-        <li class="nav-item"><a href="{% url 'project' %}">О ПРОЕКТЕ</a></li>
+        <li class="nav-item"><a href="/about-us">КОМАНДА</a></li>
+        <li class="nav-item"><a href="/project">ПРОЕКТ</a></li>
       </ul>
     </div>
 
@@ -42,9 +41,11 @@
     
     if (navbarCollapse.style.display === 'none' || navbarCollapse.style.display === '') {
       navbarCollapse.style.display = 'block';
-    } else { // Иначе скрываем его
+    } else { 
       navbarCollapse.style.display = 'none';
     }
   });
 
   </script>
+
+

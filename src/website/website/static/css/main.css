@@ -78,6 +78,11 @@ body {
   text-align: center;
 }
 
+.container {
+  margin-top: 100px;
+  width: 100vw;
+}
+
 .cards {
   justify-content: center;
 }
@@ -307,7 +312,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 762px) {
+@media only screen and (max-width: 763px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -461,9 +466,9 @@ h5 a {
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 0;
-    margin: 0 auto;
-    margin-left: auto;
+    /* padding: 0;
+    margin: 0 auto; */
+    margin-left: 7vw;
     width: 80vw;
     height: 40px;
   }
@@ -606,7 +611,7 @@ h5 a {
 
   .projbutton {
     position: relative;
-    margin-right: 5vw;
+    margin-right: 3vw;
     width: 88px;
     height: 30px;
     font-family: 'Mulish';
@@ -735,9 +740,9 @@ h5 a {
     justify-content: center; */
   }
 
-  .price-title {
+  /* .price-title {
     min-width: 8em;
-  }
+  } */
 
   .wrapper {
     display: flex !important;
