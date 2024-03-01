@@ -188,11 +188,10 @@ h5 a {
   height: 150px;
   margin: 10px auto;
   border: 1px solid #E5E5E9;
-  border-radius: 10px;
   padding: 20px;
   align-items: center;
   border-image: linear-gradient(86.99deg, #14D563 7.59%, #FFCF23 100.26%) 1;
-  border-radius: 10px;
+  border-radius: 10px !important;
   border-image-slice: 1;
   border-style: solid;
 }
@@ -312,7 +311,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 762px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -580,6 +579,7 @@ h5 a {
     border-radius: 10px;
     cursor: pointer;
     margin-top: 30px;
+    margin-left: 0 !important;
     margin-bottom: -95px;
   }
  
@@ -588,7 +588,7 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 770px) and (max-width: 1300px) {
+@media only screen and (min-width: 763px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
