@@ -7,3 +7,4 @@ python-dotenv==1.0.0
 pillow==10.2.0
 celery==5.3.6
 redis==5.0.1
+uwsgi==2.0.24
