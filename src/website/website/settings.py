@@ -18,7 +18,7 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+PROJECT_DIR = BASE_DIR.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -128,10 +128,14 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = PROJECT_DIR / 'static_content/static'
 
 STATICFILES_DIRS = [
     BASE_DIR / "website/static",
 ]
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = PROJECT_DIR / 'static_content/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -143,7 +147,6 @@ INTERNAL_IPS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://ecodomen.ru', 'http://127.0.0.1:8000']
-
 
 # CELERY SETTINGS
 CELERY_BROKER_URL = f"redis://{os.environ['HOSTNAME_REDIS']}:{os.environ['PORT_REDIS']}/0"
