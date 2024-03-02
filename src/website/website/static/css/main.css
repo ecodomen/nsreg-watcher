@@ -311,7 +311,7 @@ h5 a {
   justify-content: center;
 }
 
-@media only screen and (max-width: 762px) {
+@media only screen and (max-width: 767px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -565,7 +565,7 @@ h5 a {
     margin-bottom: 4px;
   }
   .btn {
-    width: 80vw;
+    width: 100%;
     height: 40px;
     font-family: 'Mulish';
     font-style: normal;
@@ -588,7 +588,7 @@ h5 a {
   }
 }
 
-@media only screen and (min-width: 763px) and (max-width: 1300px) {
+@media only screen and (min-width: 768px) and (max-width: 1300px) {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
