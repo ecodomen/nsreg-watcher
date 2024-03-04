@@ -22,8 +22,9 @@ body {
 
 
 .navbar {
+  position: relative;
   display: flex;
-  margin: auto;
+  /* margin: auto; */
   justify-content: space-between;
   align-items: center;
   background-color: #FFFFFF !important;
@@ -45,12 +46,19 @@ body {
   line-height: 30px;
 }
 
+.projbuttons {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 .projbutton {
-  position: relative;
+  /* position: relative; */
   width: auto;
   height: 30px;
-  margin-right: 5vw;
+  margin-right: 3vw;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
@@ -64,13 +72,13 @@ body {
   display: none;
 }
 .navbar-brand {
-  position: relative;
-  margin-right: 50vw;
-  margin-left: 20px;
+  position: absolute;
+  left: 5vw;
+  top: 10px;
   background-image: url('../ecoIcons/Логотип\ \(light\).svg');
   background-repeat: no-repeat;
   background-position: center;
-  min-width: 264px; 
+  width: 264px; 
   height: 70px;
 }
 .starter-template {
@@ -79,7 +87,7 @@ body {
 }
 
 .container {
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 100vw;
 }
 
@@ -181,7 +189,7 @@ h5 a {
 
 /* SEARCH FORM */
 .wrapper {
-  margin-top: 130px !important;
+  margin-top: 20px !important;
   margin-bottom: 60px;
   display: flex !important;
   width: 90vw;
@@ -313,24 +321,35 @@ h5 a {
 
 @media only screen and (max-width: 767px) {
   .navbar {
+    position: fixed;
     width: 100%;
-    height: auto;
+    height: 60px;
   }
 
   .navbar-brand {
-    position: relative;
-    margin-left: -50px;
-    margin-right: auto;
+    /* position: absolute; */
+    left: -40px;
+    top: -5px;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.5);
     background-repeat: no-repeat;
     background-position: center left;
   }
+
+  .projbuttons {
+    /* position: absolute; */
+    right: 5vw;
+    top: 15px;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
   .projbutton {
     display: none;
   }
 .navbar-collapse {
   display: none;
+  margin-top: 60px;
   animation: slideDown 0.5s forwards;
 }
 
@@ -354,7 +373,7 @@ h5 a {
   .navbar-nav {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    background-color: rgba(255, 255, 255, 0.7);
     
   }
 
@@ -489,7 +508,7 @@ h5 a {
     flex-direction: column-reverse;
     width: 90vw;
     height: 120px;
-    margin-top: 100px !important;
+    margin-top: 60px !important;
     margin-bottom: 65px;
     margin-left: auto;
     margin-right: auto;
@@ -592,14 +611,14 @@ h5 a {
   .navbar {
     margin: auto;
     background-color: #FFFFFF !important;
-    height: 100px;
+    height: 50px;
     width: 100vw;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .navbar-brand {
-    position: relative;
-    margin-left: 0px;
-    margin-right: 40vw;
+    position: absolute;
+    left: 0px;
+    top: -25px;
     background-image: url('../ecoIcons/Логотип\ \(light\).svg');
     transform: scale(0.6);
     background-repeat: no-repeat;
@@ -620,9 +639,17 @@ h5 a {
     line-height: 30px;
   }
 
+  .projbuttons {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
   .projbutton {
     position: relative;
-    margin-right: 5vw;
+    margin-right: 2vw;
     width: 88px;
     height: 30px;
     font-family: 'Mulish';
@@ -760,7 +787,7 @@ h5 a {
     flex-direction: column;
     width: 90vw;
     height: 80px;
-    margin-top: 120px !important;
+    margin-top:   20px !important;
     padding-top: 0;
   }
 
