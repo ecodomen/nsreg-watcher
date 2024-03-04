@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .employee-card {
     width: 218px;
     height: 330px;
@@ -109,15 +114,10 @@
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 768px) {
-    .row-justified {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+@media only screen and (max-width: 767px) {
+    body {
+        margin-top: -30px;
     }
-}
-
-@media only screen and (max-width: 360px) {
     .row-justified {
         display: flex;
         justify-content: center;
