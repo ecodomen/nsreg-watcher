@@ -109,7 +109,7 @@ class TeamMember(models.Model):
     name = models.CharField("Имя", max_length=255)
     title = models.CharField("Роль", max_length=255)
     contact = models.CharField("https://github.com/", max_length=255, null=True, blank=True)
-    photo = models.ImageField("Фото", upload_to='src/website/website/static/pictures/', null=True, blank=True)
+    photo = models.ImageField("Фото", upload_to='pictures/', null=True, blank=True)
     sex = models.CharField("Пол", max_length=1, choices=GENDER_CHOICES)
 
     def __str__(self):
