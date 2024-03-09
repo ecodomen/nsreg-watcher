@@ -116,7 +116,7 @@ body {
 
 @media only screen and (max-width: 767px) {
     body {
-        margin-top: -30px;
+        margin-top: 20px;
     }
     .row-justified {
         display: flex;
