@@ -28,7 +28,8 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
     <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" > 
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" >  
+    <link rel="stylesheet" href="{% static 'css/project.css' %}" > 
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +44,7 @@
     
         <h1 class="headerone">Проект</h1>
         <!-- <img src="../static/ecoIcons/Meeting.jpg" alt="Фото на фон" class="background-image"> -->
-        <div class="container">
+        <div class="text-container">
           <div class="text-block-1">
             <h2>Ecodomen - агрегатор регистраторов доменных имен</h2>
             Многие пользователи интернета не разбираются в тонкостях хостинга и доменов. При попытке создать собственный сайт они часто переплачивают, обращаясь к крупным регистраторам. Мы протягиваем таким людям руку помощи, упрощая процесс поиска и регистрации доменных имён. Наше приложение помогает найти наилучшие предложения, учитывая потребности пользователя.
@@ -53,7 +54,7 @@
             Но быстро вырос и собрал вокруг себя команду начинающих разработчиков (в том числе - тестировщика, дизайнера и проджект-менеджера). К сожалению, для развития проекта рук все равно не хватает, поэтому мы будем рады приветствовать в команде новых участников.
           </div>
         </div>
-        <div class="container-2">
+        <div class="text-container-2">
           <div class="text-block-1">    
             <h2>Наш стек технологий:</h2>
             <ul>
@@ -79,94 +80,3 @@
 </html>
 
 
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');    
-
-.container{
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 30vw;
-    /* min-width: 1200px; */
-}
-.container-2{
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 30vw;
-    /* min-width: 1200px; */
-    color: white;
-    background-image: url('//src/website/website/static/img/team.png');
-}
-
-
-
-.headerone {
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 60px;
-  text-align: center;
-  color: #2D2D2D;
-  margin-top: 30px; 
-}
-
-.text-block-1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  font-family: 'Mulish', sans-serif;
-  font-size: 18px;
-}
-
-.text-block-2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  font-family: 'Mulish', sans-serif;
-  font-size: 18px;
-}
-
-h2 {
-  color: #14D563; /* Ярко зеленый цвет */
-}
-
-@media screen and (max-width: 767px) {
-  .container {
-    flex-direction: column;
-  }
-  .container-2 {
-    flex-direction: column;
-  }
-
-  .text-block-1 {
-    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
-  }
-  .text-block-2 {
-    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    justify-content: space-between;
-  }
-  .container-2 {
-    justify-content: space-between;
-  }
-
-  .text-block-1 {
-    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
-    padding: 10px; /* Отступ вокруг текста */
-    box-sizing: border-box;
-  }
-  .text-block-2 {
-    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
-    padding: 10px; /* Отступ вокруг текста */
-    box-sizing: border-box;
-  }
-}
-
-</style>
