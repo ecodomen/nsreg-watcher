@@ -9,18 +9,18 @@ body {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 30vh;
-    padding: 30px;
+    height: 480px;
+    padding: 35px;
 }
 .text-container-2{
     
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 30vh;
+    height: 480px;
     color: white;
     background-image: url('../img/team.png');
-    padding: 30px;
+    padding: 35px;
 }
 
 .text-container-2 h2 {
@@ -61,25 +61,32 @@ h2 {
 }
 
 @media screen and (max-width: 767px) {
+
+  .headerone {
+    margin-top: 60px;
+  }
+
   .text-container {
+    display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 70vh;
   }
   .text-container-2 {
     flex-direction: column;
-    height: 50vh;
+    height: 70vh;
 
   }
 
   .text-block-1 {
-    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
+    margin-bottom: 20px; 
   }
   .text-block-2 {
-    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
+    margin-bottom: 20px; 
   }
 }
 
 @media screen and (min-width: 768px) {
+
   .text-container {
     justify-content: space-between;
   }
@@ -88,13 +95,13 @@ h2 {
   }
 
   .text-block-1 {
-    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
-    padding: 10px; /* Отступ вокруг текста */
+    width: calc(50% - 10px); 
+    padding: 10px; 
     box-sizing: border-box;
   }
   .text-block-2 {
-    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
-    padding: 10px; /* Отступ вокруг текста */
+    width: calc(50% - 10px); 
+    padding: 10px; 
     box-sizing: border-box;
   }
 }
