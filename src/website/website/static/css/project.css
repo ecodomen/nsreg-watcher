@@ -60,7 +60,7 @@ h2 {
   color: #14D563; 
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1199px) {
 
   .headerone {
     margin-top: 60px;
@@ -69,11 +69,11 @@ h2 {
   .text-container {
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 500px;
   }
   .text-container-2 {
     flex-direction: column;
-    height: 70vh;
+    height: 500px;
 
   }
 
@@ -85,7 +85,7 @@ h2 {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1200px) {
 
   .text-container {
     justify-content: space-between;
