@@ -40,31 +40,36 @@
 
 
 
-    <div class="container">
+    
         <h1 class="headerone">Проект</h1>
         <!-- <img src="../static/ecoIcons/Meeting.jpg" alt="Фото на фон" class="background-image"> -->
-        <div class="text-block-1">
-          Ecodomen - агрегатор регистраторов доменных имен
-          <br>
-          <br>
-          Многие пользователи интернета не разбираются в тонкостях хостинга и доменов. При попытке создать собственный сайт они часто переплачивают, обращаясь к крупным регистраторам. Мы протягиваем таким людям руку помощи, упрощая процесс поиска и регистрации доменных имён. Наше приложение помогает найти наилучшие предложения, учитывая потребности пользователя.
-          <br>
-          <br>
-          Ecodomen зарождался как учебный проект, но быстро вырос и собрал вокруг себя команду начинающих разработчиков (в том числе - тестировщика, дизайнера и проджект-менеджера). К сожалению, для развития проекта рук все равно не хватает, поэтому мы будем рады приветствовать в команде новых участников.
-          <br>
-          <br>
-          <strong>Наш стек технологий:</strong>
-          <ul>
-            <li>Python</li>
-            <li>Django</li>
-            <li>Scrapy</li>
-            <li>Git</li>
-            <li>Телеграм - коммуникация</li>
-          </ul>
-          Мы работаем на волонтерской основе, вкладывая свое свободное время. Если кто-то из участников проекта сталкивается с трудностями при выполнении задачи, остальные всегда готовы помочь.
-          <br>
-          Ecodomen - это проект с открытым исходным кодом (Open Source). Участие в таких проектах не только ценится в сообществе разработчиков, но и может оказаться преимуществом при поиске работы в сфере IT.
+        <div class="container">
+          <div class="text-block-1">
+            <h2>Ecodomen - агрегатор регистраторов доменных имен</h2>
+            Многие пользователи интернета не разбираются в тонкостях хостинга и доменов. При попытке создать собственный сайт они часто переплачивают, обращаясь к крупным регистраторам. Мы протягиваем таким людям руку помощи, упрощая процесс поиска и регистрации доменных имён. Наше приложение помогает найти наилучшие предложения, учитывая потребности пользователя.
+          </div>
+          <div class="text-block-2">   
+            <h2>Ecodomen зарождался как учебный проект</h2> 
+            Но быстро вырос и собрал вокруг себя команду начинающих разработчиков (в том числе - тестировщика, дизайнера и проджект-менеджера). К сожалению, для развития проекта рук все равно не хватает, поэтому мы будем рады приветствовать в команде новых участников.
+          </div>
         </div>
+        <div class="container-2">
+          <div class="text-block-1">    
+            <h2>Наш стек технологий:</h2>
+            <ul>
+              <li>Python</li>
+              <li>Django</li>
+              <li>Scrapy</li>
+              <li>Git</li>
+              <li>Телеграм - коммуникация</li>
+            </ul>
+          </div>
+          <div class="text-block-2">
+            <h2>Мы работаем на волонтерской основе, вкладывая свое свободное время.</h2> 
+            Если кто-то из участников проекта сталкивается с трудностями при выполнении задачи, остальные всегда готовы помочь.
+            Ecodomen - это проект с открытым исходным кодом (Open Source). Участие в таких проектах не только ценится в сообществе разработчиков, но и может оказаться преимуществом при поиске работы в сфере IT.
+          </div>
+        </div>  
         
         
     </div>
@@ -79,10 +84,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');    
 
 .container{
-    position: relative;
-    max-width: 100vw;
-    padding-left: 20px;
-    margin-right: 40px;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 30vw;
+    /* min-width: 1200px; */
+}
+.container-2{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 30vw;
+    /* min-width: 1200px; */
+    color: white;
+    background-image: url('//src/website/website/static/img/team.png');
 }
 
 
@@ -99,16 +114,59 @@
 }
 
 .text-block-1 {
-  margin-top: 35px;
-  position: relative;
-  width: 100vw;
-  height: auto;
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 47px;
-  color: #575757;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+}
+
+.text-block-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-family: 'Mulish', sans-serif;
+  font-size: 18px;
+}
+
+h2 {
+  color: #14D563; /* Ярко зеленый цвет */
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+  .container-2 {
+    flex-direction: column;
+  }
+
+  .text-block-1 {
+    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
+  }
+  .text-block-2 {
+    margin-bottom: 20px; /* Отступ между блоками в мобильной версии */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    justify-content: space-between;
+  }
+  .container-2 {
+    justify-content: space-between;
+  }
+
+  .text-block-1 {
+    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
+    padding: 10px; /* Отступ вокруг текста */
+    box-sizing: border-box;
+  }
+  .text-block-2 {
+    width: calc(50% - 10px); /* Половина ширины контейнера с учетом отступа */
+    padding: 10px; /* Отступ вокруг текста */
+    box-sizing: border-box;
+  }
 }
 
 </style>
