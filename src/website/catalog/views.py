@@ -34,7 +34,7 @@ def registrator_list(request):
     if search:
         companies = Price.objects.filter(
             Q(registrator__name__icontains=search) |
-            Q(registrator__city__icontains=search)
+            Q(registrator__website__icontains=search)
             )
     else:
         companies = Price.objects.filter()
