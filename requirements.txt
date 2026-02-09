@@ -1,4 +1,4 @@
-scrapy==2.7.1
-psycopg2==2.9.6
-django==4.1.7
-django-debug-toolbar==4.0.0
+scrapy>=2.11
+psycopg2-binary>=2.9.9
+django>=4.2
+django-debug-toolbar>=4.2
